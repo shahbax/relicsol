@@ -1,0 +1,221 @@
+
+---Upload files---
+Redux file was not uploaded. Error: No file provided.
+
+---Upload files---
+The import files were successfully uploaded!
+Initial max execution time = 360
+Files info:
+Site URL = https://relicsol.com
+Data file = /home/u252428411/domains/relicsol.com/public_html/wp-content/uploads/2026/04/content-2.xml
+Widget file = /home/u252428411/domains/relicsol.com/public_html/wp-content/uploads/2026/04/codestar.json
+Customizer file = /home/u252428411/domains/relicsol.com/public_html/wp-content/uploads/2026/04/customizer.dat
+Redux files:
+not defined!
+
+---Importing widgets---
+enable_scroll_up : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+theme_color_1 : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+theme_color_2 : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+preloader_enable : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+preloader_image_enable : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+preloader_image : Sidebar does not exist in theme (moving widget to Inactive)
+
+url - No Title - Site does not support widget
+id - No Title - Site does not support widget
+width - No Title - Site does not support widget
+height - No Title - Site does not support widget
+thumbnail - No Title - Site does not support widget
+alt - No Title - Site does not support widget
+title - No Title - Site does not support widget
+description - No Title - Site does not support widget
+
+preloader_canvas_bg_color : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+preloader_image_width : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_rtl : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+body-typography : Sidebar does not exist in theme (moving widget to Inactive)
+
+font-family - No Title - Site does not support widget
+font-weight - No Title - Site does not support widget
+font-style - No Title - Site does not support widget
+subset - No Title - Site does not support widget
+text-align - No Title - Site does not support widget
+text-transform - No Title - Site does not support widget
+font-size - No Title - Site does not support widget
+line-height - No Title - Site does not support widget
+letter-spacing - No Title - Site does not support widget
+color - No Title - Site does not support widget
+type - No Title - Site does not support widget
+unit - No Title - Site does not support widget
+
+heading-gl-typo : Sidebar does not exist in theme (moving widget to Inactive)
+
+font-family - No Title - Site does not support widget
+font-weight - No Title - Site does not support widget
+font-style - No Title - Site does not support widget
+subset - No Title - Site does not support widget
+text-align - No Title - Site does not support widget
+text-transform - No Title - Site does not support widget
+font-size - No Title - Site does not support widget
+line-height - No Title - Site does not support widget
+letter-spacing - No Title - Site does not support widget
+color - No Title - Site does not support widget
+type - No Title - Site does not support widget
+unit - No Title - Site does not support widget
+
+tx_logo : Sidebar does not exist in theme (moving widget to Inactive)
+
+url - No Title - Site does not support widget
+id - No Title - Site does not support widget
+width - No Title - Site does not support widget
+height - No Title - Site does not support widget
+thumbnail - No Title - Site does not support widget
+alt - No Title - Site does not support widget
+title - No Title - Site does not support widget
+description - No Title - Site does not support widget
+
+tx_sideInfo_logo : Sidebar does not exist in theme (moving widget to Inactive)
+
+url - No Title - Site does not support widget
+id - No Title - Site does not support widget
+width - No Title - Site does not support widget
+height - No Title - Site does not support widget
+thumbnail - No Title - Site does not support widget
+alt - No Title - Site does not support widget
+title - No Title - Site does not support widget
+description - No Title - Site does not support widget
+
+tx_logo_width : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_error_image : Sidebar does not exist in theme (moving widget to Inactive)
+
+url - No Title - Site does not support widget
+id - No Title - Site does not support widget
+width - No Title - Site does not support widget
+height - No Title - Site does not support widget
+thumbnail - No Title - Site does not support widget
+alt - No Title - Site does not support widget
+title - No Title - Site does not support widget
+description - No Title - Site does not support widget
+
+tx_error_title_1 : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_error_title_2 : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_error_link_text : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_breadcrumb : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+breadcrumb_bg_img : Sidebar does not exist in theme (moving widget to Inactive)
+
+url - No Title - Site does not support widget
+id - No Title - Site does not support widget
+width - No Title - Site does not support widget
+height - No Title - Site does not support widget
+thumbnail - No Title - Site does not support widget
+alt - No Title - Site does not support widget
+title - No Title - Site does not support widget
+description - No Title - Site does not support widget
+
+enable_breadcrumb_list : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_shape_1 : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+breadcrumb_padding : Sidebar does not exist in theme (moving widget to Inactive)
+
+top - No Title - Site does not support widget
+right - No Title - Site does not support widget
+bottom - No Title - Site does not support widget
+left - No Title - Site does not support widget
+unit - No Title - Site does not support widget
+
+footer_style : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+header_style : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_blog_button : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+blog_button_text : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_enable_social_share : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_social_share_heading : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_enable_blog_navigation : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+excerpt_length : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_author_meta : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_default_date : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_comment_meta : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+enable_custom_add_to_cart_text : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+custom_add_to_cart_text : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_copyright : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_service_title : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_service_slug : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_project_title : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_project_slug : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_team_title : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_team_slug : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_career_title : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+tx_career_slug : Sidebar does not exist in theme (moving widget to Inactive)
+
+
+

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { background:#080808; color:#A1A1AA; margin:0; padding:0; font-family:'Plus Jakarta Sans',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+    body { overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; }
+    ::selection { background:#F97316; color:#080808; }
+    [data-reveal] { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    [data-reveal="in"] { opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity:1 !important; transform:none !important; transition:none !important; }
+    }
+    .rl-svc-dd:hover .rl-svc-panel { opacity:1; pointer-events:auto; transform:translateY(0); }
+  
+    /* Enhanced UI */
+    .rl-btn-primary { position:relative; overflow:hidden; transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, background-color .2s ease; }
+    .rl-btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transition:left .5s ease; pointer-events:none; }
+    .rl-btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(249,115,22,0.35); background-color:#FF8534 !important; }
+    .rl-btn-primary:hover::before { left:150%; }
+    .rl-btn-primary:active { transform:translateY(0) scale(0.98); box-shadow:0 2px 10px rgba(249,115,22,0.25); }
+    .rl-btn-secondary { transition:transform .2s cubic-bezier(.16,1,.3,1), border-color .2s ease, color .2s ease; }
+    .rl-btn-secondary:hover { border-color:#F97316 !important; color:#F97316 !important; transform:translateY(-1px); }
+    .rl-foot-link { position:relative; transition:color .2s ease; }
+    .rl-foot-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-foot-link:hover { color:#ffffff !important; }
+    .rl-foot-link:hover::after { width:100%; }
+    .rl-nav-link { position:relative; padding-bottom:3px; }
+    .rl-nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-nav-link:hover::after { width:100%; }
+    @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+      #rl-scroll-progress { position:fixed; top:0; left:0; right:0; height:2px; background:#F97316; z-index:9998; transform-origin:left; transform:scaleX(0); will-change:transform; pointer-events:none; }
+
+    /* === MOBILE NAV === */
+    @media (max-width:767px) {
+      .rl-desktop-nav, .rl-desktop-cta { display:none !important; }
+      .rl-mobile-toggle { display:flex !important; }
+    }
+    @media (min-width:768px) {
+      .rl-mobile-toggle { display:none !important; }
+    }
+    .rl-mob-overlay { position:fixed; inset:0; background:rgba(8,8,8,0.97); z-index:100; display:flex; flex-direction:column; padding:32px; overflow-y:auto; opacity:0; pointer-events:none; transition:opacity .3s cubic-bezier(.16,1,.3,1); backdrop-filter:blur(24px); }
+    .rl-mob-overlay[data-open="true"] { opacity:1; pointer-events:auto; }
+    /* === RESPONSIVE LAYOUT === */
+    @media (max-width:767px) {
+      [style*="repeat(3"] { grid-template-columns:1fr !important; }
+      [style*="repeat(4"] { grid-template-columns:1fr !important; }
+    }
+    @media (max-width:480px) {
+      [style*="repeat(2"] { grid-template-columns:1fr !important; }
+    }
+    @media (min-width:768px) and (max-width:1023px) {
+      [style*="repeat(3"] { grid-template-columns:repeat(2,1fr) !important; }
+      [style*="repeat(4"] { grid-template-columns:repeat(2,1fr) !important; }
+    }
+    </style>
+</helmet>
+
+<div style="background:#080808; color:#A1A1AA; font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh;">
+  <div id="rl-scroll-progress"></div>
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(8,8,8,0.75); backdrop-filter:blur(20px); border-bottom:1px solid #1a1a1a;">
+    <div style="max-width:1400px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;">
+      <a href="Relicsol.dc.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff; letter-spacing:-0.02em;">Relicsol</span>
+      </a>
+      <div class="rl-desktop-nav" style="display:flex; align-items:center; gap:36px;">
+        <a href="Relicsol.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Home</a>
+        <div class="rl-svc-dd" style="position:relative;">
+          <span style="color:#A1A1AA; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:6px; cursor:pointer;" style-hover="color:#ffffff;">Services <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+          <div class="rl-svc-panel" style="position:absolute; top:100%; left:-16px; padding-top:12px; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; transform:translateY(-4px);">
+            <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:10px; min-width:280px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
+              <a href="WebDesign.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Web Design &amp; Development</a>
+              <a href="Software.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Software Development</a>
+              <a href="AIAutomation.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">AI Automation</a>
+              <a href="SEO.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">SEO &amp; Digital Marketing</a>
+            </div>
+          </div>
+        </div>
+        <a href="Portfolio.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Portfolio</a>
+        <a href="About.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">About</a>
+        <a href="Contact.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Contact</a>
+      </div>
+      
+      <button class="rl-mobile-toggle" onClick="{{ toggleMobile }}" style="display:none; background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px; width:40px; height:40px; align-items:center; justify-content:center;">
+        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg>
+      </button>
+      <a href="Contact.dc.html" class="rl-desktop-cta rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:10px 20px; border-radius:999px; font-size:13px; font-weight:600; letter-spacing:0.01em;">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="rl-mob-overlay" data-open="{{ mobileOpen }}">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff;">Relicsol</span>
+      </div>
+      <button onClick="{{ toggleMobile }}" style="background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px;">
+        <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+      </button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <a href="Relicsol.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Home</a>
+      <div style="border-bottom:1px solid #1a1a1a;">
+        <button onClick="{{ toggleMobServices }}" style="width:100%; background:transparent; border:none; color:#ffffff; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; cursor:pointer; text-align:left; display:flex; align-items:center; justify-content:space-between;">
+          Services
+          <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" style="transition:transform .3s ease; transform:{{ mobSvcRotate }};"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+        </button>
+        <sc-if value="{{ mobServicesOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:2px; padding:0 0 16px 24px;">
+            <a href="WebDesign.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Web Design &amp; Development</a>
+            <a href="Software.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Software Development</a>
+            <a href="AIAutomation.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">AI Automation</a>
+            <a href="SEO.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">SEO &amp; Digital Marketing</a>
+          </div>
+        </sc-if>
+      </div>
+      <a href="Portfolio.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Portfolio</a>
+      <a href="About.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">About</a>
+      <a href="Blog.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Blog</a>
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Contact</a>
+    </div>
+    <div style="margin-top:auto; padding-top:40px;">
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="display:flex; align-items:center; justify-content:center; gap:10px; background:#F97316; color:#fff; text-decoration:none; padding:18px 32px; border-radius:999px; font-size:16px; font-weight:500; width:100%;">
+        Start Your Project
+        <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+      </a>
+      <div style="margin-top:24px; text-align:center;">
+        <a href="mailto:info@relicsol.com" style="color:#71717a; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:13px;" style-hover="color:#F97316;">info@relicsol.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div style="padding:120px 32px 0;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; letter-spacing:0.1em; display:flex; align-items:center; gap:10px;">
+        <a href="Portfolio.dc.html" style="color:#71717a; text-decoration:none;" style-hover="color:#F97316;">PORTFOLIO</a>
+        <span style="color:#3f3f46;">/</span>
+        <span style="color:#F97316;">05 · FORERUNNERS GROUP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding:60px 32px 80px; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:0; right:-200px; width:700px; height:500px; background:radial-gradient(circle, rgba(249,115,22,0.15), transparent 60%); pointer-events:none;"></div>
+    <div style="max-width:1400px; margin:0 auto; position:relative;">
+      <div data-reveal="{{ heroR }}">
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#F97316; text-transform:uppercase; letter-spacing:0.15em; padding:6px 12px; border:1px solid rgba(249,115,22,0.4); border-radius:999px; background:rgba(249,115,22,0.08);">Corporate</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#A1A1AA; text-transform:uppercase; letter-spacing:0.15em; padding:6px 12px; border:1px solid #262626; border-radius:999px;">Consulting</span>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#A1A1AA; text-transform:uppercase; letter-spacing:0.15em; padding:6px 12px; border:1px solid #262626; border-radius:999px;">WordPress</span>
+        </div>
+        <h1 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px,6vw,84px); line-height:0.98; letter-spacing:-0.045em; margin:0 0 32px; max-width:1100px;">
+          Forerunners Group — Authority and trust,<br><span style="background:linear-gradient(120deg,#F97316,#FFAD5C); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">built into every page.</span>
+        </h1>
+        <p style="font-size:18px; line-height:1.65; color:#A1A1AA; max-width:720px; margin:0;">
+          An enterprise consulting site that converts boardroom-level traffic into qualified consultations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <section style="padding:0 32px 80px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="aspect-ratio:16/9; border-radius:4px; overflow:hidden; background:linear-gradient(135deg,#374151,#111827); position:relative; border:1px solid #262626;">
+        <img src="https://relicsol.com/wp-content/uploads/2026/06/forerunnersgroup.webp" alt="forerunners-group screenshot" style="width:100%; height:100%; object-fit:cover; opacity:0.92;">
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section style="padding:60px 32px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; border-top:1px solid #262626; border-bottom:1px solid #262626;">
+        <div style="padding:32px 24px; border-right:1px solid #262626;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">Client</div>
+          <div style="color:#ffffff; font-size:15px; font-weight:500;">Forerunners Group</div>
+        </div>
+        <div style="padding:32px 24px; border-right:1px solid #262626;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">Industry</div>
+          <div style="color:#ffffff; font-size:15px; font-weight:500;">Consulting</div>
+        </div>
+        <div style="padding:32px 24px; border-right:1px solid #262626;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">Location</div>
+          <div style="color:#ffffff; font-size:15px; font-weight:500;">USA</div>
+        </div>
+        <div style="padding:32px 24px; border-right:1px solid #262626;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">Year</div>
+          <div style="color:#ffffff; font-size:15px; font-weight:500;">2024</div>
+        </div>
+        <div style="padding:32px 24px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">Services</div>
+          <div style="color:#ffffff; font-size:15px; font-weight:500;">Web · WP · Lead Gen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section style="padding:80px 32px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <!-- Challenge -->
+      <div style="margin-bottom:80px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">01 / The Challenge</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:32px; line-height:1.15; letter-spacing:-0.025em; margin:0 0 24px;">
+          Crowded market, trust is everything.
+        </h2>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+            Forerunners Group is a business automation and analytics consultancy helping mid-market companies extract value from data using Power BI, Tableau, and Google Cloud.
+          </p>
+          <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+            The consulting market is crowded and trust is everything. Their website needed to immediately communicate expertise and generate qualified enterprise leads.
+          </p>
+        </div>
+      </div>
+
+      <!-- Approach -->
+      <div style="margin-bottom:80px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">02 / The Approach</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:32px; line-height:1.15; letter-spacing:-0.025em; margin:0 0 24px;">
+          Thought leadership first. Services second.
+        </h2>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+            We built an authority-first site architecture. Thought leadership content front and center. Service definitions framed around business outcomes rather than technical deliverables.
+          </p>
+          <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+            The case study section spoke in revenue impact, not deliverable lists. Lead generation flow was structured around a free consultation with clear qualification criteria, filtering out tire-kickers before they reached the calendar.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pull quote -->
+      <div style="margin:80px -32px; padding:64px 32px; background:#0f0f0f; border-top:1px solid #1a1a1a; border-bottom:1px solid #1a1a1a;">
+        <div style="max-width:900px; margin:0 auto;">
+          <svg width="36" height="28" viewBox="0 0 256 256" fill="#F97316" style="margin-bottom:24px; opacity:0.6;"><path d="M116,72v88a48.05,48.05,0,0,1-48,48,8,8,0,0,1,0-16,32,32,0,0,0,32-32V128H64A24,24,0,0,1,40,104V72A24,24,0,0,1,64,48H92A24,24,0,0,1,116,72Zm100-24H188a24,24,0,0,0-24,24v32a24,24,0,0,0,24,24h24v16a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A24,24,0,0,0,216,48Z"/></svg>
+          <p style="font-family:'Plus Jakarta Sans',sans-serif; color:#ffffff; font-size:28px; line-height:1.4; letter-spacing:-0.02em; font-weight:400; margin:0 0 24px;">
+            "We can finally point to our website in a sales conversation. It does part of the convincing for us."
+          </p>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#71717a; letter-spacing:0.1em;">— FORERUNNERS GROUP, LEADERSHIP</div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div style="margin-bottom:80px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">03 / The Result</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:32px; line-height:1.15; letter-spacing:-0.025em; margin:0 0 40px;">
+          Enterprise leads that close, not just leads.
+        </h2>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+          <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:32px;">
+            <div style="font-family:'Syne',sans-serif; font-size:48px; font-weight:700; color:#F97316; letter-spacing:-0.04em; line-height:1; margin-bottom:12px;">+58%</div>
+            <div style="font-size:13px; color:#A1A1AA; line-height:1.5;">Consultation request rate</div>
+          </div>
+          <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:32px;">
+            <div style="font-family:'Syne',sans-serif; font-size:48px; font-weight:700; color:#F97316; letter-spacing:-0.04em; line-height:1; margin-bottom:12px;">2</div>
+            <div style="font-size:13px; color:#A1A1AA; line-height:1.5;">Enterprise accounts in first 90 days</div>
+          </div>
+          <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:32px;">
+            <div style="font-family:'Syne',sans-serif; font-size:48px; font-weight:700; color:#F97316; letter-spacing:-0.04em; line-height:1; margin-bottom:12px;">+44%</div>
+            <div style="font-size:13px; color:#A1A1AA; line-height:1.5;">Average lead quality score</div>
+          </div>
+        </div>
+
+      <!-- Tech -->
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">04 / Tech Used</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <sc-for list="{{ techTags }}" as="t" hint-placeholder-count="5">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#ffffff; padding:8px 14px; border:1px solid #262626; border-radius:999px; background:#0f0f0f;">{{ t }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next project -->
+  <section style="padding:80px 32px 0;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <a href="CaseStudy-house-wine.dc.html" style="display:block; text-decoration:none; background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:48px; position:relative; overflow:hidden; transition:border-color .3s ease, transform .3s ease;" style-hover="border-color:#F97316; transform:translateY(-4px);">
+        <div style="display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:16px;">Next Case Study →</div>
+            <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:36px; line-height:1.1; letter-spacing:-0.025em; margin:0 0 8px;">House Wine</h3>
+            <p style="font-size:15px; color:#A1A1AA; margin:0;">Independent wine marketplace</p>
+          </div>
+          <div style="width:200px; aspect-ratio:1; border-radius:4px; overflow:hidden; background:linear-gradient(135deg,#3f2418,#1c0f08);">
+            <div style="height:100%; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:14px; color:rgba(245,245,240,0.4); letter-spacing:0.15em;">HO</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:140px 32px 80px;">
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+      <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px,6vw,72px); line-height:0.98; letter-spacing:-0.04em; margin:0 0 24px;">
+        Start a similar project.
+      </h2>
+      <p style="font-size:17px; line-height:1.65; color:#A1A1AA; margin:0 0 40px;">
+        Tell us what you are building. We respond within 1 hour.
+      </p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="Contact.dc.html" class="rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.01em;">Start Your Project →</a>
+        <a href="Portfolio.dc.html" style="background:transparent; color:#ffffff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:500; border:1px solid #262626;" style-hover="border-color:#52525b;">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#080808; border-top:1px solid #262626; padding:48px 32px;">
+    <div style="max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:28px; height:28px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:14px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:#ffffff;">Relicsol</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; margin-left:8px;">© 2026</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="display:flex; gap:24px; font-size:13px;">
+          <a href="Relicsol.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Home</a>
+          <a href="Portfolio.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Portfolio</a>
+          <a href="About.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">About</a>
+          <a href="Contact.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Contact</a>
+          <a href="mailto:info@relicsol.com" style="color:#A1A1AA; text-decoration:none; font-family:'JetBrains Mono',monospace;" style-hover="color:#F97316;">info@relicsol.com</a>
+        </div>
+        <div style="display:flex; gap:8px; margin-left:8px;">
+          <a href="https://www.linkedin.com/company/relicsol" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-88a12,12,0,1,1,12-12A12,12,0,0,1,88,88Zm96,88a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/relicsol" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.29l62.6,98.38L42.08,210.62a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mobileOpen: false, mobServicesOpen: false, heroR:'' };
+  componentDidMount() {
+    // Scroll progress bar
+    this._scrollFn = () => { const bar = document.getElementById('rl-scroll-progress'); if (bar) { const h = document.documentElement.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? (window.scrollY / h) : 0) + ')'; } };
+    window.addEventListener('scroll', this._scrollFn, { passive: true });
+    setTimeout(() => this.setState({ heroR:'in' }), 100);
+  }
+  componentWillUnmount() {
+    if (this._scrollFn) window.removeEventListener('scroll', this._scrollFn);
+  }
+  renderVals() {
+    return {
+      mobileOpen: this.state.mobileOpen,
+      mobServicesOpen: this.state.mobServicesOpen,
+      mobSvcRotate: this.state.mobServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
+      closeMobile: () => this.setState({ mobileOpen: false, mobServicesOpen: false }),
+      toggleMobServices: () => this.setState(s => ({ mobServicesOpen: !s.mobServicesOpen })),
+      heroR: this.state.heroR,
+      techTags: ["WordPress","Custom Theme","On-Page SEO","Lead Gen Forms","Cloudflare"]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://relicsol.com/sitemap.xml

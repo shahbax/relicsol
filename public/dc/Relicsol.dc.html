@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    (function(){
+      function startWhenReady() {
+        const canvas = document.getElementById('rl-hero-canvas');
+        const wrap = document.getElementById('rl-hero-3d');
+        if (!canvas || !wrap || typeof THREE === 'undefined') {
+          setTimeout(startWhenReady, 100);
+          return;
+        }
+        if (window.__rl3dStarted) return;
+        window.__rl3dStarted = true;
+        try {
+          const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+          camera.position.set(0, 0, 5.5);
+          const geo = new THREE.IcosahedronGeometry(2, 1);
+          const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({ color: 0xF97316, shininess: 80, specular: 0xFFAD5C, flatShading: true }));
+          scene.add(mesh);
+          const wire = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0xFF9A50, wireframe: true, opacity: 0.08, transparent: true }));
+          scene.add(wire);
+          function ring(r, op, rx, rz) {
+            const m = new THREE.Mesh(new THREE.TorusGeometry(r, 0.012, 6, 60), new THREE.MeshBasicMaterial({ color: 0xF97316, opacity: op, transparent: true }));
+            m.rotation.x = rx; m.rotation.z = rz; scene.add(m); return m;
+          }
+          const r1 = ring(3.2, 0.14, 0.4, 0);
+          const r2 = ring(3.9, 0.06, -0.3, 0.5);
+          scene.add(new THREE.AmbientLight(0x111111, 1));
+          const pl1 = new THREE.PointLight(0xF97316, 4, 20); pl1.position.set(3, 4, 3); scene.add(pl1);
+          const pl2 = new THREE.PointLight(0xFFAD5C, 2, 20); pl2.position.set(-4, -2, 1); scene.add(pl2);
+          function resize() {
+            const w = wrap.offsetWidth || 500;
+            const h = wrap.offsetHeight || 500;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+          }
+          resize();
+          if (window.ResizeObserver) new ResizeObserver(resize).observe(wrap);
+          else window.addEventListener('resize', resize);
+          let t = 0, last = 0;
+          const RATE = 1000 / 30;
+          const state = { paused: false, frames: 0 };
+          window.__rl3dState = state;
+          document.addEventListener('visibilitychange', function() { state.paused = document.hidden; });
+          if (window.IntersectionObserver) new IntersectionObserver(function(e) { state.paused = !e[0].isIntersecting; }, { threshold: 0.01 }).observe(wrap);
+          (function anim(now) {
+            requestAnimationFrame(anim);
+            if (state.paused || now - last < RATE) return;
+            last = now;
+            state.frames++;
+            t += 0.006;
+            mesh.rotation.x = wire.rotation.x = t * 0.28;
+            mesh.rotation.y = wire.rotation.y = t * 0.48;
+            mesh.position.y = wire.position.y = Math.sin(t * 0.7) * 0.22;
+            r1.rotation.z = t * 0.15;
+            r2.rotation.y = t * 0.20;
+            pl1.position.x = Math.sin(t) * 4;
+            pl1.position.z = Math.cos(t) * 3;
+            renderer.render(scene, camera);
+          })(0);
+        } catch (err) {
+          window.__rl3dErr = err.message || String(err);
+        }
+      }
+      startWhenReady();
+    })();
+  </script>
+  <style>
+    html, body { background:#080808; color:#A1A1AA; margin:0; padding:0; font-family:'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; line-height:1.65; }
+    body { overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; }
+    ::selection { background:#F97316; color:#080808; }
+
+    /* === KEYFRAMES === */
+    @keyframes rl-pulse { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(6px)} }
+    @keyframes rl-bloom { 0%,100%{opacity:.35;transform:scale(1)} 50%{opacity:.6;transform:scale(1.05)} }
+    @keyframes rl-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes rl-marquee-r { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+    @keyframes rl-shine { from{left:-100%} to{left:150%} }
+    @keyframes rl-progress { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+
+    /* === SCROLL PROGRESS BAR === */
+    #rl-scroll-progress { position:fixed; top:0; left:0; right:0; height:2px; background:#F97316; z-index:9998; transform-origin:left; transform:scaleX(0); will-change:transform; pointer-events:none; }
+
+    /* === BUTTONS — PRIMARY === */
+    .rl-btn-primary { position:relative; overflow:hidden; transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, background-color .2s ease; }
+    .rl-btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transition:left .5s ease; pointer-events:none; }
+    .rl-btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(249,115,22,0.35); background-color:#FF8534 !important; }
+    .rl-btn-primary:hover::before { left:150%; }
+    .rl-btn-primary:active { transform:translateY(0) scale(0.98); box-shadow:0 2px 10px rgba(249,115,22,0.25); transition-duration:0.08s; }
+
+    /* === BUTTONS — SECONDARY === */
+    .rl-btn-secondary { transition:transform .2s cubic-bezier(.16,1,.3,1), border-color .2s ease, color .2s ease, background .2s ease; }
+    .rl-btn-secondary:hover { border-color:#F97316 !important; color:#F97316 !important; transform:translateY(-1px); }
+    .rl-btn-secondary:active { transform:translateY(0) scale(0.98); }
+
+    /* === ARROW LINKS === */
+    .rl-arrow-link { position:relative; }
+    .rl-arrow-link svg { transition:transform .25s cubic-bezier(.16,1,.3,1); }
+    .rl-arrow-link:hover svg { transform:translateX(4px); }
+    .rl-arrow-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:#F97316; transition:width .3s cubic-bezier(.16,1,.3,1); }
+    .rl-arrow-link:hover::after { width:100%; }
+
+    /* === NAV LINKS === */
+    .rl-nav-link { position:relative; padding-bottom:3px; }
+    .rl-nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-nav-link:hover::after { width:100%; }
+
+    /* === FOOTER LINKS === */
+    .rl-foot-link { position:relative; transition:color .2s ease; }
+    .rl-foot-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-foot-link:hover { color:#ffffff !important; }
+    .rl-foot-link:hover::after { width:100%; }
+
+    /* === PORTFOLIO CARDS === */
+    .rl-port-rail:hover .rl-port-row { animation-play-state:paused; }
+    .rl-port-card { position:relative; flex-shrink:0; width:520px; height:292px; border-radius:4px; overflow:hidden; border:1px solid #262626; background:#0f0f0f; text-decoration:none; display:block; transition:border-color .3s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s ease; cursor:pointer; }
+    .rl-port-card:hover { border-color:#F97316; transform:translateY(-4px) scale(1.01); box-shadow:0 30px 80px -20px rgba(249,115,22,0.25); }
+    .rl-port-card .rl-port-img { transition:transform .6s cubic-bezier(.16,1,.3,1); }
+    .rl-port-card:hover .rl-port-img { transform:scale(1.05); }
+    .rl-port-card .rl-port-overlay { position:absolute; left:0; right:0; bottom:0; padding:24px 28px; background:linear-gradient(180deg,transparent,rgba(8,8,8,0.96)); transform:translateY(40%); opacity:0.85; transition:transform .45s cubic-bezier(.16,1,.3,1), opacity .45s ease; }
+    .rl-port-card:hover .rl-port-overlay { transform:translateY(0); opacity:1; }
+    .rl-port-card .rl-port-num { position:absolute; top:18px; right:18px; opacity:0; transform:translateY(-6px); transition:opacity .35s ease .05s, transform .35s ease .05s; font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; letter-spacing:0.15em; background:rgba(8,8,8,0.7); padding:6px 11px; border:1px solid rgba(249,115,22,0.4); border-radius:999px; backdrop-filter:blur(8px); }
+    .rl-port-card:hover .rl-port-num { opacity:1; transform:translateY(0); }
+    .rl-port-card .rl-port-desc { max-height:0; overflow:hidden; opacity:0; transition:max-height .45s ease .08s, opacity .4s ease .08s, margin .45s ease; }
+    .rl-port-card:hover .rl-port-desc { max-height:80px; opacity:1; margin-top:10px; }
+    .rl-port-card .rl-port-cta { display:inline-flex; align-items:center; gap:8px; color:#F97316; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; opacity:0; transform:translateX(-6px); transition:opacity .35s ease .12s, transform .35s ease .12s; margin-top:0; }
+    .rl-port-card:hover .rl-port-cta { opacity:1; transform:translateX(0); margin-top:14px; }
+    .rl-port-card .rl-port-cta svg { transition:transform .25s cubic-bezier(.16,1,.3,1); }
+    .rl-port-card:hover .rl-port-cta svg { transform:translateX(3px); }
+
+    /* === SERVICE CARDS === */
+    .rl-svc-card { position:relative; overflow:hidden; transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .3s ease, box-shadow .4s ease; }
+    .rl-svc-card::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 100%,rgba(249,115,22,0.08),transparent 70%); opacity:0; transition:opacity .35s ease; pointer-events:none; }
+    .rl-svc-card::after { content:''; position:absolute; bottom:0; left:0; height:2px; width:0; background:#F97316; transition:width .5s cubic-bezier(.16,1,.3,1); }
+    .rl-svc-card:hover { transform:translateY(-6px); border-color:#F97316 !important; box-shadow:0 24px 60px -20px rgba(249,115,22,0.15); }
+    .rl-svc-card:hover::before { opacity:1; }
+    .rl-svc-card:hover::after { width:100%; }
+
+    /* === PRICING CARDS === */
+    .rl-price-card { transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease; }
+    .rl-price-card:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 30px 80px -20px rgba(249,115,22,0.2); }
+    .rl-price-featured { box-shadow:0 0 0 1px #F97316, 0 0 40px -10px rgba(249,115,22,0.15); }
+
+    /* === TESTIMONIAL PROGRESS === */
+    .rl-test-progress { transform-origin:left; animation:rl-progress 5.5s linear forwards; }
+
+    /* === SECTION REVEAL === */
+    [data-reveal] { opacity:0; transform:translateY(40px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    [data-reveal="in"] { opacity:1; transform:translateY(0); }
+    [data-reveal-scale] { opacity:0; transform:scale(0.94); transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+    [data-reveal-scale="in"] { opacity:1; transform:scale(1); }
+
+    /* === HERO TEXT STAGGER === */
+    .rl-hero-word { opacity:0; transform:translateY(60px) skewY(3deg); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .rl-hero-word.in { opacity:1; transform:translateY(0) skewY(0deg); }
+
+    /* === MOBILE NAV === */
+    @media (max-width:767px) {
+      .rl-desktop-nav { display:none !important; }
+      .rl-mobile-toggle { display:flex !important; }
+    }
+    @media (min-width:768px) {
+      .rl-mobile-toggle { display:none !important; }
+    }
+    .rl-mob-overlay { position:fixed; inset:0; background:rgba(8,8,8,0.97); z-index:100; display:flex; flex-direction:column; padding:32px; overflow-y:auto; opacity:0; pointer-events:none; transition:opacity .3s cubic-bezier(.16,1,.3,1); backdrop-filter:blur(24px); }
+    .rl-mob-overlay[data-open="true"] { opacity:1; pointer-events:auto; }
+
+    /* === RESPONSIVE LAYOUT === */
+    @media (max-width:767px) {
+      /* Stats + About + Services + Portfolio + Video + Blog: stack vertically */
+      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns:1fr !important; gap:48px !important; }
+      /* Why Choose Us */
+      [style*="grid-template-columns: 5fr 7fr"] { grid-template-columns:1fr !important; gap:48px !important; }
+      /* Why items row */
+      [style*="grid-template-columns: 80px 1fr 56px"] { grid-template-columns:48px 1fr !important; gap:16px !important; }
+      [style*="grid-template-columns: 80px 1fr 56px"] > :last-child { display:none !important; }
+      /* Process steps */
+      [style*="repeat(3, 1fr)"] { grid-template-columns:1fr !important; }
+      /* Pricing */
+      [style*="1fr 1fr 1fr"] { grid-template-columns:1fr !important; }
+      /* Footer */
+      [style*="grid-template-columns: 1.4fr 1fr 1fr 1.4fr"] { grid-template-columns:1fr 1fr !important; gap:32px !important; }
+      /* Section padding */
+      section[style*="padding: 140px"] { padding-left:20px !important; padding-right:20px !important; }
+      /* Process line hide on mobile */
+      #rl-proc-line, #rl-proc-line + div > [style*="position: absolute"] { display:none !important; }
+    }
+    @media (max-width:480px) {
+      /* Footer full stack */
+      [style*="grid-template-columns: 1.4fr 1fr 1fr 1.4fr"] { grid-template-columns:1fr !important; }
+    }
+    @media (min-width:768px) and (max-width:1023px) {
+      [style*="grid-template-columns: 5fr 7fr"] { grid-template-columns:1fr 1fr !important; gap:48px !important; }
+      [style*="repeat(3, 1fr)"] { grid-template-columns:repeat(2, 1fr) !important; }
+      [style*="1fr 1fr 1fr"]:not([style*="repeat"]) { grid-template-columns:1fr 1fr !important; }
+    }
+
+    /* === REDUCED MOTION === */
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+      [data-reveal],[data-reveal-scale],.rl-hero-word { opacity:1 !important; transform:none !important; }
+      #rl-scroll-progress { display:none; }
+    }
+  </style>
+</helmet>
+
+<div style="background:#080808; color:#A1A1AA; font-family:'Plus Jakarta Sans', system-ui, sans-serif; min-height:100vh; position:relative; overflow-x:hidden;">
+
+  <!-- SCROLL PROGRESS -->
+  <div id="rl-scroll-progress"></div>
+
+  <!-- NAV -->
+  <nav style="{{ navStyle }}">
+    <div style="max-width:1400px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;">
+      <a href="Relicsol.dc.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff; letter-spacing:-0.02em;">Relicsol</span>
+      </a>
+      <!-- Desktop nav links -->
+      <div class="rl-desktop-nav" style="display:flex; align-items:center; gap:36px;">
+        <a href="Relicsol.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Home</a>
+        <div style="position:relative;" onMouseEnter="{{ openServices }}" onMouseLeave="{{ closeServices }}">
+          <span class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500; display:flex; align-items:center; gap:6px; cursor:pointer;" style-hover="color:#ffffff;">
+            Services
+            <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+          </span>
+          <sc-if value="{{ servicesOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:-16px; padding-top:12px;">
+              <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:10px; min-width:280px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
+                <a href="WebDesign.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Web Design &amp; Development</a>
+                <a href="Software.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Software Development</a>
+                <a href="AIAutomation.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">AI Automation</a>
+                <a href="SEO.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">SEO &amp; Digital Marketing</a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <a href="Portfolio.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Portfolio</a>
+        <a href="About.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">About</a>
+        <a href="Contact.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Contact</a>
+      </div>
+      <!-- Mobile hamburger -->
+      <button class="rl-mobile-toggle" onClick="{{ toggleMobile }}" style="display:none; background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px; width:40px; height:40px; align-items:center; justify-content:center;">
+        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg>
+      </button>
+      <a href="Contact.dc.html" class="rl-desktop-nav rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:10px 20px; border-radius:999px; font-size:13px; font-weight:600; letter-spacing:0.01em; display:inline-flex; align-items:center; gap:8px;">
+        Get Started
+        <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="rl-mob-overlay" data-open="{{ mobileOpen }}">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff;">Relicsol</span>
+      </div>
+      <button onClick="{{ toggleMobile }}" style="background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px;">
+        <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+      </button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <a href="Relicsol.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Home</a>
+      <div style="border-bottom:1px solid #1a1a1a;">
+        <button onClick="{{ toggleMobServices }}" style="width:100%; background:transparent; border:none; color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; cursor:pointer; text-align:left; display:flex; align-items:center; justify-content:space-between;">
+          Services
+          <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" style="transition:transform .3s ease; transform:{{ mobSvcRotate }};"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+        </button>
+        <sc-if value="{{ mobServicesOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:2px; padding:0 0 16px 24px;">
+            <a href="WebDesign.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Web Design &amp; Development</a>
+            <a href="Software.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Software Development</a>
+            <a href="AIAutomation.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">AI Automation</a>
+            <a href="SEO.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">SEO &amp; Digital Marketing</a>
+          </div>
+        </sc-if>
+      </div>
+      <a href="Portfolio.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Portfolio</a>
+      <a href="About.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">About</a>
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Contact</a>
+    </div>
+    <div style="margin-top:auto; padding-top:40px;">
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="display:flex; align-items:center; justify-content:center; gap:10px; background:#F97316; color:#fff; text-decoration:none; padding:18px 32px; border-radius:999px; font-size:16px; font-weight:500; width:100%;">
+        Start Your Project
+        <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+      </a>
+      <div style="margin-top:24px; text-align:center;">
+        <a href="mailto:info@relicsol.com" style="color:#71717a; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:13px;" style-hover="color:#F97316;">info@relicsol.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" style="position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:#080808;">
+    <!-- 3D Icosahedron scene — right side -->
+    <div id="rl-hero-3d" style="position:absolute; top:0; right:0; bottom:0; width:60%; pointer-events:none; z-index:1;">
+      <canvas id="rl-hero-canvas" style="width:100%; height:100%; display:block;"></canvas>
+    </div>
+    <!-- Fade overlays to keep text readable on the left -->
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, #080808 0%, rgba(8,8,8,0.92) 25%, rgba(8,8,8,0.4) 50%, transparent 75%); pointer-events:none; z-index:1;"></div>
+    <div style="position:absolute; left:0; bottom:0; right:0; height:140px; background:linear-gradient(180deg, transparent, #080808); pointer-events:none; z-index:1;"></div>
+    <!-- Decorative ambient glow -->
+    <div style="position:absolute; left:-10%; top:30%; width:600px; height:600px; background:radial-gradient(circle, rgba(249,115,22,0.18), transparent 60%); filter:blur(40px); pointer-events:none; z-index:1;"></div>
+
+    <!-- Text content — left aligned -->
+    <div style="position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:140px 32px 80px; width:100%;">
+      <div style="max-width:680px;">
+        <div data-reveal="{{ heroR1 }}" style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.25em; color:#71717a; text-transform:uppercase; margin-bottom:32px; display:flex; align-items:center; gap:16px;">
+          <span style="width:32px; height:1px; background:#F97316; display:inline-block;"></span>
+          EST. 2013 &nbsp;·&nbsp; USA &nbsp;·&nbsp; UK &nbsp;·&nbsp; EUROPE
+        </div>
+        <div style="margin:0 0 32px 0; overflow:hidden;">
+          <div data-reveal="{{ heroW1 }}" style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(48px, 8vw, 112px); line-height:0.95; letter-spacing:-0.045em;">We Build</div>
+          <div data-reveal="{{ heroW2 }}" style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(48px, 8vw, 112px); line-height:0.95; letter-spacing:-0.045em;">Digital Systems</div>
+          <div data-reveal="{{ heroW3 }}" style="font-family:'Syne',sans-serif; font-weight:700; font-size:clamp(48px, 8vw, 112px); line-height:0.95; letter-spacing:-0.045em;">
+            <span style="color:#ffffff;">That </span><span style="background:linear-gradient(120deg,#F97316,#FFAD5C); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Convert.</span>
+          </div>
+        </div>
+        <p data-reveal="{{ heroR3 }}" style="font-size:18px; line-height:1.6; color:#A1A1AA; max-width:520px; margin:0 0 40px; font-weight:400;">
+          Premium web design, custom software &amp; AI automation for ambitious businesses that demand results.
+        </p>
+        <div data-reveal="{{ heroR4 }}" style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+          <a href="Contact.dc.html" class="rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:500; display:inline-flex; align-items:center; gap:10px; transition:transform .2s ease, background .2s ease;" style-hover="background:#ea580c; transform:translateY(-1px);">
+            Start Your Project
+            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+          </a>
+          <a href="Portfolio.dc.html" class="rl-btn-secondary" style="background:transparent; color:#ffffff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:500; border:1px solid #262626;" style-hover="border-color:#52525b; background:#0f0f0f;">
+            View Our Work
+          </a>
+        </div>
+
+        <!-- Hero footer / proof strip -->
+        <div data-reveal="{{ heroR4 }}" style="margin-top:80px; display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="display:flex; gap:2px;">
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316"><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316"><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316"><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316"><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316"><path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z"/></svg>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#A1A1AA;">4.9 / 5 · 200+ projects</span>
+          </div>
+          <div style="width:1px; height:16px; background:#262626;"></div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#71717a;">
+            <span style="color:#F97316;">●</span> &nbsp;Accepting projects · Q3 2026
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:10px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.3em; color:#52525b; text-transform:uppercase;">Scroll</div>
+      <div style="width:1px; height:48px; background:linear-gradient(180deg, #F97316, transparent); animation:rl-pulse 2s ease-in-out infinite;"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section style="background:#0f0f0f; border-top:1px solid #262626; border-bottom:1px solid #262626; padding:32px 0; overflow:hidden; position:relative;">
+    <div style="position:absolute; left:0; top:0; bottom:0; width:120px; background:linear-gradient(90deg,#0f0f0f, transparent); z-index:2; pointer-events:none;"></div>
+    <div style="position:absolute; right:0; top:0; bottom:0; width:120px; background:linear-gradient(270deg,#0f0f0f, transparent); z-index:2; pointer-events:none;"></div>
+    <div style="display:flex; gap:64px; width:max-content; animation:rl-marquee 50s linear infinite; align-items:center;">
+      {{ marqueeRow }}
+    </div>
+  </section>
+
+  <!-- ABOUT / STATS -->
+  <section id="about" style="padding:140px 32px; background:#080808;">
+    <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:96px; align-items:start;">
+      <div data-reveal-stagger="{{ aboutR }}">
+        <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="5">
+          <div style="padding:28px 0; border-bottom:1px solid #1a1a1a; display:flex; align-items:baseline; gap:32px;">
+            <div style="font-family:'Inter',sans-serif; font-size:72px; font-weight:600; color:#ffffff; letter-spacing:-0.045em; line-height:1; min-width:180px;">{{ stat.value }}</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; padding-bottom:8px;">{{ stat.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal="{{ aboutR }}" style="padding-top:24px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} About Us</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(36px, 5vw, 64px); line-height:1.02; letter-spacing:-0.035em; margin:0 0 32px 0;">
+          We don't use templates.<br>
+          <span style="color:#52525b;">We don't do one-size-fits-all.</span>
+        </h2>
+        <p style="font-size:17px; line-height:1.7; color:#A1A1AA; margin:0 0 20px;">
+          Relicsol is a web design and software development agency helping businesses across the USA, UK, and Europe build a stronger digital presence. We combine strategy, design, development, and automation to deliver websites, custom software, SEO campaigns, and AI automation systems built for performance, not just appearance.
+        </p>
+        <p style="font-size:17px; line-height:1.7; color:#A1A1AA; margin:0 0 36px;">
+          Every project starts with understanding your business goals, your audience, and the outcomes you need. Then we build.
+        </p>
+        <a href="About.dc.html" class="rl-arrow-link" style="color:#F97316; text-decoration:none; font-size:14px; font-weight:500; display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #c2410c; padding-bottom:6px;" style-hover="gap:14px;">
+          Learn More About Us
+          <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" style="padding:140px 32px; background:#0f0f0f; position:relative;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ servR }}" style="display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-bottom:80px; align-items:end;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Services</div>
+          <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px, 6vw, 80px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+            Digital Services<br>
+            <span style="color:#52525b;">Designed for Growth.</span>
+          </h2>
+        </div>
+        <p style="font-size:17px; line-height:1.7; color:#A1A1AA; margin:0; padding-bottom:12px;">
+          Complete digital solutions for businesses that need better websites, stronger systems, more visibility, and smarter automation.
+        </p>
+      </div>
+
+      <div data-reveal-stagger="{{ servR }}" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+          <a href="WebDesign.dc.html" class="rl-svc-card" style="text-decoration:none; display:block; background:#161616; border:1px solid #262626; border-radius:4px; padding:40px; transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden;" style-hover="border-color:#F97316; transform:translateY(-4px); box-shadow:0 30px 80px -20px rgba(249,115,22,0.25), inset 0 1px 0 rgba(249,115,22,0.1);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:48px;">
+              <div style="width:56px; height:56px; border-radius:4px; background:#080808; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#F97316;">
+                <span dangerouslySetInnerHTML="{{ s.icon }}"></span>
+              </div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#52525b;">{{ s.num }}</div>
+            </div>
+            <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:28px; line-height:1.15; letter-spacing:-0.025em; margin:0 0 16px;">{{ s.title }}</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px;">
+              <sc-for list="{{ s.tags }}" as="t" hint-placeholder-count="4">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#71717a; text-transform:uppercase; letter-spacing:0.1em; padding:5px 10px; border:1px solid #262626; border-radius:999px;">{{ t }}</span>
+              </sc-for>
+            </div>
+            <p style="font-size:15px; line-height:1.65; color:#A1A1AA; margin:0 0 28px;">{{ s.body }}</p>
+            <div style="display:inline-flex; align-items:center; gap:8px; color:#F97316; font-size:13px; font-weight:500;">
+              Explore Service
+              <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" style="padding:140px 32px; background:#080808;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ portR }}" style="display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-bottom:64px; align-items:end;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Portfolio</div>
+          <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px, 6vw, 80px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+            Projects That<br>
+            <span style="color:#52525b;">Deliver Results.</span><span style="color:#F97316;">*</span>
+          </h2>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:24px; padding-bottom:12px;">
+          <p style="font-size:16px; line-height:1.7; color:#A1A1AA; margin:0;">
+            <span style="color:#F97316; font-family:'JetBrains Mono',monospace; font-size:13px;">*</span> 18 case studies across e-commerce, SaaS, software, health tech, and premium consumer brands. USA · UK · Europe.
+          </p>
+          <a href="Portfolio.dc.html" class="rl-arrow-link" style="color:#ffffff; text-decoration:none; font-size:14px; font-weight:500; display:inline-flex; align-items:center; gap:10px;" style-hover="color:#F97316;">
+            View All Projects
+            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Two-row marquee -->
+    <div class="rl-port-rail" style="display:flex; flex-direction:column; gap:20px; position:relative; overflow:hidden;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:160px; background:linear-gradient(90deg,#080808, transparent); z-index:3; pointer-events:none;"></div>
+      <div style="position:absolute; right:0; top:0; bottom:0; width:160px; background:linear-gradient(270deg,#080808, transparent); z-index:3; pointer-events:none;"></div>
+
+      <div class="rl-port-row" style="display:flex; gap:20px; width:max-content; animation:rl-marquee 60s linear infinite; will-change:transform;">
+        {{ portRow1 }}
+      </div>
+      <div class="rl-port-row" style="display:flex; gap:20px; width:max-content; animation:rl-marquee-r 70s linear infinite; will-change:transform;">
+        {{ portRow2 }}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section style="padding:140px 32px; background:#0f0f0f;">
+    <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:5fr 7fr; gap:96px; align-items:start;">
+      <div data-reveal="{{ whyR }}">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Why Choose Us</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(36px, 5vw, 64px); line-height:1.02; letter-spacing:-0.035em; margin:0 0 32px 0;">
+          Why Businesses Choose Relicsol Over <span style="color:#52525b;">Generic Agencies.</span>
+        </h2>
+        <p style="font-size:16px; line-height:1.7; color:#A1A1AA;">
+          We are an agency built around the needs of growth-stage businesses. Three things keep us out of the template-builder crowd.
+        </p>
+      </div>
+      <div data-reveal-stagger="{{ whyR }}">
+        <sc-for list="{{ differentiators }}" as="d" hint-placeholder-count="3">
+          <div style="display:grid; grid-template-columns:80px 1fr 56px; gap:24px; align-items:start; padding:36px 0; border-top:1px solid #262626; position:relative; transition:padding-left .3s ease;" style-hover="padding-left:16px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#F97316; letter-spacing:0.1em;">{{ d.num }}</div>
+            <div>
+              <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:24px; line-height:1.2; letter-spacing:-0.02em; margin:0 0 12px;">{{ d.title }}</h3>
+              <p style="font-size:15px; line-height:1.65; color:#A1A1AA; margin:0;">{{ d.body }}</p>
+            </div>
+            <div style="color:#F97316; display:flex; justify-content:flex-end; padding-top:4px;">
+              <span dangerouslySetInnerHTML="{{ d.icon }}"></span>
+            </div>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid #262626;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="padding:140px 32px; background:#080808;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ procR }}" style="margin-bottom:80px; max-width:720px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Process</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px, 6vw, 80px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+          How We Work.
+        </h2>
+      </div>
+      <div data-reveal="{{ procR }}" style="position:relative;">
+        <div style="position:absolute; top:48px; left:48px; right:48px; height:1px; background:#262626;"></div>
+        <div id="rl-proc-line" style="position:absolute; top:48px; left:48px; right:48px; height:1px; background:linear-gradient(90deg,#F97316,#FFAD5C); transform-origin:left center; transform:scaleX(0); transition:transform 2s cubic-bezier(.2,.7,.2,1);"></div>
+        <div data-reveal-stagger="{{ procR }}" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:32px; position:relative;">
+          <sc-for list="{{ processSteps }}" as="p" hint-placeholder-count="3">
+            <div>
+              <div style="display:flex; align-items:center; gap:20px; margin-bottom:32px;">
+                <div style="width:96px; height:96px; border-radius:50%; background:#080808; border:1px solid #F97316; display:flex; align-items:center; justify-content:center; color:#F97316; box-shadow:0 0 40px rgba(249,115,22,0.25);">
+                  <span dangerouslySetInnerHTML="{{ p.icon }}"></span>
+                </div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:48px; color:#262626; font-weight:600; letter-spacing:-0.04em; line-height:1;">{{ p.num }}</div>
+              </div>
+              <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:26px; line-height:1.15; letter-spacing:-0.025em; margin:0 0 16px;">{{ p.title }}</h3>
+              <p style="font-size:15px; line-height:1.7; color:#A1A1AA; margin:0;">{{ p.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding:140px 32px; background:#0f0f0f;">
+    <div style="max-width:1100px; margin:0 auto; text-align:center;">
+      <div data-reveal="{{ testR }}">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Testimonials</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px, 6vw, 72px); line-height:0.98; letter-spacing:-0.04em; margin:0 0 80px 0;">
+          Client Success<br>
+          <span style="color:#52525b;">Stories.</span>
+        </h2>
+      </div>
+
+      <div style="position:relative; min-height:280px;">
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="1">
+          <div style="position:absolute; inset:0; opacity:{{ t.opacity }}; transition:opacity .8s ease; pointer-events:{{ t.pointer }};">
+            <svg width="40" height="32" viewBox="0 0 256 256" fill="#F97316" style="margin:0 auto 32px; display:block; opacity:0.6;"><path d="M116,72v88a48.05,48.05,0,0,1-48,48,8,8,0,0,1,0-16,32,32,0,0,0,32-32V128H64A24,24,0,0,1,40,104V72A24,24,0,0,1,64,48H92A24,24,0,0,1,116,72Zm100-24H188a24,24,0,0,0-24,24v32a24,24,0,0,0,24,24h24v16a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A24,24,0,0,0,216,48Z"/></svg>
+            <p style="font-family:'Inter',sans-serif; color:#ffffff; font-size:clamp(22px,2.4vw,32px); line-height:1.4; letter-spacing:-0.015em; font-weight:400; margin:0 0 40px; max-width:900px; margin-left:auto; margin-right:auto;">
+              "{{ t.quote }}"
+            </p>
+            <div style="display:flex; align-items:center; gap:16px; justify-content:center;">
+              <div style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:700; color:#fff; font-size:16px;">{{ t.initials }}</div>
+              <div style="text-align:left;">
+                <div style="color:#ffffff; font-size:15px; font-weight:500;">{{ t.name }}</div>
+                <div style="color:#71717a; font-size:13px;">{{ t.role }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:24px; margin-top:64px;">
+        <button onClick="{{ prevTest }}" style="width:44px; height:44px; border-radius:50%; background:transparent; border:1px solid #262626; color:#ffffff; cursor:pointer; display:flex; align-items:center; justify-content:center;" style-hover="border-color:#F97316; background:#161616;">
+          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>
+        </button>
+        <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+          <div style="display:flex; gap:8px;">
+            <sc-for list="{{ testDots }}" as="d" hint-placeholder-count="4">
+              <div style="width:{{ d.w }}; height:4px; border-radius:2px; background:{{ d.bg }}; transition:all .4s cubic-bezier(.16,1,.3,1); position:relative; overflow:hidden;">
+                <sc-if value="{{ d.active }}" hint-placeholder-val="{{ false }}">
+                  <div class="rl-test-progress" style="position:absolute; inset:0; background:#FF8534; border-radius:2px;"></div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <button onClick="{{ nextTest }}" style="width:44px; height:44px; border-radius:50%; background:transparent; border:1px solid #262626; color:#ffffff; cursor:pointer; display:flex; align-items:center; justify-content:center;" style-hover="border-color:#F97316; background:#161616;">
+          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg>
+        </button>
+      </div>
+
+      <!-- Video testimonials row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:96px;">
+        <sc-for list="{{ videoTestimonials }}" as="v" hint-placeholder-count="2">
+          <div style="position:relative; aspect-ratio:16/10; border-radius:4px; overflow:hidden; background:#080808; border:1px solid #262626; cursor:pointer;" style-hover="border-color:#F97316;">
+            <video src="{{ v.src }}" muted autoplay loop playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6;"></video>
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 30%, rgba(10,10,10,0.9) 100%);"></div>
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:50%; background:rgba(249,115,22,0.95); display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);">
+              <svg width="22" height="22" viewBox="0 0 256 256" fill="#fff"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27Z"/></svg>
+            </div>
+            <div style="position:absolute; left:24px; bottom:24px; right:24px; text-align:left;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#F97316; letter-spacing:0.15em; margin-bottom:6px;">{{ v.tag }}</div>
+              <div style="color:#ffffff; font-size:16px; font-weight:500;">{{ v.title }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section style="padding:140px 32px; background:#080808;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ priceR }}" style="text-align:center; max-width:760px; margin:0 auto 80px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Pricing</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px, 6vw, 80px); line-height:0.98; letter-spacing:-0.04em; margin:0 0 24px;">
+          Flexible Plans for<br>
+          <span style="color:#52525b;">Every Growth Stage.</span>
+        </h2>
+        <p style="font-size:17px; line-height:1.7; color:#A1A1AA; margin:0;">
+          Choose a starting point based on your needs, then scale. All projects are scoped and quoted before any work begins.
+        </p>
+      </div>
+      <div data-reveal-stagger="{{ priceR }}" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; align-items:start;">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div class="rl-price-card" style="background:{{ p.bg }}; border:1px solid {{ p.border }}; border-radius:4px; padding:40px 32px; position:relative; box-shadow:{{ p.shadow }};">
+            <sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#F97316; color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; padding:6px 12px; border-radius:999px; letter-spacing:0.1em; text-transform:uppercase;">Most Popular</div>
+            </sc-if>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:12px;">{{ p.label }}</div>
+            <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:24px; line-height:1.15; letter-spacing:-0.02em; margin:0 0 8px;">{{ p.title }}</h3>
+            <div style="font-size:13px; color:#71717a; margin-bottom:28px;">{{ p.best }}</div>
+            <div style="display:flex; align-items:baseline; gap:8px; padding-bottom:28px; border-bottom:1px solid #262626; margin-bottom:28px;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:48px; font-weight:600; color:#ffffff; letter-spacing:-0.04em; line-height:1;">{{ p.price }}</div>
+              <div style="font-size:13px; color:#71717a;">USD</div>
+            </div>
+            <ul style="list-style:none; padding:0; margin:0 0 32px;">
+              <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="6">
+                <li style="display:flex; align-items:flex-start; gap:12px; padding:10px 0; font-size:14px; color:#A1A1AA;">
+                  <svg width="14" height="14" viewBox="0 0 256 256" fill="#F97316" style="margin-top:3px; flex-shrink:0;"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>
+                  <span>{{ f }}</span>
+                </li>
+              </sc-for>
+            </ul>
+            <a href="Contact.dc.html" style="display:flex; align-items:center; justify-content:center; gap:8px; background:{{ p.btnBg }}; color:{{ p.btnColor }}; text-decoration:none; padding:14px 24px; border-radius:999px; font-size:14px; font-weight:500; border:1px solid {{ p.btnBorder }};" style-hover="background:#F97316; color:#fff; border-color:#F97316;">
+              Get Started
+              <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section id="contact" style="padding:160px 32px; background:#080808; position:relative; overflow:hidden;">
+    <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:900px; height:900px; background:radial-gradient(circle, rgba(249,115,22,0.18), transparent 60%); animation:rl-bloom 6s ease-in-out infinite; pointer-events:none;"></div>
+    <div style="max-width:1100px; margin:0 auto; text-align:center; position:relative;">
+      <h2 data-reveal="{{ ctaR }}" style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(56px, 10vw, 160px); line-height:0.9; letter-spacing:-0.05em; margin:0 0 32px;">
+        Let's Build<br>
+        <span style="background:linear-gradient(120deg,#ffffff,#F97316); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Something Great.</span>
+      </h2>
+      <p data-reveal="{{ ctaR }}" style="font-size:18px; line-height:1.6; color:#A1A1AA; margin:0 0 48px;">
+        Tell us about your project. Response within 1 hour.
+      </p>
+      <div data-reveal="{{ ctaR }}" style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:40px;">
+        <a href="mailto:contact@relicsol.com" class="rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:18px 32px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.01em; display:inline-flex; align-items:center; gap:10px;" style-hover="background:#ea580c;">
+          Start Your Project
+          <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+        </a>
+        <a href="Contact.dc.html" class="rl-btn-secondary" style="background:transparent; color:#ffffff; text-decoration:none; padding:18px 32px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.01em; border:1px solid #262626;">
+          Book a Call
+        </a>
+      </div>
+      <a href="mailto:contact@relicsol.com" style="color:#71717a; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.05em;" style-hover="color:#F97316;">
+        contact@relicsol.com
+      </a>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section style="padding:140px 32px; background:#0f0f0f;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ blogR }}" style="display:flex; justify-content:space-between; align-items:end; margin-bottom:64px; gap:32px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} Blog</div>
+          <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(36px, 5vw, 64px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+            Insights &amp; Resources.
+          </h2>
+        </div>
+        <a href="Blog.dc.html" class="rl-arrow-link" style="color:#ffffff; text-decoration:none; font-size:14px; font-weight:500; display:inline-flex; align-items:center; gap:10px;" style-hover="color:#F97316;">
+          All Articles
+          <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+        </a>
+      </div>
+      <div data-reveal-stagger="{{ blogR }}" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        {{ articleCards }}
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#080808; border-top:1px solid #262626; padding:80px 32px 40px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.4fr; gap:48px; padding-bottom:64px; border-bottom:1px solid #1a1a1a;">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+            <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+            <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff; letter-spacing:-0.02em;">Relicsol</span>
+          </div>
+          <p style="font-size:14px; line-height:1.6; color:#A1A1AA; margin:0 0 24px; max-width:280px;">
+            Premium digital solutions for ambitious businesses.
+          </p>
+          <a href="mailto:info@relicsol.com" style="color:#ffffff; text-decoration:none; font-size:14px; font-family:'JetBrains Mono',monospace;" style-hover="color:#F97316;">info@relicsol.com</a>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:20px;">Quick Links</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="Relicsol.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Home</a>
+            <a href="WebDesign.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Our Services</a>
+            <a href="Portfolio.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Portfolio</a>
+            <a href="About.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">About Us</a>
+            <a href="Blog.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Blog</a>
+            <a href="Contact.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:20px;">Services</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="WebDesign.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Web Design &amp; Development</a>
+            <a href="Software.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">Software Development</a>
+            <a href="SEO.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">SEO &amp; Digital Marketing</a>
+            <a href="AIAutomation.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none; font-size:14px;">AI Automation</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:20px;">Stay Updated</div>
+          <p style="font-size:14px; line-height:1.6; color:#A1A1AA; margin:0 0 20px;">
+            Get insights on web design, software, and AI automation.
+          </p>
+          <div style="display:flex; gap:8px; background:#0f0f0f; border:1px solid #262626; border-radius:999px; padding:6px 6px 6px 16px;">
+            <input type="email" placeholder="you@company.com" style="flex:1; background:transparent; border:none; outline:none; color:#ffffff; font-family:'Inter',sans-serif; font-size:13px; min-width:0;">
+            <button style="background:#F97316; color:#fff; border:none; padding:10px 18px; border-radius:999px; font-size:13px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif;" style-hover="background:#ea580c;">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:32px; flex-wrap:wrap; gap:16px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#52525b;">© 2026 Relicsol. All rights reserved.</div>
+        <div style="display:flex; gap:12px;">
+          <a href="https://www.linkedin.com/company/relicsol" target="_blank" rel="noopener noreferrer" style="width:40px; height:40px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-88a12,12,0,1,1,12-12A12,12,0,0,1,88,88Zm96,88a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/relicsol" target="_blank" rel="noopener noreferrer" style="width:40px; height:40px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:40px; height:40px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:40px; height:40px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.29l62.6,98.38L42.08,210.62a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    scrolled: false,
+    servicesOpen: false,
+    mobileOpen: false,
+    mobServicesOpen: false,
+    heroR1: '', heroW1: '', heroW2: '', heroW3: '', heroR3: '', heroR4: '',
+    aboutR: '', servR: '', portR: '', whyR: '', procR: '', testR: '', priceR: '', ctaR: '', blogR: '',
+    statValues: [0,0,0,0,0],
+    currentTest: 0,
+    procLineDrawn: false
+  };
+
+  componentDidMount() {
+    this._mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+    this._observers = [];
+    this._timeouts = [];
+
+    // Hero entrance — staggered word reveal
+    [['heroR1', 400], ['heroW1', 550], ['heroW2', 650], ['heroW3', 750], ['heroR3', 900], ['heroR4', 1100]].forEach(([k, d]) => {
+      this._timeouts.push(setTimeout(() => this.setState({ [k]: 'in' }), d));
+    });
+
+    // Scroll listener for nav + progress bar
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 40;
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+      // Scroll progress bar
+      const bar = document.getElementById('rl-scroll-progress');
+      if (bar) {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (h > 0 ? (window.scrollY / h) : 0) + ')';
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    // Mouse
+    this._onMouse = (e) => {
+      this._mouse.tx = e.clientX / window.innerWidth;
+      this._mouse.ty = e.clientY / window.innerHeight;
+    };
+    window.addEventListener('mousemove', this._onMouse, { passive: true });
+
+    // Canvas hero handled by global script in helmet
+
+    // Section reveal observers
+    setTimeout(() => this._setupReveals(), 100);
+    // Safety net: if IO never fires (sandboxed iframes can suppress it), reveal everything after 1.6s
+    this._timeouts.push(setTimeout(() => {
+      const s = this.state;
+      const needs = !s.aboutR || !s.servR || !s.portR || !s.whyR || !s.procR || !s.testR || !s.priceR || !s.ctaR || !s.blogR;
+      if (needs) {
+        this.setState({ aboutR:'in', servR:'in', portR:'in', whyR:'in', procR:'in', testR:'in', priceR:'in', ctaR:'in', blogR:'in' });
+        this._animateStats();
+        this._drawProcLine();
+      }
+    }, 1600));
+
+    // Auto-rotate testimonials
+    this._testInterval = setInterval(() => {
+      this.setState((s) => ({ currentTest: (s.currentTest + 1) % 4 }));
+    }, 5500);
+
+    // Stats counter when about visible
+  }
+
+  _setupReveals() {
+    const root = this._rootEl || document;
+    // Map each section root to a state key by attribute order
+    // We'll observe sections by id and trigger the right state keys
+    const sections = [
+      { sel: '#about', keys: ['aboutR'], onShow: () => this._animateStats() },
+      { sel: '#services', keys: ['servR'] },
+      { sel: '#portfolio', keys: ['portR'] },
+      { sel: '#contact', keys: ['ctaR'] }
+    ];
+
+    // Also catch sections by index for those without ids
+    const allSections = document.querySelectorAll('section');
+    // We'll use IntersectionObserver across all reveal-targets via index mapping
+    const stateKeys = ['aboutR','servR','portR','whyR','procR','testR','priceR','ctaR','blogR'];
+
+    allSections.forEach((sec, i) => {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            io.disconnect();
+            // Match by id
+            const id = sec.id;
+            if (id === 'about') { this.setState({ aboutR: 'in' }); this._animateStats(); }
+            else if (id === 'services') this.setState({ servR: 'in' });
+            else if (id === 'portfolio') this.setState({ portR: 'in' });
+            else if (id === 'contact') this.setState({ ctaR: 'in' });
+            // No id sections (why, process, testimonials, pricing, blog) — set by position
+            else {
+              // Determine by reading internal text
+              const txt = sec.textContent || '';
+              if (txt.includes('Why Businesses Choose')) this.setState({ whyR: 'in' });
+              else if (txt.includes('How We Work')) { this.setState({ procR: 'in' }); this._drawProcLine(); }
+              else if (txt.includes('Client Success')) this.setState({ testR: 'in' });
+              else if (txt.includes('Flexible Plans')) this.setState({ priceR: 'in' });
+              else if (txt.includes('Insights')) this.setState({ blogR: 'in' });
+            }
+          }
+        });
+      }, { threshold: 0.15 });
+      io.observe(sec);
+      this._observers.push(io);
+    });
+  }
+
+  _drawProcLine() {
+    setTimeout(() => {
+      const el = document.getElementById('rl-proc-line');
+      if (el) el.style.transform = 'scaleX(1)';
+    }, 400);
+  }
+
+  _animateStats() {
+    if (this._statsAnimating) return;
+    this._statsAnimating = true;
+    const targets = [12, 200, 18, 4.9, 1];
+    const dur = 1600;
+    const start = Date.now();
+    const id = setInterval(() => {
+      const t = Math.min(1, (Date.now() - start) / dur);
+      const e = 1 - Math.pow(1 - t, 3);
+      this.setState({ statValues: targets.map(v => v * e) });
+      if (t >= 1) clearInterval(id);
+    }, 33);
+    this._statsInterval = id;
+  }
+
+  _initCanvas() {
+    window.__rl3d_status = 'queued';
+    const tryInit = () => {
+      const canvas = document.getElementById('rl-hero-canvas');
+      const wrap = document.getElementById('rl-hero-3d');
+      if (!canvas || !wrap) { window.__rl3d_status = 'waiting-for-canvas'; setTimeout(tryInit, 80); return; }
+      if (typeof THREE === 'undefined') { window.__rl3d_status = 'waiting-for-three'; setTimeout(tryInit, 80); return; }
+      if (this._three) return;
+      window.__rl3d_status = 'initializing';
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true, powerPreference:'low-power' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+      camera.position.set(0, 0, 5.5);
+
+      const geo = new THREE.IcosahedronGeometry(2, 1);
+      const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+        color: 0xF97316, shininess: 80, specular: 0xFFAD5C, flatShading: true
+      }));
+      scene.add(mesh);
+
+      const wire = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+        color: 0xFF9A50, wireframe: true, opacity: 0.08, transparent: true
+      }));
+      scene.add(wire);
+
+      const ring = (r, op, rx, rz) => {
+        const m = new THREE.Mesh(
+          new THREE.TorusGeometry(r, 0.012, 6, 60),
+          new THREE.MeshBasicMaterial({ color: 0xF97316, opacity: op, transparent: true })
+        );
+        m.rotation.x = rx; m.rotation.z = rz;
+        scene.add(m);
+        return m;
+      };
+      const r1 = ring(3.2, 0.14, 0.4, 0);
+      const r2 = ring(3.9, 0.06, -0.3, 0.5);
+
+      scene.add(new THREE.AmbientLight(0x111111, 1));
+      const pl1 = new THREE.PointLight(0xF97316, 4, 20); pl1.position.set(3, 4, 3); scene.add(pl1);
+      const pl2 = new THREE.PointLight(0xFFAD5C, 2, 20); pl2.position.set(-4, -2, 1); scene.add(pl2);
+
+      const resize = () => {
+        const w = wrap.offsetWidth || 500;
+        const h = wrap.offsetHeight || 500;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      };
+      resize();
+      if (window.ResizeObserver) {
+        this._ro = new ResizeObserver(resize);
+        this._ro.observe(wrap);
+      } else {
+        window.addEventListener('resize', resize);
+      }
+
+      let t = 0, last = 0;
+      const RATE = 1000 / 30;
+      let paused = false;
+      this._onVis = () => { paused = document.hidden; };
+      document.addEventListener('visibilitychange', this._onVis);
+      if (window.IntersectionObserver) {
+        this._io = new IntersectionObserver((entries) => { paused = !entries[0].isIntersecting; });
+        this._io.observe(wrap);
+      }
+
+      const anim = (now) => {
+        this._raf = requestAnimationFrame(anim);
+        if (paused || now - last < RATE) return;
+        last = now;
+        t += 0.006;
+        mesh.rotation.x = wire.rotation.x = t * 0.28;
+        mesh.rotation.y = wire.rotation.y = t * 0.48;
+        mesh.position.y = wire.position.y = Math.sin(t * 0.7) * 0.22;
+        r1.rotation.z = t * 0.15;
+        r2.rotation.y = t * 0.20;
+        pl1.position.x = Math.sin(t) * 4;
+        pl1.position.z = Math.cos(t) * 3;
+        renderer.render(scene, camera);
+      };
+      this._raf = requestAnimationFrame(anim);
+      this._three = { renderer, scene };
+      window.__rl3d_status = 'running';
+    };
+    tryInit();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousemove', this._onMouse);
+    if (this._onVis) document.removeEventListener('visibilitychange', this._onVis);
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+    if (this._io) this._io.disconnect();
+    if (this._three) { try { this._three.renderer.dispose(); } catch(e){} }
+    if (this._testInterval) clearInterval(this._testInterval);
+    this._timeouts.forEach(clearTimeout);
+    this._observers.forEach(o => o.disconnect());
+  }
+
+  _portProjects() {
+    return [
+      { id:'02', slug:'push-digital-group', name:'Push Digital Group', cat:'CORPORATE · WEB DESIGN', sub:'Political agency, editorial dark.', desc:'A typography-led dark site that finally matched the scale of Push Digital\'s national campaigns.', img:'https://relicsol.com/wp-content/uploads/2026/04/relicsol-portfolio-pushdigital.png', bg:'linear-gradient(135deg,#1e293b,#0f172a)' },
+      { id:'03', slug:'loiseau-2', name:"L'Oiseau De", cat:'E-COMMERCE · LUXURY BEAUTY', sub:'Editorial luxury cosmetics commerce.', desc:'WooCommerce platform built around the brand\'s editorial photography for the European luxury market.', img:'https://relicsol.com/wp-content/uploads/2026/06/loiseau.webp', bg:'linear-gradient(135deg,#7c2d12,#431407)' },
+      { id:'01', slug:'saki-products', name:'Saki Products', cat:'E-COMMERCE · PRODUCT DESIGN', sub:'Smart kitchen, premium experience.', desc:'A product-first Shopify experience designed for discerning American consumers comparing premium brands.', img:'https://relicsol.com/wp-content/uploads/2026/06/sakiproducts.webp', bg:'linear-gradient(135deg,#064e3b,#022c22)' },
+      { id:'07', slug:'firmate', name:'Firmate', cat:'SAAS · BRAND IDENTITY', sub:'AI brand marketing platform.', desc:'A bold gradient SaaS landing page that converted free trials at +41% versus the previous site.', img:'https://relicsol.com/wp-content/uploads/2026/06/firmate.webp', bg:'linear-gradient(135deg,#4c1d95,#1e1b4b)' },
+      { id:'11', slug:'drink-pouch', name:'Drink Pouch', cat:'E-COMMERCE · HEALTH BEVERAGE', sub:'Performance hydration commerce.', desc:'A bold dark Shopify experience for a US performance brand competing against Liquid IV and LMNT.', img:'https://relicsol.com/wp-content/uploads/2026/06/drinkpouch.webp', bg:'linear-gradient(135deg,#0c4a6e,#082f49)' },
+      { id:'04', slug:'nextsense', name:'NextSense', cat:'HEALTH TECH · PRODUCT', sub:"World's first EEG earbuds.", desc:'A dark cinematic Next.js site speaking to researchers, investors, and consumers in a single narrative.', img:'https://relicsol.com/wp-content/uploads/2026/06/nextsense.webp', bg:'linear-gradient(135deg,#1e3a8a,#0c1e3e)' },
+      { id:'05', slug:'forerunners-group', name:'Forerunners Group', cat:'CORPORATE · CONSULTING', sub:'Business analytics consultancy.', desc:'An authority-first site that converted enterprise traffic into qualified consultation requests.', img:'https://relicsol.com/wp-content/uploads/2026/06/forerunnersgroup.webp', bg:'linear-gradient(135deg,#374151,#111827)' },
+      { id:'06', slug:'house-wine', name:'House Wine', cat:'PLATFORM · E-COMMERCE', sub:'Independent wine marketplace.', desc:'A custom multi-vendor WooCommerce marketplace with Dutch design sensibility and AI cellar features.', img:'https://relicsol.com/wp-content/uploads/2026/06/housewine.webp', bg:'linear-gradient(135deg,#3f2418,#1c0f08)' },
+      { id:'08', slug:'farm-minerals', name:'Farm Minerals', cat:'AGTECH · PRODUCT LAUNCH', sub:'CropTab carbon-capsule fertilizer.', desc:'Dark editorial AgTech site dual-targeted at farmers and investors. Used in a successful pitch round.', img:'https://relicsol.com/wp-content/uploads/2026/06/farmminerals.webp', bg:'linear-gradient(135deg,#365314,#1a2e05)' },
+      { id:'09', slug:'evanlite', name:'Evanlite', cat:'E-COMMERCE · SPORTS', sub:'Carbon cycling wheels.', desc:'A dark performance commerce site with a discipline-based configurator for serious cyclists.', img:'https://relicsol.com/wp-content/uploads/2026/06/evanlite.webp', bg:'linear-gradient(135deg,#27272a,#09090b)' },
+      { id:'10', slug:'core-atelier-pilates', name:'Core Atelier', cat:'WELLNESS · LUXURY', sub:'Elevated pilates studio.', desc:'A warm editorial site that turned online discovery into the studio\'s strongest acquisition channel.', img:'https://relicsol.com/wp-content/uploads/2026/06/coreatelierpilates.webp', bg:'linear-gradient(135deg,#78350f,#3a1d05)' },
+      { id:'12', slug:'wordpress-theme-development', name:'Sophia Pro', cat:'WORDPRESS · THEME DEV', sub:'Custom WordPress theme.', desc:'A multi-purpose theme with custom blocks and ACF templates that cut delivery time by 40%.', img:'https://relicsol.com/wp-content/uploads/2026/06/wpcustomthemes.webp', bg:'linear-gradient(135deg,#1e1b4b,#0a0a1f)' },
+      { id:'13', slug:'yucca-packaging', name:'Yucca Packaging', cat:'B2B · PACKAGING', sub:'Food service packaging supplier.', desc:'A clean B2B site with category-first navigation, spec sheets, and credit application integration.', img:'https://relicsol.com/wp-content/uploads/2026/06/yucca.webp', bg:'linear-gradient(135deg,#475569,#1e293b)' },
+      { id:'14', slug:'silberthal', name:'Silberthal', cat:'E-COMMERCE · EUROPEAN', sub:'Premium German kitchenware.', desc:'A photography-led commerce rebuild around the 100-day trial and 1.1M customer trust signals.', img:'https://relicsol.com/wp-content/uploads/2026/06/silberthal.webp', bg:'linear-gradient(135deg,#292524,#0c0a09)' },
+      { id:'15', slug:'strategic-gears', name:'Strategic Gears', cat:'CORPORATE · CONSULTING', sub:'Management consultancy, MENA.', desc:'A cinematic multilingual (EN/AR) site with a deep thought-leadership hub for enterprise audiences.', img:'https://relicsol.com/wp-content/uploads/2026/06/strategicgears.webp', bg:'linear-gradient(135deg,#0f172a,#020617)' },
+      { id:'16', slug:'the-trend-chartist', name:'The Trend Chartist', cat:'EDUCATION · FINANCE', sub:'Technical analysis education.', desc:'A research library platform with a freemium funnel that grew newsletter subscribers by 89%.', img:'https://relicsol.com/wp-content/uploads/2026/06/thetrendchartist.webp', bg:'linear-gradient(135deg,#164e63,#083344)' },
+      { id:'17', slug:'the-unleashed-heart', name:'The Unleashed Heart', cat:'COACHING · PERSONAL BRAND', sub:'Grief recovery coach site.', desc:'A warm personal-brand site that lifted discovery call bookings by 74% without feeling salesy.', img:'https://relicsol.com/wp-content/uploads/2026/06/theunleashedheart.webp', bg:'linear-gradient(135deg,#831843,#500724)' },
+      { id:'18', slug:'watchhouse', name:'WatchHouse', cat:'E-COMMERCE · COFFEE', sub:'UK specialty coffee.', desc:'A split-screen editorial brand site for one of London\'s finest roasters with subscription commerce.', img:'https://relicsol.com/wp-content/uploads/2026/06/watchhouse.webp', bg:'linear-gradient(135deg,#44403c,#0c0a09)' }
+    ];
+  }
+
+  _buildPortRow(projects, key) {
+    // Duplicate so the marquee loops seamlessly
+    const doubled = [...projects, ...projects];
+    return React.createElement(
+      React.Fragment, null,
+      ...doubled.map((p, i) => React.createElement(
+        'a',
+        { key: `${key}-${i}`, href: `CaseStudy-${p.slug}.dc.html`, className: 'rl-port-card', style: { background: p.bg } },
+        React.createElement('img', { src: p.img, alt: p.name, className: 'rl-port-img', style: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', opacity:0.7, transition:'opacity .5s ease, transform .8s ease' } }),
+        React.createElement('div', { style: { position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(8,8,8,0.05) 30%, rgba(8,8,8,0.55) 100%)' } }),
+        React.createElement('div', { className: 'rl-port-num' }, p.id),
+        React.createElement('div', { className: 'rl-port-overlay' },
+          React.createElement('div', { style: { fontFamily:"'JetBrains Mono', monospace", fontSize:'10px', color:'#F97316', letterSpacing:'0.15em', marginBottom:'8px' } }, p.cat),
+          React.createElement('div', { style: { fontFamily:"'Syne', sans-serif", fontWeight:700, color:'#ffffff', fontSize:'22px', letterSpacing:'-0.02em', lineHeight:1.15 } }, p.name),
+          React.createElement('div', { style: { color:'#A1A1AA', fontSize:'13px', marginTop:'4px' } }, p.sub),
+          React.createElement('div', { className: 'rl-port-desc' },
+            React.createElement('p', { style: { color:'#A1A1AA', fontSize:'13px', lineHeight:1.55, margin:0 } }, p.desc)
+          ),
+          React.createElement('div', { className: 'rl-port-cta' }, 'VIEW CASE STUDY →')
+        )
+      ))
+    );
+  }
+
+  _icon(path) {
+    return { __html: `<svg width="22" height="22" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">${path}</svg>` };
+  }
+  _iconFill(path) {
+    return { __html: `<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor">${path}</svg>` };
+  }
+  _iconLg(path) {
+    return { __html: `<svg width="36" height="36" viewBox="0 0 256 256" fill="currentColor">${path}</svg>` };
+  }
+
+  _fmtStat(i, raw) {
+    const v = this.state.statValues[i] || 0;
+    if (i === 0) return Math.floor(v) + '+';
+    if (i === 1) return Math.floor(v) + '+';
+    if (i === 2) return Math.floor(v).toString();
+    if (i === 3) return v.toFixed(1) + '★';
+    if (i === 4) return Math.floor(v) + 'hr';
+    return v;
+  }
+
+  renderVals() {
+    const navStyle = this.state.scrolled
+      ? 'position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(10,10,10,0.7); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid #1a1a1a; transition:all .3s ease;'
+      : 'position:fixed; top:0; left:0; right:0; z-index:50; background:transparent; border-bottom:1px solid transparent; transition:all .3s ease;';
+
+    // Inline SVG paths for marquee logos — zero external fetches
+    const _svg = (paths, vb='0 0 24 24') => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" fill="#ffffff" width="22" height="22">${paths}</svg>`;
+    const marqueeLogos = [
+      { name:'WordPress', svg: _svg('<path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.539.82-2.771.82-3.864 0-.397-.026-.766-.07-1.109zm-7.981.105c.647-.034 1.233-.1 1.233-.1.58-.068.512-.921-.068-.889 0 0-1.744.137-2.867.137-1.055 0-2.834-.137-2.834-.137-.58-.032-.648.855-.068.889 0 0 .551.066 1.13.1l1.68 4.605-2.36 7.08L6.844 6.93c.649-.034 1.233-.1 1.233-.1.581-.068.513-.921-.067-.889 0 0-1.745.137-2.868.137-.202 0-.44-.005-.693-.014C6.005 3.625 8.828 2 12 2c2.358 0 4.506.905 6.109 2.378-.039-.002-.076-.008-.117-.008-.789 0-1.349.688-1.349 1.43 0 .664.383 1.226.793 1.89.307.532.665 1.215.665 2.202 0 .683-.263 1.476-.614 2.58l-.804 2.685-2.913-8.662c.648-.034 1.232-.1 1.232-.1.581-.068.513-.921-.067-.889 0 0-.692.054-1.447.1zM12 22C6.486 22 2 17.514 2 12c0-1.476.32-2.878.893-4.14L7.06 20.3A10.022 10.022 0 0 0 12 22zm-4.539-7.241L12 2.005l4.539 12.754L12 17.764l-4.539-3.005z"/>') },
+      { name:'React', svg: _svg('<path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.31 0-.592.068-.852.2-1.56.793-1.28 4.024.712 7.466-3.212 1.426-5.13 3.382-5.13 5.016 0 2.728 4.58 4.382 9.127 4.382s9.128-1.654 9.128-4.382c0-1.634-1.918-3.59-5.13-5.016 1.992-3.442 2.272-6.673.712-7.466a1.126 1.126 0 0 0-.852-.2zM6.474 20.105c-.344 0-.53-.152-.618-.31-.39-.696.166-2.253 1.544-4.055 1.058.9 2.282 1.636 3.596 2.123-.838 1.258-2.07 2.242-3.296 2.242h-1.226zm11.052 0h-1.226c-1.226 0-2.458-.984-3.296-2.242 1.314-.487 2.538-1.223 3.596-2.123 1.378 1.802 1.934 3.36 1.544 4.055-.088.158-.274.31-.618.31zM12 16.878c-1.564 0-3.032-.382-4.332-1.048A17.07 17.07 0 0 1 12 13.352a17.07 17.07 0 0 1 4.332 2.478c-1.3.666-2.768 1.048-4.332 1.048z"/>') },
+      { name:'Next.js', svg: _svg('<path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727zM16.8 7.2h-1.6v9.6h1.6V7.2z"/>') },
+      { name:'Supabase', svg: _svg('<path d="M11.9 23.1c-.5.6-1.5.2-1.5-.6V9.6h9.5c1.2 0 1.8 1.4.9 2.3L11.9 23.1zM12.1.9c.5-.6 1.5-.2 1.5.6v12.9H4.1c-1.2 0-1.8-1.4-.9-2.3L12.1.9z"/>') },
+      { name:'n8n', svg: _svg('<path d="M12.69 10.32L7.33 7.35V5.04l6.37 3.54v4.24l-1.01-.5zm7.71-3.34l-5.7 3.1v6.54l-1.01.56v-7.7l5.7-3.11V5.2L12 1.34 4.59 5.2v7.72L12 16.78l2.7-1.47 1.01.56L12 18.06l-8.41-4.6V4.65L12 .04l8.41 4.6v2.34h-.01zM17.3 14.58l-3.3-1.8v3.6l3.3 1.8v-3.6zm1 4.97l-4.3-2.35v-5.6l4.3 2.35v5.6zm-.4-6.99l-3.5-1.9-3.5 1.9 3.5 1.9 3.5-1.9z"/>') },
+      { name:'Make.com', svg: null },
+      { name:'OpenAI', svg: _svg('<path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.998 5.998 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>') },
+      { name:'Claude', svg: null },
+      { name:'Figma', svg: _svg('<path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.02-3.02-3.02h-3.116V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.02 3.02h3.116V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.02 3.02h3.116V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.02c0 1.689 1.38 3.068 3.043 3.068a3.07 3.07 0 0 0 3.092-3.068v-3.02H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.02 3.02h.097c1.665 0 3.02-1.355 3.02-3.02s-1.355-3.02-3.02-3.02h-.098z"/>') },
+      { name:'GitHub', svg: _svg('<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>') },
+      { name:'Cloudflare', svg: _svg('<path d="M16.51 15.87l.56-1.95c.11-.39.07-.75-.12-1.03-.18-.26-.47-.42-.82-.46l-9.27-.13a.17.17 0 0 1-.14-.07.18.18 0 0 1-.02-.16c.02-.06.07-.1.13-.11l9.36-.13c.81-.04 1.69-.7 2.03-1.53l.42-1.06a.28.28 0 0 0 .01-.2C17.76 5.55 14.57 2.82 10.85 3.01 7.73 3.17 5.16 5.6 4.84 8.71c-.92-.55-2.03-.65-3.03-.18-1.51.74-2.18 2.56-1.35 4.03.12.21.26.41.42.59-.1.01-.2.01-.3.03-1.24.14-2.21 1.18-2.16 2.44.04 1.17.98 2.13 2.16 2.23h15.63c.08 0 .14-.05.17-.12l.09-.31c.11-.41.19-.76.09-1.55zm3.5-5.43c-.06 0-.12 0-.18.01-.04 0-.08.03-.1.07l-.32 1.11c-.11.39-.07.75.12 1.03.18.26.47.42.82.46l2.15.03c.06 0 .11.02.14.07a.18.18 0 0 1 .02.16c-.02.06-.07.1-.13.11l-2.23.03c-.81.04-1.69.7-2.03 1.53l-.12.29c-.03.06.01.13.08.13h5.65c.07 0 .13-.04.14-.11.19-.7.3-1.43.3-2.19a5.27 5.27 0 0 0-4.31-5.17z"/>') },
+      { name:'Laravel', svg: _svg('<path d="M23.642 5.43a.364.364 0 0 1 .014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934c0 .135-.073.26-.189.326l-9.032 5.206a.32.32 0 0 1-.066.027c-.008.002-.016.008-.024.01a.348.348 0 0 1-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.562a.376.376 0 0 1-.189-.326V2.974c0-.033.004-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 0 1 .023-.058c.004-.013.015-.022.023-.033.01-.014.02-.03.033-.04.01-.01.025-.018.037-.027a.364.364 0 0 1 .05-.034L4.89.368a.367.367 0 0 1 .376 0L9.624 2.65c.017.01.03.024.044.035.012.01.025.017.036.027.013.014.02.027.033.04.01.012.02.022.025.035.01.016.015.038.024.058.003.011.01.021.013.032.01.031.014.065.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.004-.011.01-.02.013-.032.01-.02.017-.04.024-.058.007-.013.016-.023.025-.035.014-.013.02-.027.034-.041.01-.01.024-.017.035-.027.016-.011.03-.024.045-.034l4.36-2.513a.367.367 0 0 1 .375 0l4.36 2.513c.017.01.03.023.045.034.013.01.024.017.036.027.013.014.02.028.033.041.01.012.018.022.025.035.01.016.016.038.024.058.004.012.01.021.014.032zm-.74 5.032V6.179l-1.578.908-2.182 1.256v4.283zm-4.36 7.497v-4.29l-2.145 1.228-6.573 3.762v4.326zM1.093 3.624v14.588l8.273 4.764v-4.322l-4.322-2.446-.002-.003-.002-.002c-.017-.009-.03-.024-.044-.034-.013-.011-.025-.017-.035-.027l-.002-.003c-.012-.012-.02-.028-.033-.04-.01-.014-.02-.024-.025-.037l-.002-.003c-.008-.016-.014-.036-.022-.055-.006-.014-.016-.024-.02-.036l-.001-.004c-.005-.018-.008-.038-.01-.058-.003-.014-.01-.024-.01-.038V6.323L2.67 5.416l-1.578-.91zM5.26.726L1.467 2.91 5.26 5.093 9.056 2.91 5.261.726zM7.3 13.98l2.18-1.255V3.624l-1.577.91-2.182 1.255v9.101l1.58-.91zM18.89 3.44l-3.795 2.184 3.795 2.184 3.793-2.184-3.793-2.184zm-.376 4.94L16.33 7.124l-1.578-.91v4.284l2.182 1.256 1.58.908V8.379zm-8.65 9.856l5.514-3.154 2.756-1.576-3.79-2.18-4.324 2.49-3.942 2.27 3.786 2.15z"/>') },
+      { name:'Tailwind CSS', svg: _svg('<path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/>') },
+      { name:'PHP', svg: _svg('<path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 0 1-.349.853c-.159.257-.363.486-.596.68l-.002.017zm4.937-1.86c-.098.503-.264.967-.502 1.388a3.12 3.12 0 0 1-.864 1.06c-.361.284-.756.477-1.182.58-.425.103-.9.105-1.422.005l.305-1.57c.164.034.372.031.622-.01.25-.04.456-.14.62-.297.077-.073.145-.16.205-.259.06-.099.107-.213.14-.343.04-.206.017-.37-.068-.492-.085-.123-.28-.184-.585-.184h-.877l.96-4.93h1.377l-.592 3.04h.95c.554 0 .945.084 1.175.25.228.167.31.46.243.88l.495-.018zm4.078 1.86c-.26.25-.574.437-.916.55-.336.109-.765.164-1.286.164H14.37l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.418.477 1.002.33 1.752a2.836 2.836 0 0 1-.348.853c-.16.257-.363.486-.596.68l-.002.017zm-1.95-1.46h-.938l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.123-.995-.175-.193-.524-.29-1.047-.29h-.006z"/>') },
+      { name:'Node.js', svg: _svg('<path d="M11.998 24c-.321 0-.641-.084-.922-.247l-2.936-1.737c-.438-.245-.224-.332-.08-.383.585-.203.703-.25 1.328-.604.065-.037.15-.023.218.017l2.256 1.339a.29.29 0 0 0 .272 0l8.795-5.076a.277.277 0 0 0 .134-.238V6.921a.282.282 0 0 0-.137-.242l-8.791-5.072a.278.278 0 0 0-.271 0L3.075 6.68a.284.284 0 0 0-.139.241v10.15a.27.27 0 0 0 .138.236l2.409 1.392c1.307.654 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.112.255.253v10.021c0 1.745-.95 2.745-2.604 2.745-.508 0-.909 0-2.026-.551L2.28 18.675a1.852 1.852 0 0 1-.922-1.603V6.921c0-.66.354-1.277.922-1.603l8.795-5.082c.557-.315 1.296-.315 1.848 0l8.794 5.082c.57.326.922.943.922 1.603v10.15a1.856 1.856 0 0 1-.922 1.604l-8.795 5.078c-.28.163-.6.247-.924.247z"/>') }
+    ];
+    // Duplicate for marquee loop
+    const allLogos = [...marqueeLogos, ...marqueeLogos];
+    const marqueeRow = React.createElement(
+      React.Fragment, null,
+      ...allLogos.map((logo, i) => React.createElement(
+        'div',
+        { key: i, style: { display:'flex', alignItems:'center', gap:'10px', opacity:0.55 } },
+        logo.svg ? React.createElement('span', { dangerouslySetInnerHTML: { __html: logo.svg } }) : null,
+        React.createElement('span', { style: { fontFamily:"'JetBrains Mono', monospace", fontSize:'13px', color:'#a1a1aa', letterSpacing:'0.05em' } }, logo.name)
+      ))
+    );
+
+    const stats = [
+      { value: this._fmtStat(0), label: 'Years building digital systems' },
+      { value: this._fmtStat(1), label: 'Projects delivered' },
+      { value: this._fmtStat(2), label: 'Portfolio case studies' },
+      { value: this._fmtStat(3), label: 'Client satisfaction rating' },
+      { value: this._fmtStat(4), label: 'Average response time' }
+    ];
+
+    // Phosphor SVG paths
+    const browsersIcon = this._iconLg('<path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V88H40V56ZM40,200V104H216v96Z"/><circle cx="60" cy="72" r="6"/><circle cx="84" cy="72" r="6"/>');
+    const terminalIcon = this._iconLg('<path d="M117.31,134l-72,64a8,8,0,1,1-10.63-12L100,128,34.69,70A8,8,0,1,1,45.32,58l72,64a8,8,0,0,1,0,12ZM216,184H120a8,8,0,0,0,0,16h96a8,8,0,0,0,0-16Z"/>');
+    const robotIcon = this._iconLg('<path d="M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16ZM140,140a8,8,0,1,1-8-8A8,8,0,0,1,140,140Zm-40,0a8,8,0,1,1-8-8A8,8,0,0,1,100,140Zm60-40v40a8,8,0,0,1-16,0V100a8,8,0,0,1,16,0Zm-72,0v40a8,8,0,0,1-16,0V100a8,8,0,0,1,16,0Z"/>');
+    const chartIcon = this._iconLg('<path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V172.69l50.34-50.35a8,8,0,0,1,11.32,0L128,156.69,180.69,104H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V115.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,139.31l-56,56V200H224A8,8,0,0,1,232,208Z"/>');
+
+    const services = [
+      { num: '{01}', title: 'Web Design & Development', tags: ['UI/UX Design','Landing Pages','WordPress','Shopify','Responsive'], body: 'Custom websites and web applications built for speed, conversion, and long-term scalability. From brochure sites to complex platforms.', icon: browsersIcon },
+      { num: '{02}', title: 'Software Development', tags: ['CRM','Custom Portals','Dashboards','APIs','Systems'], body: 'Custom software built around your workflow. CRMs, portals, automation tools, and business platforms that replace 3+ separate tools.', icon: terminalIcon },
+      { num: '{03}', title: 'AI Automation Solutions', tags: ['n8n','Make.com','OpenAI','Claude API','Workflows'], body: 'AI-powered automation systems that save 20+ hours per week. CRM automation, lead pipelines, content workflows, and custom GPT integrations.', icon: robotIcon },
+      { num: '{04}', title: 'SEO & Digital Marketing', tags: ['On-Page SEO','Technical SEO','Local SEO','Lead Gen'], body: 'SEO and marketing strategies built to improve visibility and generate qualified leads. From technical audits to content-led growth.', icon: chartIcon }
+    ];
+
+    const arrowIcon = this._iconFill('<path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/>');
+
+    const differentiators = [
+      { num: '01 /', title: 'Creative, Conversion-Focused Design', body: 'We create premium websites and interfaces that look modern, build trust, and guide users toward taking action.', icon: arrowIcon },
+      { num: '02 /', title: 'Results-Driven Growth', body: 'Our SEO, marketing, and automation strategies are built to improve visibility, efficiency, and lead generation, measurably.', icon: arrowIcon },
+      { num: '03 /', title: 'Custom-Built, Always', body: 'No templates. No page builders on client work. Everything built specifically for your business, your market, your goals.', icon: arrowIcon }
+    ];
+
+    const bulbIcon = this._iconLg('<path d="M176,232a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,232Zm40-128a87.55,87.55,0,0,1-33.64,69.21A16.24,16.24,0,0,0,176,186v6a16,16,0,0,1-16,16H96a16,16,0,0,1-16-16v-6a16,16,0,0,0-6.23-12.66A87.59,87.59,0,0,1,40,104.49C39.74,56.83,78.26,17.14,125.88,16A88,88,0,0,1,216,104Zm-16,0a72,72,0,0,0-73.74-72c-39,1-70.47,33.46-70.26,72.4a71.65,71.65,0,0,0,27.64,56.3A32,32,0,0,1,96,186v6h64v-6a32.15,32.15,0,0,1,12.47-25.35A71.65,71.65,0,0,0,200,104Z"/>');
+    const pencilIcon = this._iconLg('<path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l64-64h0l59.32-59.32A16,16,0,0,0,227.32,73.37ZM48,208V163.31L136,75.31,180.69,120,92.69,208Z"/>');
+    const rocketIcon = this._iconLg('<path d="M232.66,27.34a8,8,0,0,0-3-3C229.59,24.27,178.84-2.62,128,40.1c-21.74,17.78-40,57.92-50.6,86.79-7.16,19.46-14.5,42.78-13.31,53.33A47.72,47.72,0,0,0,55,196.7c-15.66,17-22.2,46.59-22.46,47.79a8,8,0,0,0,9.32,9.32c1.2-.27,30.83-6.81,47.79-22.46a47.72,47.72,0,0,0,16.49-9.05c10.55,1.18,33.87-6.16,53.33-13.31,28.87-10.62,69-28.86,86.79-50.6C295.66,87.16,232.66,27.34,232.66,27.34Z"/>');
+
+    const processSteps = [
+      { num: '01', title: 'Strategy & Discovery', body: 'We understand your business, objectives, audience, and technical needs to define the right digital direction.', icon: bulbIcon },
+      { num: '02', title: 'Design & Development', body: 'We design and build your website, software, or automation solution with a focus on usability, performance, and quality.', icon: pencilIcon },
+      { num: '03', title: 'Optimization & Launch', body: 'We refine details, improve speed and SEO, test functionality, and prepare for a confident, clean launch.', icon: rocketIcon }
+    ];
+
+    const testimonialsData = [
+      { quote: 'Relicsol built our website from scratch in under 3 weeks. It loads fast, looks premium, and has already brought in leads we would never have got with our old site.', name: 'Sarah L.', role: 'CEO, GreenLeaf', initials: 'SL' },
+      { quote: 'The combination of design quality and technical execution was impressive. They understood our brand immediately and delivered exactly what we needed, on time and on budget.', name: 'Robert', role: 'CEO, New You Spa', initials: 'R' },
+      { quote: 'From the first call to the final delivery, the process was clear and professional. Our new site ranks on Google and converts visitors into enquiries every week.', name: 'Priya K.', role: 'Founder, StyleMart', initials: 'PK' },
+      { quote: 'We needed a reliable agency that could handle both design and the technical backend. Relicsol delivered both without compromise. We have been with them for two projects now.', name: 'David M.', role: 'CEO, TechNova', initials: 'DM' }
+    ];
+    const testimonials = testimonialsData.map((t, i) => ({
+      ...t,
+      opacity: i === this.state.currentTest ? 1 : 0,
+      pointer: i === this.state.currentTest ? 'auto' : 'none'
+    }));
+    const testDots = testimonialsData.map((_, i) => ({
+      w: i === this.state.currentTest ? '32px' : '8px',
+      bg: i === this.state.currentTest ? '#F97316' : '#262626',
+      active: i === this.state.currentTest
+    }));
+
+    const videoTestimonials = [
+      { src: 'https://relicsol.com/wp-content/uploads/2026/05/web-design-and-developemnt-Uk-USA.mp4', tag: 'CASE STUDY · UK', title: 'Web design and development walkthrough' },
+      { src: 'https://relicsol.com/wp-content/uploads/2026/06/relicsol_review.mp4', tag: 'CLIENT REVIEW', title: 'A client shares their experience' }
+    ];
+
+    const plans = [
+      {
+        label: 'Starter', title: 'Starter Website Package', best: 'For startups and small businesses',
+        price: '$999', featured: false,
+        bg: '#0f0f0f', border: '#262626', shadow: 'none',
+        btnBg: 'transparent', btnColor: '#ffffff', btnBorder: '#262626',
+        features: ['Custom website design','Up to 5 pages','Responsive development','WordPress or Shopify setup','Basic on-page SEO','Contact form integration','Speed optimization','Security setup']
+      },
+      {
+        label: 'Growth', title: 'Growth Business Package', best: 'For growing businesses',
+        price: '$1,499', featured: true,
+        bg: '#1a0d05', border: '#F97316', shadow: '0 40px 100px -30px rgba(249,115,22,0.4), inset 0 1px 0 rgba(255,173,92,0.15)',
+        btnBg: '#F97316', btnColor: '#fff', btnBorder: '#F97316',
+        features: ['Custom design and development','Up to 10 pages','Advanced responsive layout','On-page SEO optimization','Technical SEO basics','Blog setup','Lead generation forms','Analytics integration','Speed optimization','Launch support']
+      },
+      {
+        label: 'Custom', title: 'Custom Software & Automation', best: 'For advanced digital needs',
+        price: '$2,000', featured: false,
+        bg: '#0f0f0f', border: '#262626', shadow: 'none',
+        btnBg: 'transparent', btnColor: '#ffffff', btnBorder: '#262626',
+        features: ['Everything in Growth Package','Custom software development','Dashboard / portal / CRM features','AI automation integration','API and third-party integrations','Workflow automation','Testing and deployment','Post-launch support']
+      }
+    ];
+
+    const articles = [
+      {
+        category: 'AI Automation',
+        title: 'How AI Automation Can Save Your Business 20 Hours Per Week',
+        excerpt: 'AI automation for small businesses is no longer a luxury. In 2026, tools that automate your workflows and follow up with leads are accessible and affordable for every business.',
+        url: 'https://relicsol.com/how-ai-automation-can-save-yourbusiness-20-hours-per-week/',
+        img: 'https://relicsol.com/wp-content/uploads/2026/05/b1-img-1.webp',
+        bg: 'linear-gradient(135deg,#1e3a8a,#1e293b)'
+      },
+      {
+        category: 'Web Design',
+        title: 'How Much Does a Business Website Cost in 2026? (USA & UK Guide)',
+        excerpt: 'Quotes range from £200 to £200,000 depending on who you ask. This guide gives you real numbers for the USA and UK, not vague ranges.',
+        url: 'https://relicsol.com/how-much-does-a-business-website-cost-in-2026-usa-uk-guide/',
+        img: 'https://relicsol.com/wp-content/uploads/2026/05/b1-img-2.webp',
+        bg: 'linear-gradient(135deg,#4c1d95,#1e1b4b)'
+      }
+    ];
+
+    return {
+      navStyle,
+      servicesOpen: this.state.servicesOpen,
+      openServices: () => this.setState({ servicesOpen: true }),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      mobileOpen: this.state.mobileOpen ? 'true' : 'false',
+      mobServicesOpen: this.state.mobServicesOpen,
+      mobSvcRotate: this.state.mobServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleMobile: () => {
+        const next = !this.state.mobileOpen;
+        this.setState({ mobileOpen: next });
+        document.body.style.overflow = next ? 'hidden' : '';
+      },
+      closeMobile: () => {
+        this.setState({ mobileOpen: false, mobServicesOpen: false });
+        document.body.style.overflow = '';
+      },
+      toggleMobServices: () => this.setState(s => ({ mobServicesOpen: !s.mobServicesOpen })),
+      heroW1: this.state.heroW1,
+      heroW2: this.state.heroW2,
+      heroW3: this.state.heroW3,
+      heroR1: this.state.heroR1,
+      heroR2: this.state.heroR2,
+      heroR3: this.state.heroR3,
+      heroR4: this.state.heroR4,
+      aboutR: this.state.aboutR,
+      servR: this.state.servR,
+      portR: this.state.portR,
+      whyR: this.state.whyR,
+      procR: this.state.procR,
+      testR: this.state.testR,
+      priceR: this.state.priceR,
+      ctaR: this.state.ctaR,
+      blogR: this.state.blogR,
+
+      marqueeLogos: allLogos,
+      marqueeRow,
+      portRow1: this._buildPortRow(this._portProjects().slice(0, 9), 'row1'),
+      portRow2: this._buildPortRow(this._portProjects().slice(9, 18), 'row2'),
+      stats,
+      services,
+      differentiators,
+      processSteps,
+      testimonials,
+      testDots,
+      videoTestimonials,
+      plans,
+      articles,
+      articleCards: React.createElement(React.Fragment, null, ...articles.map((a, i) => (
+        React.createElement('a', { key: i, href: a.url, style: { display:'block', textDecoration:'none', background:'#161616', border:'1px solid #262626', borderRadius:'4px', overflow:'hidden', transition:'border-color .3s ease, transform .3s ease' } },
+          React.createElement('div', { style: { position:'relative', aspectRatio:'16/9', overflow:'hidden', background: a.bg } },
+            React.createElement('img', { src: a.img, alt: a.title, style: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' } }),
+            React.createElement('div', { style: { position:'absolute', top:'20px', left:'20px', background:'rgba(10,10,10,0.85)', color:'#F97316', padding:'6px 12px', borderRadius:'999px', fontFamily:"'JetBrains Mono', monospace", fontSize:'10px', letterSpacing:'0.1em', textTransform:'uppercase', backdropFilter:'blur(8px)' } }, a.category)
+          ),
+          React.createElement('div', { style: { padding:'32px' } },
+            React.createElement('h3', { style: { fontFamily:"'Inter', sans-serif", fontWeight:600, color:'#ffffff', fontSize:'22px', lineHeight:1.25, letterSpacing:'-0.02em', margin:'0 0 14px' } }, a.title),
+            React.createElement('p', { style: { fontSize:'14px', lineHeight:1.65, color:'#A1A1AA', margin:'0 0 20px' } }, a.excerpt),
+            React.createElement('div', { style: { display:'inline-flex', alignItems:'center', gap:'8px', color:'#F97316', fontSize:'13px', fontWeight:500 } }, 'Read Article  →')
+          )
+        )
+      ))),
+      prevTest: () => this.setState((s) => ({ currentTest: (s.currentTest + 3) % 4 })),
+      nextTest: () => this.setState((s) => ({ currentTest: (s.currentTest + 1) % 4 }))
+    };
+  }
+}
+</script>
+</body>
+</html>

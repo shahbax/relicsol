@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { background:#080808; color:#A1A1AA; margin:0; padding:0; font-family:'Plus Jakarta Sans',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+    body { overflow-x:hidden; }
+    *, *::before, *::after { box-sizing:border-box; }
+    ::selection { background:#F97316; color:#080808; }
+    [data-reveal] { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    [data-reveal="in"] { opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity:1 !important; transform:none !important; transition:none !important; }
+    }
+    .rl-svc-dd:hover .rl-svc-panel { opacity:1; pointer-events:auto; transform:translateY(0); }
+  
+    /* Enhanced UI */
+    .rl-btn-primary { position:relative; overflow:hidden; transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease, background-color .2s ease; }
+    .rl-btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transition:left .5s ease; pointer-events:none; }
+    .rl-btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(249,115,22,0.35); background-color:#FF8534 !important; }
+    .rl-btn-primary:hover::before { left:150%; }
+    .rl-btn-primary:active { transform:translateY(0) scale(0.98); box-shadow:0 2px 10px rgba(249,115,22,0.25); }
+    .rl-btn-secondary { transition:transform .2s cubic-bezier(.16,1,.3,1), border-color .2s ease, color .2s ease; }
+    .rl-btn-secondary:hover { border-color:#F97316 !important; color:#F97316 !important; transform:translateY(-1px); }
+    .rl-foot-link { position:relative; transition:color .2s ease; }
+    .rl-foot-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-foot-link:hover { color:#ffffff !important; }
+    .rl-foot-link:hover::after { width:100%; }
+    .rl-nav-link { position:relative; padding-bottom:3px; }
+    .rl-nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:#F97316; transition:width .25s cubic-bezier(.16,1,.3,1); }
+    .rl-nav-link:hover::after { width:100%; }
+    @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+      #rl-scroll-progress { position:fixed; top:0; left:0; right:0; height:2px; background:#F97316; z-index:9998; transform-origin:left; transform:scaleX(0); will-change:transform; pointer-events:none; }
+
+    /* === MOBILE NAV === */
+    @media (max-width:767px) {
+      .rl-desktop-nav, .rl-desktop-cta { display:none !important; }
+      .rl-mobile-toggle { display:flex !important; }
+    }
+    @media (min-width:768px) {
+      .rl-mobile-toggle { display:none !important; }
+    }
+    .rl-mob-overlay { position:fixed; inset:0; background:rgba(8,8,8,0.97); z-index:100; display:flex; flex-direction:column; padding:32px; overflow-y:auto; opacity:0; pointer-events:none; transition:opacity .3s cubic-bezier(.16,1,.3,1); backdrop-filter:blur(24px); }
+    .rl-mob-overlay[data-open="true"] { opacity:1; pointer-events:auto; }
+    /* === RESPONSIVE LAYOUT === */
+    @media (max-width:767px) {
+      [style*="repeat(3"] { grid-template-columns:1fr !important; }
+      [style*="repeat(4"] { grid-template-columns:1fr !important; }
+    }
+    @media (max-width:480px) {
+      [style*="repeat(2"] { grid-template-columns:1fr !important; }
+    }
+    @media (min-width:768px) and (max-width:1023px) {
+      [style*="repeat(3"] { grid-template-columns:repeat(2,1fr) !important; }
+      [style*="repeat(4"] { grid-template-columns:repeat(2,1fr) !important; }
+    }
+    </style>
+</helmet>
+
+<div style="background:#080808; color:#A1A1AA; font-family:'Plus Jakarta Sans',sans-serif; min-height:100vh;">
+  <div id="rl-scroll-progress"></div>
+  <!-- NAV -->
+  <nav style="position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(8,8,8,0.75); backdrop-filter:blur(20px); border-bottom:1px solid #1a1a1a;">
+    <div style="max-width:1400px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between;">
+      <a href="Relicsol.dc.html" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff; letter-spacing:-0.02em;">Relicsol</span>
+      </a>
+      <div class="rl-desktop-nav" style="display:flex; align-items:center; gap:36px;">
+        <a href="Relicsol.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Home</a>
+        <div class="rl-svc-dd" style="position:relative;">
+          <span style="color:#A1A1AA; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:6px; cursor:pointer;" style-hover="color:#ffffff;">Services <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+          <div class="rl-svc-panel" style="position:absolute; top:100%; left:-16px; padding-top:12px; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; transform:translateY(-4px);">
+            <div style="background:#0f0f0f; border:1px solid #262626; border-radius:4px; padding:10px; min-width:280px; box-shadow:0 20px 60px rgba(0,0,0,.5);">
+              <a href="WebDesign.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Web Design &amp; Development</a>
+              <a href="Software.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">Software Development</a>
+              <a href="AIAutomation.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">AI Automation</a>
+              <a href="SEO.dc.html" style="display:block; padding:10px 14px; color:#ffffff; text-decoration:none; font-size:14px; border-radius:4px;" style-hover="background:#161616;">SEO &amp; Digital Marketing</a>
+            </div>
+          </div>
+        </div>
+        <a href="Portfolio.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Portfolio</a>
+        <a href="About.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">About</a>
+        <a href="Contact.dc.html" class="rl-nav-link" style="color:#A1A1AA; text-decoration:none; font-size:14px; font-weight:500;" style-hover="color:#ffffff;">Contact</a>
+      </div>
+      
+      <button class="rl-mobile-toggle" onClick="{{ toggleMobile }}" style="display:none; background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px; width:40px; height:40px; align-items:center; justify-content:center;">
+        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg>
+      </button>
+      <a href="Contact.dc.html" class="rl-desktop-cta rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:10px 20px; border-radius:999px; font-size:13px; font-weight:600; letter-spacing:0.01em;">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="rl-mob-overlay" data-open="{{ mobileOpen }}">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:32px; height:32px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:16px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:#ffffff;">Relicsol</span>
+      </div>
+      <button onClick="{{ toggleMobile }}" style="background:transparent; border:none; color:#ffffff; cursor:pointer; padding:8px;">
+        <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+      </button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <a href="Relicsol.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Home</a>
+      <div style="border-bottom:1px solid #1a1a1a;">
+        <button onClick="{{ toggleMobServices }}" style="width:100%; background:transparent; border:none; color:#ffffff; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; cursor:pointer; text-align:left; display:flex; align-items:center; justify-content:space-between;">
+          Services
+          <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" style="transition:transform .3s ease; transform:{{ mobSvcRotate }};"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+        </button>
+        <sc-if value="{{ mobServicesOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:2px; padding:0 0 16px 24px;">
+            <a href="WebDesign.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Web Design &amp; Development</a>
+            <a href="Software.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">Software Development</a>
+            <a href="AIAutomation.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">AI Automation</a>
+            <a href="SEO.dc.html" onClick="{{ closeMobile }}" style="color:#A1A1AA; text-decoration:none; font-size:18px; padding:10px 0;" style-hover="color:#F97316;">SEO &amp; Digital Marketing</a>
+          </div>
+        </sc-if>
+      </div>
+      <a href="Portfolio.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Portfolio</a>
+      <a href="About.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">About</a>
+      <a href="Blog.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Blog</a>
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="color:#ffffff; text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:32px; letter-spacing:-0.02em; padding:16px 0; border-bottom:1px solid #1a1a1a;">Contact</a>
+    </div>
+    <div style="margin-top:auto; padding-top:40px;">
+      <a href="Contact.dc.html" onClick="{{ closeMobile }}" style="display:flex; align-items:center; justify-content:center; gap:10px; background:#F97316; color:#fff; text-decoration:none; padding:18px 32px; border-radius:999px; font-size:16px; font-weight:500; width:100%;">
+        Start Your Project
+        <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+      </a>
+      <div style="margin-top:24px; text-align:center;">
+        <a href="mailto:info@relicsol.com" style="color:#71717a; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:13px;" style-hover="color:#F97316;">info@relicsol.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding:180px 32px 100px; position:relative; overflow:hidden;">
+    <div style="position:absolute; left:-200px; top:100px; width:700px; height:700px; background:radial-gradient(circle, rgba(249,115,22,0.13), transparent 65%); filter:blur(40px); pointer-events:none;"></div>
+    <div style="max-width:1400px; margin:0 auto; position:relative;">
+      <div data-reveal="{{ heroR }}" style="max-width:980px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">{} About Relicsol</div>
+        <h1 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(48px, 7vw, 96px); line-height:0.98; letter-spacing:-0.045em; margin:0 0 40px;">
+          We Build Digital Systems<br>
+          That Help Businesses <span style="background:linear-gradient(120deg,#F97316,#FFAD5C); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">Grow Smarter.</span>
+        </h1>
+        <p style="font-size:20px; line-height:1.55; color:#A1A1AA; max-width:720px; margin:0; font-weight:300;">
+          Not just websites. Not just software. Complete digital systems, built to perform, built to last, built around your specific business goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section style="padding:80px 32px; background:#0f0f0f; border-top:1px solid #1a1a1a; border-bottom:1px solid #1a1a1a;">
+    <div style="max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.4fr; gap:96px; align-items:start;">
+      <div data-reveal="{{ secR }}">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">01 / Who We Are</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(32px,3.5vw,52px); line-height:1.05; letter-spacing:-0.035em; margin:0;">
+          Twelve years.<br>
+          Two hundred projects.<br>
+          <span style="color:#52525b;">One standard.</span>
+        </h2>
+      </div>
+      <div data-reveal="{{ secR }}" style="display:flex; flex-direction:column; gap:24px;">
+        <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+          Relicsol is a web design and software development agency helping businesses across the USA, UK, and Europe build a stronger digital presence. We have been doing this since 2013, before AI automation was a buzzword, before headless CMS was mainstream, before most of our clients had ever heard of Core Web Vitals.
+        </p>
+        <p style="font-size:17px; line-height:1.75; color:#A1A1AA; margin:0;">
+          We combine strategy, design, development, and automation to deliver websites, custom software, SEO campaigns, and AI automation systems that are built for performance, not just appearance. Every project starts with understanding your business goals, your audience, and the outcomes you need.
+        </p>
+        <p style="font-size:17px; line-height:1.75; color:#ffffff; margin:0; font-weight:500;">
+          We do not use off-the-shelf templates or one-size-fits-all solutions. Everything we build is crafted specifically for your business, your market, and your growth targets.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section style="padding:120px 32px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ statsR }}" style="display:grid; grid-template-columns:repeat(6,1fr); gap:0;">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="6">
+          <div style="padding:32px 24px; border-left:1px solid #262626;">
+            <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:clamp(40px,4.5vw,72px); font-weight:600; color:#ffffff; letter-spacing:-0.04em; line-height:1; margin-bottom:12px;">{{ s.value }}</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#52525b; text-transform:uppercase; letter-spacing:0.15em; line-height:1.5;">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="padding:120px 32px; background:#0f0f0f; border-top:1px solid #1a1a1a; border-bottom:1px solid #1a1a1a;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ valR }}" style="margin-bottom:64px; max-width:720px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">02 / Our Values</div>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(40px,5vw,72px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+          What guides every project.
+        </h2>
+      </div>
+      <div data-reveal="{{ valR }}" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+          <div style="background:#080808; border:1px solid #262626; border-radius:4px; padding:36px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#F97316; margin-bottom:24px;">{{ v.num }}</div>
+            <h3 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:22px; letter-spacing:-0.02em; margin:0 0 16px;">{{ v.title }}</h3>
+            <p style="font-size:15px; line-height:1.7; color:#A1A1AA; margin:0;">{{ v.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section style="padding:120px 32px;">
+    <div style="max-width:1400px; margin:0 auto;">
+      <div data-reveal="{{ techR }}" style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; margin-bottom:64px; align-items:end;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#F97316; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:24px;">03 / Our Tech Stack</div>
+          <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(36px,4.5vw,64px); line-height:0.98; letter-spacing:-0.04em; margin:0;">
+            The tools we build with.
+          </h2>
+        </div>
+        <p style="font-size:16px; line-height:1.65; color:#A1A1AA; margin:0;">
+          Modern, battle-tested technology. We pick the right tool for the job, not the trendiest one. Whatever we build for you is yours to own, host, and modify.
+        </p>
+      </div>
+      <div data-reveal="{{ techR }}">
+        {{ techGrid }}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:140px 32px; background:#080808; position:relative; overflow:hidden;">
+    <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:900px; height:600px; background:radial-gradient(ellipse, rgba(249,115,22,0.15), transparent 60%); pointer-events:none;"></div>
+    <div style="max-width:900px; margin:0 auto; text-align:center; position:relative;">
+      <h2 style="font-family:'Syne',sans-serif; font-weight:700; color:#ffffff; font-size:clamp(48px,7vw,96px); line-height:0.95; letter-spacing:-0.045em; margin:0 0 24px;">
+        Ready to start<br>
+        <span style="color:#52525b;">your project?</span>
+      </h2>
+      <p style="font-size:17px; line-height:1.65; color:#A1A1AA; margin:0 0 40px;">
+        Free consultation. Fixed pricing. Results guaranteed.
+      </p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="Contact.dc.html" class="rl-btn-primary" style="background:#F97316; color:#fff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.01em;">Get in Touch →</a>
+        <a href="Portfolio.dc.html" style="background:transparent; color:#ffffff; text-decoration:none; padding:16px 28px; border-radius:999px; font-size:14px; font-weight:500; border:1px solid #262626;" style-hover="border-color:#52525b;">View Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#080808; border-top:1px solid #262626; padding:48px 32px;">
+    <div style="max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:28px; height:28px; border-radius:4px; background:linear-gradient(135deg,#F97316,#c2410c); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:14px;">R</div>
+        <span style="font-family:'Syne',sans-serif; font-weight:700; font-size:15px; color:#ffffff;">Relicsol</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#52525b; margin-left:8px;">© 2026</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="display:flex; gap:24px; font-size:13px;">
+          <a href="Relicsol.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Home</a>
+          <a href="Portfolio.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Portfolio</a>
+          <a href="About.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">About</a>
+          <a href="Contact.dc.html" class="rl-foot-link" style="color:#A1A1AA; text-decoration:none;">Contact</a>
+          <a href="mailto:info@relicsol.com" style="color:#A1A1AA; text-decoration:none; font-family:'JetBrains Mono',monospace;" style-hover="color:#F97316;">info@relicsol.com</a>
+        </div>
+        <div style="display:flex; gap:8px; margin-left:8px;">
+          <a href="https://www.linkedin.com/company/relicsol" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-88a12,12,0,1,1,12-12A12,12,0,0,1,88,88Zm96,88a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/relicsol" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style="width:32px; height:32px; border-radius:50%; border:1px solid #262626; display:flex; align-items:center; justify-content:center; color:#71717a; text-decoration:none; transition:all .25s ease;" style-hover="border-color:#F97316; color:#ffffff;">
+            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.29l62.6,98.38L42.08,210.62a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mobileOpen: false, mobServicesOpen: false, heroR:'', secR:'', statsR:'', valR:'', techR:'' };
+
+  componentDidMount() {
+    // Scroll progress bar
+    this._scrollFn = () => { const bar = document.getElementById('rl-scroll-progress'); if (bar) { const h = document.documentElement.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? (window.scrollY / h) : 0) + ')'; } };
+    window.addEventListener('scroll', this._scrollFn, { passive: true });
+    setTimeout(() => this.setState({ heroR:'in' }), 100);
+    const sectionKeys = ['secR','statsR','valR','techR'];
+    const sels = ['section:nth-of-type(2)','section:nth-of-type(3)','section:nth-of-type(4)','section:nth-of-type(5)'];
+    sels.forEach((sel, i) => {
+      const el = document.querySelector(sel);
+      if (!el) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { this.setState({ [sectionKeys[i]]:'in' }); io.disconnect(); } });
+      }, { threshold: 0.1 });
+      io.observe(el);
+    });
+    // Safety net
+    setTimeout(() => this.setState({ heroR:'in', secR:'in', statsR:'in', valR:'in', techR:'in' }), 2000);
+  }
+
+  componentWillUnmount() {
+    if (this._scrollFn) window.removeEventListener('scroll', this._scrollFn);
+  }
+  renderVals() {
+    const stats = [
+      { value:'12+', label:'Years in business' },
+      { value:'200+', label:'Projects delivered' },
+      { value:'18', label:'Case studies' },
+      { value:'4.9★', label:'Client rating' },
+      { value:'USA/UK', label:'Primary markets' },
+      { value:'1hr', label:'Avg response time' }
+    ];
+
+    const values = [
+      { num:'V01', title:'Business-Focused Strategy', body:'Every project starts with clear business goals. Your investment is measured against real outcomes, not aesthetics.' },
+      { num:'V02', title:'Quality-Driven Execution', body:'Fast, reliable, modern digital solutions with attention to performance, user experience, and clean implementation. No cut corners.' },
+      { num:'V03', title:'Long-Term Partnership', body:'We work with clients as growth partners. Transparent communication, practical support, scalable solutions that serve you beyond launch.' }
+    ];
+
+    const techIcons = [
+      { name:'WordPress', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.539.82-2.771.82-3.864 0-.397-.026-.766-.07-1.109zm-7.981.105c.647-.034 1.233-.1 1.233-.1.58-.068.512-.921-.068-.889 0 0-1.744.137-2.867.137-1.055 0-2.834-.137-2.834-.137-.58-.032-.648.855-.068.889 0 0 .551.066 1.13.1l1.68 4.605-2.36 7.08L6.844 6.93c.649-.034 1.233-.1 1.233-.1.581-.068.513-.921-.067-.889 0 0-1.745.137-2.868.137-.202 0-.44-.005-.693-.014C6.005 3.625 8.828 2 12 2c2.358 0 4.506.905 6.109 2.378-.039-.002-.076-.008-.117-.008-.789 0-1.349.688-1.349 1.43 0 .664.383 1.226.793 1.89.307.532.665 1.215.665 2.202 0 .683-.263 1.476-.614 2.58l-.804 2.685-2.913-8.662c.648-.034 1.232-.1 1.232-.1.581-.068.513-.921-.067-.889 0 0-.692.054-1.447.1zM12 22C6.486 22 2 17.514 2 12c0-1.476.32-2.878.893-4.14L7.06 20.3A10.022 10.022 0 0 0 12 22z"/></svg>' },
+      { name:'React', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.31 0-.592.068-.852.2-1.56.793-1.28 4.024.712 7.466-3.212 1.426-5.13 3.382-5.13 5.016 0 2.728 4.58 4.382 9.127 4.382s9.128-1.654 9.128-4.382c0-1.634-1.918-3.59-5.13-5.016 1.992-3.442 2.272-6.673.712-7.466a1.126 1.126 0 0 0-.852-.2z"/></svg>' },
+      { name:'Next.js', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727zM16.8 7.2h-1.6v9.6h1.6V7.2z"/></svg>' },
+      { name:'Supabase', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M11.9 23.1c-.5.6-1.5.2-1.5-.6V9.6h9.5c1.2 0 1.8 1.4.9 2.3L11.9 23.1zM12.1.9c.5-.6 1.5-.2 1.5.6v12.9H4.1c-1.2 0-1.8-1.4-.9-2.3L12.1.9z"/></svg>' },
+      { name:'Laravel', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M23.642 5.43a.364.364 0 0 1 .014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934c0 .135-.073.26-.189.326l-9.032 5.206a.32.32 0 0 1-.066.027c-.008.002-.016.008-.024.01a.348.348 0 0 1-.192 0c-.011-.002-.02-.008-.03-.012-.02-.008-.042-.014-.062-.025L.533 18.562a.376.376 0 0 1-.189-.326V2.974c0-.033.004-.066.014-.098.003-.012.01-.02.014-.032a.369.369 0 0 1 .023-.058c.004-.013.015-.022.023-.033.01-.014.02-.03.033-.04.01-.01.025-.018.037-.027a.364.364 0 0 1 .05-.034L4.89.368a.367.367 0 0 1 .376 0L9.624 2.65c.017.01.03.024.044.035.012.01.025.017.036.027.013.014.02.027.033.04.01.012.02.022.025.035.01.016.015.038.024.058.003.011.01.021.013.032.01.031.014.065.014.098v9.652l3.76-2.164V5.527c0-.033.004-.066.013-.098.004-.011.01-.02.013-.032.01-.02.017-.04.024-.058.007-.013.016-.023.025-.035.014-.013.02-.027.034-.041.01-.01.024-.017.035-.027.016-.011.03-.024.045-.034l4.36-2.513a.367.367 0 0 1 .375 0l4.36 2.513z"/></svg>' },
+      { name:'Tailwind', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>' },
+      { name:'PHP', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312z"/></svg>' },
+      { name:'Node.js', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M11.998 24c-.321 0-.641-.084-.922-.247l-2.936-1.737c-.438-.245-.224-.332-.08-.383.585-.203.703-.25 1.328-.604.065-.037.15-.023.218.017l2.256 1.339a.29.29 0 0 0 .272 0l8.795-5.076a.277.277 0 0 0 .134-.238V6.921a.282.282 0 0 0-.137-.242l-8.791-5.072a.278.278 0 0 0-.271 0L3.075 6.68a.284.284 0 0 0-.139.241v10.15a.27.27 0 0 0 .138.236l2.409 1.392c1.307.654 2.108-.116 2.108-.89V7.787c0-.142.114-.253.256-.253h1.115c.139 0 .255.112.255.253v10.021c0 1.745-.95 2.745-2.604 2.745-.508 0-.909 0-2.026-.551L2.28 18.675a1.852 1.852 0 0 1-.922-1.603V6.921c0-.66.354-1.277.922-1.603l8.795-5.082c.557-.315 1.296-.315 1.848 0l8.794 5.082c.57.326.922.943.922 1.603v10.15a1.856 1.856 0 0 1-.922 1.604l-8.795 5.078c-.28.163-.6.247-.924.247z"/></svg>' },
+      { name:'n8n', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M12.69 10.32L7.33 7.35V5.04l6.37 3.54v4.24l-1.01-.5zm7.71-3.34l-5.7 3.1v6.54l-1.01.56v-7.7l5.7-3.11V5.2L12 1.34 4.59 5.2v7.72L12 16.78l2.7-1.47 1.01.56L12 18.06l-8.41-4.6V4.65L12 .04l8.41 4.6v2.34h-.01z"/></svg>' },
+      { name:'Make', src:null, svg:null },
+      { name:'OpenAI', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.998 5.998 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>' },
+      { name:'Claude', src:null, svg:null },
+      { name:'Figma', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.02-3.02-3.02h-3.116V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.02 3.02h3.116V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.02 3.02h3.116V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.02c0 1.689 1.38 3.068 3.043 3.068a3.07 3.07 0 0 0 3.092-3.068v-3.02H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.02 3.02 3.02h.097c1.665 0 3.02-1.355 3.02-3.02s-1.355-3.02-3.02-3.02h-.098z"/></svg>' },
+      { name:'GitHub', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>' },
+      { name:'Cloudflare', src:null, svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="28" height="28"><path d="M16.51 15.87l.56-1.95c.11-.39.07-.75-.12-1.03-.18-.26-.47-.42-.82-.46l-9.27-.13a.17.17 0 0 1-.14-.07.18.18 0 0 1-.02-.16c.02-.06.07-.1.13-.11l9.36-.13c.81-.04 1.69-.7 2.03-1.53l.42-1.06a.28.28 0 0 0 .01-.2C17.76 5.55 14.57 2.82 10.85 3.01 7.73 3.17 5.16 5.6 4.84 8.71c-.92-.55-2.03-.65-3.03-.18-1.51.74-2.18 2.56-1.35 4.03.12.21.26.41.42.59-.1.01-.2.01-.3.03-1.24.14-2.21 1.18-2.16 2.44.04 1.17.98 2.13 2.16 2.23h15.63c.08 0 .14-.05.17-.12l.09-.31c.11-.41.19-.76.09-1.55zm3.5-5.43c-.06 0-.12 0-.18.01-.04 0-.08.03-.1.07l-.32 1.11c-.11.39-.07.75.12 1.03.18.26.47.42.82.46l2.15.03c.06 0 .11.02.14.07a.18.18 0 0 1 .02.16c-.02.06-.07.1-.13.11l-2.23.03c-.81.04-1.69.7-2.03 1.53l-.12.29c-.03.06.01.13.08.13h5.65c.07 0 .13-.04.14-.11.19-.7.3-1.43.3-2.19a5.27 5.27 0 0 0-4.31-5.17z"/></svg>' }
+    ];
+
+    const techGrid = React.createElement(
+      'div',
+      { style: { display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:'1px', background:'#262626', border:'1px solid #262626', borderRadius:'4px', overflow:'hidden' } },
+      ...techIcons.map((t,i) => React.createElement(
+        'div',
+        { key:i, style: { background:'#080808', padding:'32px', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'14px', minHeight:'140px', transition:'background .3s ease' },
+          onMouseEnter: (e) => { e.currentTarget.style.background = '#0f0f0f'; },
+          onMouseLeave: (e) => { e.currentTarget.style.background = '#080808'; }
+        },
+        t.svg
+          ? React.createElement('span', { dangerouslySetInnerHTML: { __html: t.svg }, style: { display:'flex', alignItems:'center', justifyContent:'center' } })
+          : React.createElement('div', { style: { height:'28px', width:'28px', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'JetBrains Mono',monospace", fontSize:'14px', color:'#fff', fontWeight:600 } }, t.name.charAt(0)),
+        React.createElement('div', { style: { fontFamily:"'JetBrains Mono', monospace", fontSize:'11px', color:'#71717a', letterSpacing:'0.05em' } }, t.name)
+      ))
+    );
+
+    return {
+      mobileOpen: this.state.mobileOpen,
+      mobServicesOpen: this.state.mobServicesOpen,
+      mobSvcRotate: this.state.mobServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
+      closeMobile: () => this.setState({ mobileOpen: false, mobServicesOpen: false }),
+      toggleMobServices: () => this.setState(s => ({ mobServicesOpen: !s.mobServicesOpen })),
+      heroR: this.state.heroR,
+      secR: this.state.secR,
+      statsR: this.state.statsR,
+      valR: this.state.valR,
+      techR: this.state.techR,
+      stats, values, techGrid
+    };
+  }
+}
+</script>
+</body>
+</html>
