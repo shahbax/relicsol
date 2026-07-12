@@ -246,7 +246,7 @@ export function Nav() {
               letterSpacing: '0.01em'
             }}
           >
-            Get Started
+            Request a Quote
           </Link>
         </div>
       </nav>

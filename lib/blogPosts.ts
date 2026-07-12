@@ -39,7 +39,7 @@ export const blogPosts: BlogPost[] = [
     date: `July 22, 2026`,
     isoDate: `2026-07-22`,
     readMinutes: 6,
-    image: `/images/s1-card-img-1.webp`,
+    image: `/images/blog-website-maintenance.webp`,
     author: `Relicsol Team`,
     authorBio: `Web design, software and AI automation agency helping businesses in USA, UK & Europe since 2018.`,
     body: [
@@ -275,7 +275,7 @@ export const blogPosts: BlogPost[] = [
     date: `July 15, 2026`,
     isoDate: `2026-07-15`,
     readMinutes: 11,
-    image: `/images/SEO-services-small-business.webp`,
+    image: `/images/blog-local-seo.webp`,
     author: `Relicsol Team`,
     authorBio: `Web design, software and AI automation agency helping businesses in USA, UK & Europe since 2018.`,
     body: [
@@ -1483,7 +1483,7 @@ export const blogPosts: BlogPost[] = [
     date: `June 3, 2026`,
     isoDate: `2026-06-03`,
     readMinutes: 9,
-    image: `/images/SEO-services-small-business.webp`,
+    image: `/images/blog-seo-small-business.webp`,
     author: `Relicsol Team`,
     authorBio: `Web design, software and AI automation agency helping businesses in USA, UK & Europe since 2018.`,
     body: [
@@ -2011,7 +2011,7 @@ export const blogPosts: BlogPost[] = [
     date: `May 12, 2026`,
     isoDate: `2026-05-12`,
     readMinutes: 8,
-    image: `/images/AI-automation-services.webp`,
+    image: `/images/blog-ai-automation.webp`,
     author: `Relicsol Team`,
     authorBio: `Web design, software and AI automation agency helping businesses in USA, UK & Europe since 2018.`,
     body: [

@@ -1,38 +1,19 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
-// Each top-level BlogPost has this shape at 4-space indentation:
-//   slug: `xxx`,
-//   category: ...,
-//   title: ...,
-//   excerpt: ...,
-//   date: ...,
-//   isoDate: ...,
-//   readMinutes: N,
-//   image: `/images/...`,
-// We anchor on the `readMinutes` → `image` sequence to avoid matching `slug`s inside
-// the `related` arrays (which are indented deeper).
-
+// Featured-image assignment per post slug. Anchors on the readMinutes→image
+// field sequence so `slug` mentions inside `related` arrays never match.
 const map = {
-  'ai-automation':          '/images/AI-automation-services.webp',
-  'n8n-vs-make':            '/images/AI-automation-workflow.webp',
-  'local-seo':              '/images/SEO-services-small-business.webp',
-  'seo-small-business':     '/images/SEO-services-small-business.webp',
-  'ecommerce-cro':          '/images/s1-card-img-1.webp',
-  'shopify-vs-woocommerce': '/images/s1-card-img-2.webp',
-  'web-design-trends':      '/images/s1-card-img-3.webp',
-  'website-cost':           '/images/s1-card-img-4.webp',
-  'website-maintenance':    '/images/s1-card-img-1.webp',
-  'wordpress-vs-nextjs':    '/images/s1-card-img-2.webp'
+  'ai-automation':       '/images/blog-ai-automation.webp',
+  'local-seo':           '/images/blog-local-seo.webp',
+  'seo-small-business':  '/images/blog-seo-small-business.webp',
+  'website-maintenance': '/images/blog-website-maintenance.webp'
 };
 
 let s = readFileSync('lib/blogPosts.ts', 'utf8');
 let hits = 0;
 
 for (const [slug, img] of Object.entries(map)) {
-  // Match:  slug: `X`, at start of a top-level post (4-space indent) → then any content up to
-  // the same object's readMinutes: N,\n    image: `Y`,
   const re = new RegExp(
-    // Anchor: 4-space-indented `slug: \`SLUG\`,`
     '(\\n    slug:\\s*`' + slug + '`,[\\s\\S]*?readMinutes:\\s*\\d+,\\s*\\n    image:\\s*)`[^`]+`',
     ''
   );
@@ -46,4 +27,4 @@ for (const [slug, img] of Object.entries(map)) {
   }
 }
 writeFileSync('lib/blogPosts.ts', s, 'utf8');
-console.log(`rewrote ${hits}/10 blog images`);
+console.log(`rewrote ${hits}/${Object.keys(map).length}`);

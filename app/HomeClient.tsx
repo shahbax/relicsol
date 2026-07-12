@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { CountUp } from '@/components/CountUp';
 import { MagneticButton } from '@/components/MagneticButton';
+import { QuoteSection } from '@/components/QuoteSection';
 import { siteConfig, yearsInBusiness } from '@/lib/siteConfig';
 import {
   homeStats,
@@ -1028,69 +1029,6 @@ function PricingSection() {
   );
 }
 
-function CTABand() {
-  return (
-    <section id="contact" style={{ padding: '160px 32px', background: '#080808', position: 'relative', overflow: 'hidden' }}>
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%,-50%)',
-          width: 900,
-          height: 900,
-          background: 'radial-gradient(circle, rgba(249,115,22,0.18), transparent 60%)',
-          animation: 'rl-bloom 6s ease-in-out infinite',
-          pointerEvents: 'none'
-        }}
-        aria-hidden
-      />
-      <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center', position: 'relative' }}>
-        <Reveal as="h2" style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(56px, 10vw, 160px)', lineHeight: 0.9, letterSpacing: '-0.05em', margin: '0 0 32px' }}>
-          <>
-            Let's Build<br />
-            <span style={{ background: 'linear-gradient(120deg,#ffffff,#F97316)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Something Great.
-            </span>
-          </>
-        </Reveal>
-        <Reveal as="p" style={{ fontSize: 18, lineHeight: 1.6, color: '#A1A1AA', margin: '0 0 48px' }}>
-          Tell us about your project. Response within 1 hour.
-        </Reveal>
-        <Reveal style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 40 }}>
-          <MagneticButton
-            href="/contact"
-            className="rl-btn-primary"
-            style={{
-              background: '#F97316',
-              color: '#fff',
-              textDecoration: 'none',
-              padding: '18px 32px',
-              borderRadius: 999,
-              fontSize: 14,
-              fontWeight: 600,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10
-            }}
-          >
-            Start Your Project
-            <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor" aria-hidden>
-              <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
-            </svg>
-          </MagneticButton>
-          <Link href="/contact" className="rl-btn-secondary" style={{ background: 'transparent', color: '#ffffff', textDecoration: 'none', padding: '18px 32px', borderRadius: 999, fontSize: 14, fontWeight: 600, border: '1px solid #262626' }}>
-            Book a Call
-          </Link>
-        </Reveal>
-        <a href={`mailto:${siteConfig.contact.primaryEmail}`} style={{ color: '#71717a', textDecoration: 'none', fontFamily: 'var(--font-mono), monospace', fontSize: 13, letterSpacing: '0.05em' }}>
-          {siteConfig.contact.primaryEmail}
-        </a>
-      </div>
-    </section>
-  );
-}
-
 function BlogPreviewSection() {
   const previews = blogPosts.slice(0, 2);
   return (
@@ -1171,7 +1109,7 @@ export function HomeClient() {
       <ProcessSection />
       <TestimonialsSection />
       <PricingSection />
-      <CTABand />
+      <QuoteSection />
       <BlogPreviewSection />
     </main>
   );
