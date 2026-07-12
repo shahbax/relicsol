@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     type: 'article',
     title: 'About Relicsol',
     description: `Founded in ${siteConfig.founded}. Web design, custom software and AI automation for the USA, UK and Europe.`,
-    url: '/about'
+    url: '/about',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
   }
 };
 

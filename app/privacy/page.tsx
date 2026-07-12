@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   description:
     'How Relicsol handles your data when you use our website, submit our contact form, or engage us for services.',
   alternates: { canonical: '/privacy' },
-  openGraph: { title: 'Privacy Policy | Relicsol', url: '/privacy', type: 'article' }
+  openGraph: { title: 'Privacy Policy | Relicsol', url: '/privacy', type: 'article',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] }
 };
 
 export default function PrivacyPage() {

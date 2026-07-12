@@ -192,7 +192,7 @@ export default function BlogPostPage({ params }: { params: Params }) {
       <JsonLd data={breadcrumb} id={`ld-bc-${p.slug}`} />
 
       {/* Hero */}
-      <section style={{ padding: '160px 32px 48px', position: 'relative' }}>
+      <section style={{ padding: '160px 32px 48px', position: 'relative', overflow: 'hidden' }}>
         <div
           style={{
             position: 'absolute',

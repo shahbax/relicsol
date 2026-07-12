@@ -198,6 +198,27 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Oversized brand wordmark */}
+      <div style={{ overflow: 'hidden', padding: '0 32px', userSelect: 'none' }} aria-hidden>
+        <div
+          style={{
+            maxWidth: 1400,
+            margin: '0 auto',
+            fontFamily: 'var(--font-syne), sans-serif',
+            fontWeight: 800,
+            fontSize: 'clamp(72px, 15.5vw, 232px)',
+            lineHeight: 0.78,
+            letterSpacing: '-0.05em',
+            color: '#101010',
+            whiteSpace: 'nowrap',
+            transform: 'translateY(0.12em)',
+            textAlign: 'center'
+          }}
+        >
+          Relicsol
+        </div>
+      </div>
+
       {/* Bottom bar */}
       <div style={{ borderTop: '1px solid #1a1a1a', padding: '24px 32px' }}>
         <div

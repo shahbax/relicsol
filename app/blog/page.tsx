@@ -14,7 +14,8 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Relicsol Blog',
     description: 'Practical guides on web design, custom software, AI automation and SEO.',
-    url: '/blog'
+    url: '/blog',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
   }
 };
 

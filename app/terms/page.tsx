@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   description:
     'The terms and conditions under which Relicsol provides web design, software, AI automation and SEO services.',
   alternates: { canonical: '/terms' },
-  openGraph: { title: 'Terms of Service | Relicsol', url: '/terms', type: 'article' }
+  openGraph: { title: 'Terms of Service | Relicsol', url: '/terms', type: 'article',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] }
 };
 
 export default function TermsPage() {

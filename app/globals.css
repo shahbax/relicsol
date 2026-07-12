@@ -49,6 +49,25 @@ a {
   color: inherit;
 }
 
+/* Mobile tap polish */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth in-page scrolling (guarded for reduced motion below) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Balanced multi-line headings */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 /* Focus states – visible for keyboard, hidden for mouse users */
 :focus-visible {
   outline: 2px solid var(--rl-accent);
@@ -298,6 +317,16 @@ a {
 .rl-port-row:hover {
   animation-play-state: paused;
 }
+.rl-marquee-row > div {
+  transition: opacity 0.3s ease;
+}
+.rl-marquee-row > div:hover {
+  opacity: 1 !important;
+}
+.rl-marquee-row > div:hover span:last-child {
+  color: #ffffff !important;
+  transition: color 0.3s ease;
+}
 .rl-port-row {
   animation-duration: 60s;
   animation-timing-function: linear;
@@ -373,16 +402,98 @@ a {
   pointer-events: auto;
 }
 
-/* === Responsive helpers (grid collapse) === */
+/* === Responsive helpers (grid collapse) ===
+   Pages use inline gridTemplateColumns; these attribute selectors
+   collapse every pattern in use. If you add a new grid pattern,
+   add its selector here. */
 @media (max-width: 767px) {
-  [style*='repeat(3'] {
+  [style*='repeat(3'],
+  [style*='repeat(4'],
+  [style*='repeat(5'],
+  [style*='1fr 1fr'],
+  [style*='5fr 7fr'],
+  [style*='1.4fr 1fr'],
+  [style*='1fr 1.4fr'],
+  [style*='grid-template-columns:1fr auto'] {
     grid-template-columns: 1fr !important;
   }
-  [style*='repeat(4'] {
+
+  /* Service process rows (STEP / body / duration) stack vertically */
+  [style*='120px 1fr 200px'] {
     grid-template-columns: 1fr !important;
+    row-gap: 10px !important;
   }
-  [style*='repeat(5'] {
-    grid-template-columns: 1fr !important;
+  [style*='120px 1fr 200px'] > div:last-child {
+    text-align: left !important;
+  }
+
+  /* Differentiator rows: keep number + text, drop the arrow */
+  [style*='80px 1fr 56px'] {
+    grid-template-columns: 48px 1fr !important;
+  }
+  [style*='80px 1fr 56px'] > div:last-child {
+    display: none !important;
+  }
+
+  /* Tighter gaps on stacked layouts */
+  [style*='gap:96px'] {
+    gap: 40px !important;
+  }
+  [style*='gap:80px'] {
+    gap: 40px !important;
+  }
+  [style*='gap:64px'] {
+    gap: 32px !important;
+  }
+
+  /* Section rhythm: shorter verticals, 20px gutters */
+  section[style*=' 32px'] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  section[style*='140px 32px'] {
+    padding-top: 88px !important;
+    padding-bottom: 88px !important;
+  }
+  section[style*='160px 32px'] {
+    padding-top: 96px !important;
+    padding-bottom: 96px !important;
+  }
+  section[style*='120px 32px'] {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+  section[style*='100px 32px'] {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+  article[style*=' 32px'] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  div[style*='padding:120px 32px 0'] {
+    padding: 104px 20px 0 !important;
+  }
+  nav > div[style*='18px 32px'] {
+    padding: 14px 20px !important;
+  }
+  footer [style*='80px 32px 40px'] {
+    padding: 56px 20px 32px !important;
+  }
+  footer [style*='padding:32px'] {
+    padding: 24px 20px !important;
+  }
+  footer [style*='24px 32px'] {
+    padding: 20px !important;
+  }
+
+  /* Case study overview cells: side borders become row dividers */
+  .rl-cs-overview > div {
+    border-right: none !important;
+    border-bottom: 1px solid #262626;
+  }
+  .rl-cs-overview > div:last-child {
+    border-bottom: none;
   }
 }
 @media (max-width: 480px) {
@@ -396,6 +507,17 @@ a {
   }
   [style*='repeat(4'] {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Footer: 4 columns → 2 on tablet */
+  [style*='1.4fr 1fr 1fr'] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Pricing: 3 tiers → 1 column on tablet reads better than 2+1 orphan */
+  [style*='1fr 1fr 1fr'] {
+    grid-template-columns: 1fr !important;
+    max-width: 560px;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 

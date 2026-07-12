@@ -123,11 +123,25 @@ export function Nav() {
           </Link>
 
           <div className="rl-desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
-            <Link href="/" className="rl-nav-link" style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
+            <Link
+              href="/"
+              className="rl-nav-link"
+              aria-current={pathname === '/' ? 'page' : undefined}
+              style={{ color: pathname === '/' ? '#ffffff' : '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}
+            >
               Home
             </Link>
             <div className="rl-svc-dd" style={{ position: 'relative' }}>
-              <span style={{ color: '#A1A1AA', fontSize: 14, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer' }}>
+              <span
+                style={{
+                  color: pathname.startsWith('/services') ? '#ffffff' : '#A1A1AA',
+                  fontSize: 14,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  cursor: 'pointer'
+                }}
+              >
                 Services
                 <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor" aria-hidden>
                   <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" />
@@ -175,18 +189,25 @@ export function Nav() {
                 </div>
               </div>
             </div>
-            <Link href="/portfolio" className="rl-nav-link" style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
-              Portfolio
-            </Link>
-            <Link href="/about" className="rl-nav-link" style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
-              About
-            </Link>
-            <Link href="/blog" className="rl-nav-link" style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
-              Blog
-            </Link>
-            <Link href="/contact" className="rl-nav-link" style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
-              Contact
-            </Link>
+            {[
+              { href: '/portfolio', label: 'Portfolio' },
+              { href: '/about', label: 'About' },
+              { href: '/blog', label: 'Blog' },
+              { href: '/contact', label: 'Contact' }
+            ].map((l) => {
+              const active = pathname === l.href || pathname.startsWith(`${l.href}/`);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="rl-nav-link"
+                  aria-current={active ? 'page' : undefined}
+                  style={{ color: active ? '#ffffff' : '#A1A1AA', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </div>
 
           <button

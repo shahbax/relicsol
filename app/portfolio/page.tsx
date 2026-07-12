@@ -14,7 +14,8 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Portfolio — 18 Case Studies · Relicsol',
     description: 'Web design, software and AI automation projects for USA, UK and European businesses.',
-    url: '/portfolio'
+    url: '/portfolio',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
   }
 };
 

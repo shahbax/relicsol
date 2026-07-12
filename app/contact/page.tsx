@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Contact Relicsol',
     description: 'Response within one hour. USA, UK and Europe.',
-    url: '/contact'
+    url: '/contact',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
   }
 };
 

@@ -158,7 +158,7 @@ export default function CaseStudyPage({ params }: { params: Params }) {
       {/* Overview */}
       <section style={{ padding: '60px 32px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, borderTop: '1px solid #262626', borderBottom: '1px solid #262626' }}>
+          <div className="rl-cs-overview" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, borderTop: '1px solid #262626', borderBottom: '1px solid #262626' }}>
             {[
               { label: 'Client', value: c.overview.client },
               { label: 'Industry', value: c.overview.industry },

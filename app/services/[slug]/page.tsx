@@ -26,7 +26,8 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       type: 'article',
       title: s.metaTitle,
       description: s.metaDescription,
-      url: `/services/${s.slug}`
+      url: `/services/${s.slug}`,
+      images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
     }
   };
 }

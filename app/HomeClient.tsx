@@ -305,12 +305,12 @@ function AboutStatsSection() {
               <div
                 style={{
                   fontFamily: 'var(--font-jakarta), sans-serif',
-                  fontSize: 72,
+                  fontSize: 'clamp(44px, 11vw, 72px)',
                   fontWeight: 600,
                   color: '#ffffff',
                   letterSpacing: '-0.045em',
                   lineHeight: 1,
-                  minWidth: 180
+                  minWidth: 'min(180px, 42vw)'
                 }}
               >
                 {stat.target !== undefined ? (
