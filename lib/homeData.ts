@@ -158,7 +158,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     title: 'A client shares their experience'
   },
   {
-    src: '/videos/relicsol_review.mp4',
+    src: '/videos/web-design-walkthrough.mp4',
     tag: 'CASE STUDY · UK',
     title: 'Web design and development walkthrough'
   }

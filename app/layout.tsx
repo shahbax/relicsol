@@ -6,6 +6,7 @@ import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { ScrollProgress } from '@/components/ScrollProgress';
 import { JsonLd } from '@/components/JsonLd';
+import { Preloader } from '@/components/Preloader';
 import './globals.css';
 
 const syne = Syne({
@@ -65,9 +66,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ['/opengraph-image']
   },
-  icons: {
-    icon: '/favicon.ico'
-  },
   robots: {
     index: true,
     follow: true,
@@ -115,8 +113,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        {/* Runs before paint: repeat views in this session skip the preloader */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem('rl-preloader-seen'))document.documentElement.setAttribute('data-skip-preloader','1')}catch(e){}`
+          }}
+        />
+        <noscript>
+          <style>{`#rl-preloader{display:none!important}`}</style>
+        </noscript>
       </head>
       <body>
+        <Preloader />
         <JsonLd data={orgSchema} id="ld-org" />
         <JsonLd data={websiteSchema} id="ld-site" />
         <ScrollProgress />

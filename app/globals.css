@@ -543,6 +543,16 @@ h3 {
   }
 }
 
+/* Preloader: repeat views in the same session never paint it */
+html[data-skip-preloader] #rl-preloader {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #rl-preloader {
+    display: none !important;
+  }
+}
+
 /* Section-fade page transition */
 .rl-page {
   animation: rl-page-in 400ms var(--rl-ease) both;

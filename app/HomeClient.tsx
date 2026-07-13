@@ -147,7 +147,7 @@ function HeroSection() {
                     </span>
                   </>
                 ) : (
-                  w.text
+                  <>{w.text} </>
                 )}
               </span>
             ))}
@@ -275,7 +275,7 @@ function MarqueeSection() {
       <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 120, background: 'linear-gradient(270deg,#0f0f0f, transparent)', zIndex: 2, pointerEvents: 'none' }} />
       <div className="rl-marquee-row" style={{ display: 'flex', gap: 64, width: 'max-content', alignItems: 'center' }}>
         {items.map((logo, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, opacity: 0.55, color: '#ffffff', transition: 'opacity .3s ease' }}>
+          <div key={i} aria-hidden={i >= marqueeLogos.length || undefined} style={{ display: 'flex', alignItems: 'center', gap: 10, opacity: 0.55, color: '#ffffff', transition: 'opacity .3s ease' }}>
             {logo.svg ? <span dangerouslySetInnerHTML={{ __html: logo.svg }} /> : null}
             <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 13, color: '#a1a1aa', letterSpacing: '0.05em' }}>
               {logo.name}
@@ -347,7 +347,7 @@ function AboutStatsSection() {
             Relicsol is a web design and software development agency helping businesses across the USA, UK and Europe build a stronger digital presence. We combine strategy, design, development and automation to deliver websites, custom software, SEO campaigns and AI automation systems built for performance, not just appearance.
           </p>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: '0 0 36px' }}>
-            Every project starts with understanding your business goals, your audience and the outcomes you need. Then we build.
+            Every project starts with understanding your business goals, your audience and the outcomes you need. Then we build digital systems that convert visitors into enquiries, and enquiries into revenue.
           </p>
           <Link
             href="/about"
@@ -470,12 +470,16 @@ function PortfolioMarqueeSection() {
   const row2 = caseStudies.slice(9, 18);
   const renderCards = (rows: typeof row1, prefix: string) => {
     const doubled = [...rows, ...rows];
+    // Second half exists only for the seamless marquee loop — hide the
+    // duplicate copy from crawlers and keyboard/screen-reader users.
     return doubled.map((p, i) => (
       <Link
         key={`${prefix}-${i}`}
         href={`/portfolio/${p.slug}`}
         className="rl-port-card"
         style={{ background: p.bgGradient }}
+        aria-hidden={i >= rows.length || undefined}
+        tabIndex={i >= rows.length ? -1 : undefined}
       >
         <Image
           src={p.image}
@@ -676,28 +680,37 @@ function ProcessSection() {
 
 function VideoTestimonialCard({ video }: { video: (typeof videoTestimonials)[number] }) {
   const ref = useRef<HTMLVideoElement | null>(null);
-  const [playing, setPlaying] = useState(false);
+  // idle → nothing; preview → muted hover preview; sound → full playback with audio
+  const [mode, setMode] = useState<'idle' | 'preview' | 'sound'>('idle');
+  const playing = mode !== 'idle';
 
-  const play = () => {
+  const startPreview = () => {
     const el = ref.current;
-    if (!el) return;
-    el.play().then(() => setPlaying(true)).catch(() => {
-      // Autoplay policy may block silent play() on first interaction — surface as not-playing.
-      setPlaying(false);
-    });
+    if (!el || mode === 'sound') return;
+    el.muted = true;
+    el.play().then(() => setMode('preview')).catch(() => setMode('idle'));
   };
-  const pauseAndReset = () => {
+  const stopPreview = () => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || mode === 'sound') return; // sound playback survives mouse leave
     el.pause();
     el.currentTime = 0;
-    setPlaying(false);
+    setMode('idle');
   };
   const toggle = () => {
     const el = ref.current;
     if (!el) return;
-    if (el.paused) play();
-    else pauseAndReset();
+    if (mode === 'sound') {
+      el.pause();
+      el.currentTime = 0;
+      el.muted = true;
+      setMode('idle');
+    } else {
+      // Click is a user gesture — unmuted playback is allowed
+      el.muted = false;
+      el.currentTime = 0;
+      el.play().then(() => setMode('sound')).catch(() => setMode('idle'));
+    }
   };
 
   return (
@@ -711,8 +724,8 @@ function VideoTestimonialCard({ video }: { video: (typeof videoTestimonials)[num
         border: '1px solid #262626',
         cursor: 'pointer'
       }}
-      onMouseEnter={play}
-      onMouseLeave={pauseAndReset}
+      onMouseEnter={startPreview}
+      onMouseLeave={stopPreview}
       onClick={toggle}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -722,7 +735,7 @@ function VideoTestimonialCard({ video }: { video: (typeof videoTestimonials)[num
       }}
       role="button"
       tabIndex={0}
-      aria-label={`${playing ? 'Pause' : 'Play'} video: ${video.title}`}
+      aria-label={`${mode === 'sound' ? 'Stop' : 'Play with sound'}: ${video.title}`}
     >
       <video
         ref={ref}
@@ -778,6 +791,47 @@ function VideoTestimonialCard({ video }: { video: (typeof videoTestimonials)[num
         <svg width="22" height="22" viewBox="0 0 256 256" fill="#fff">
           <path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27Z" />
         </svg>
+      </div>
+      {/* Sound state chip */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          background: 'rgba(8,8,8,0.75)',
+          border: `1px solid ${mode === 'sound' ? '#F97316' : '#262626'}`,
+          borderRadius: 999,
+          padding: '6px 12px',
+          fontFamily: 'var(--font-mono), monospace',
+          fontSize: 10,
+          letterSpacing: '0.1em',
+          color: mode === 'sound' ? '#F97316' : '#A1A1AA',
+          backdropFilter: 'blur(8px)',
+          opacity: mode === 'idle' ? 0 : 1,
+          transition: 'opacity .3s ease',
+          pointerEvents: 'none',
+          textTransform: 'uppercase'
+        }}
+        aria-hidden
+      >
+        {mode === 'sound' ? (
+          <>
+            <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor">
+              <path d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67,64,64,0,0,0,0-85.33,8,8,0,1,1,11.92-10.67A79.83,79.83,0,0,1,248,128Z" />
+            </svg>
+            Sound on · click to stop
+          </>
+        ) : (
+          <>
+            <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor">
+              <path d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm70.14-40.2a8,8,0,0,1-11.31,0L184,148.66l-18.83,18.78a8,8,0,0,1-11.3-11.32L172.66,137.4l-18.79-18.83a8,8,0,0,1,11.32-11.3L184,126.09l18.83-18.82a8,8,0,1,1,11.3,11.32L195.34,137.4l18.8,18.84A8,8,0,0,1,214.14,167.44Z" />
+            </svg>
+            Click for sound
+          </>
+        )}
       </div>
       {/* Caption */}
       <div style={{ position: 'absolute', left: 24, bottom: 24, right: 24, textAlign: 'left', pointerEvents: 'none' }}>
