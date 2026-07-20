@@ -53,9 +53,12 @@ export function ContactForm() {
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Capture before any await — React nulls e.currentTarget once the
+    // event finishes dispatching, so touching it after fetch() throws.
+    const form = e.currentTarget;
     setStatus('submitting');
     setMessage('');
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const payload = {
       name: String(formData.get('name') || '').trim(),
       email: String(formData.get('email') || '').trim(),
@@ -81,7 +84,7 @@ export function ContactForm() {
       }
       setStatus('ok');
       setMessage('Thanks — your message is in. We will reply within one hour.');
-      (e.currentTarget as HTMLFormElement).reset();
+      form.reset();
       setBudget('');
       setServices([]);
     } catch {

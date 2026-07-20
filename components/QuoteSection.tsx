@@ -43,9 +43,12 @@ export function QuoteSection() {
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Capture before any await — React nulls e.currentTarget once the
+    // event finishes dispatching, so touching it after fetch() throws.
+    const form = e.currentTarget;
     setStatus('submitting');
     setMessage('');
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     const payload = {
       name: String(fd.get('name') || '').trim(),
       email: String(fd.get('email') || '').trim(),
@@ -70,7 +73,7 @@ export function QuoteSection() {
       }
       setStatus('ok');
       setMessage('Received. We reply within one hour.');
-      (e.currentTarget as HTMLFormElement).reset();
+      form.reset();
       setServices([]);
     } catch {
       setStatus('error');
