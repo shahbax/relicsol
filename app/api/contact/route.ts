@@ -57,6 +57,35 @@ function renderBody(p: Payload): string {
   `;
 }
 
+function renderText(p: Payload): string {
+  return [
+    `New enquiry via relicsol.com`,
+    ``,
+    `Name: ${p.name || ''}`,
+    `Email: ${p.email || ''}`,
+    `Company: ${p.company || '-'}`,
+    `Phone: ${p.phone || '-'}`,
+    `Budget: ${p.budget || '-'}`,
+    `Services: ${(p.services || []).join(', ') || '-'}`,
+    `Newsletter: ${p.newsletter ? 'yes' : 'no'}`,
+    ``,
+    `Message:`,
+    p.message || ''
+  ].join('\n');
+}
+
+function autoReplyText(name: string): string {
+  return [
+    `Thanks, ${name}.`,
+    ``,
+    `Your enquiry reached the Relicsol team. We reply within one hour during working hours in the USA, UK and Europe.`,
+    ``,
+    `If you need us sooner, reply to this email or write to ${siteConfig.contact.primaryEmail}.`,
+    ``,
+    `The Relicsol team`
+  ].join('\n');
+}
+
 function autoReplyHtml(name: string): string {
   return `
     <div style="font-family:-apple-system,Segoe UI,sans-serif;color:#111;max-width:640px;margin:0 auto;padding:32px;">
@@ -113,13 +142,15 @@ export async function POST(request: Request) {
         to,
         subject,
         replyTo: email,
-        html
+        html,
+        text: renderText(payload)
       }),
       resend.emails.send({
         from,
         to: email,
         subject: 'We got your message — Relicsol',
-        html: autoReplyHtml(name)
+        html: autoReplyHtml(name),
+        text: autoReplyText(name)
       })
     ]);
 

@@ -49,11 +49,17 @@ export function Preloader() {
 
     const tick = (now: number) => {
       const elapsed = now - t0;
-      // Ease to 90 over 900ms, hold until load or cap
-      const p = Math.min(elapsed / 900, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.round(eased * 90));
-      if (elapsed >= 1800) {
+      // Ease to 90 over 1.2s, then creep toward 99 while waiting for the
+      // real window load event. Only `load` (or the 5s safety cap) finishes.
+      let target: number;
+      if (elapsed <= 1200) {
+        const p = elapsed / 1200;
+        target = (1 - Math.pow(1 - p, 3)) * 90;
+      } else {
+        target = Math.min(99, 90 + (elapsed - 1200) / 400);
+      }
+      setCount(Math.round(target));
+      if (elapsed >= 5000) {
         finish();
         return;
       }
@@ -62,7 +68,8 @@ export function Preloader() {
     raf = requestAnimationFrame(tick);
 
     const onLoad = () => {
-      // Let the counter reach at least ~60 so it never flashes
+      // Everything (images, fonts, hero) is in — let the counter land
+      // gracefully rather than snapping if load fired very early.
       const elapsed = performance.now() - t0;
       window.setTimeout(finish, Math.max(0, 650 - elapsed));
     };

@@ -73,18 +73,18 @@ export type Differentiator = { num: string; title: string; body: string };
 export const differentiators: Differentiator[] = [
   {
     num: '01 /',
-    title: 'Creative, Conversion-Focused Design',
-    body: 'We create premium websites and interfaces that look modern, build trust, and guide users toward taking action.'
+    title: 'Fixed price before we start',
+    body: 'You approve a written quote before any work begins. If we scoped it wrong, that is our cost, not yours. No hourly meters, no surprise invoices at the end of the month.'
   },
   {
     num: '02 /',
-    title: 'Results-Driven Growth',
-    body: 'Our SEO, marketing, and automation strategies are built to improve visibility, efficiency, and lead generation, measurably.'
+    title: 'Speed and SEO by default',
+    body: 'Every build ships with Core Web Vitals in the green, schema markup, clean heading structure and a submitted sitemap. The ranking groundwork is included, not sold back to you later as an add-on.'
   },
   {
     num: '03 /',
-    title: 'Custom-Built, Always',
-    body: 'No templates. No page builders on client work. Everything built specifically for your business, your market, your goals.'
+    title: 'You own everything',
+    body: 'Code, design files, content, hosting accounts. All of it is yours from day one. If you ever move on, you take the keys with you and everything keeps working.'
   }
 ];
 

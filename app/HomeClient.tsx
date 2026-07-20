@@ -163,7 +163,7 @@ function HeroSection() {
               fontWeight: 400
             }}
           >
-            Premium web design, custom software and AI automation for ambitious businesses that demand results.
+            Web design, custom software and AI automation for businesses in the USA, UK and Europe. 200+ projects since 2018, every one on a fixed quote.
           </p>
           <div data-reveal={isIn('cta')} style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
             <MagneticButton
@@ -340,11 +340,11 @@ function AboutStatsSection() {
             {'{}'} About Us
           </div>
           <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.02, letterSpacing: '-0.035em', margin: '0 0 32px 0' }}>
-            We don't use templates.<br />
-            <span style={{ color: '#52525b' }}>We don't do one-size-fits-all.</span>
+            You talk to the people<br />
+            <span style={{ color: '#52525b' }}>who actually build.</span>
           </h2>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: '0 0 20px' }}>
-            Relicsol is a web design and software development agency helping businesses across the USA, UK and Europe build a stronger digital presence. We combine strategy, design, development and automation to deliver websites, custom software, SEO campaigns and AI automation systems built for performance, not just appearance.
+            Relicsol is a small senior team, not an agency with account managers between you and the work. Since 2018 we have shipped 200+ projects for founders and marketing leads across the USA, UK and Europe: marketing sites, e-commerce stores, custom software and AI automation that carries real revenue.
           </p>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: '0 0 36px' }}>
             Every project starts with understanding your business goals, your audience and the outcomes you need. Then we build digital systems that convert visitors into enquiries, and enquiries into revenue.
@@ -389,7 +389,7 @@ function ServicesSection() {
             </h2>
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: 0, paddingBottom: 12 }}>
-            Complete digital solutions for businesses that need better websites, stronger systems, more visibility and smarter automation.
+            Four services, one goal: a website and systems that pay for themselves. Take one or combine them, every engagement is scoped and priced in writing before we start.
           </p>
         </Reveal>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
@@ -590,10 +590,10 @@ function WhySection() {
             {'{}'} Why Choose Us
           </div>
           <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.02, letterSpacing: '-0.035em', margin: '0 0 32px 0' }}>
-            Why Businesses Choose Relicsol Over <span style={{ color: '#52525b' }}>Generic Agencies.</span>
+            Three promises, <span style={{ color: '#52525b' }}>in writing.</span>
           </h2>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: '#A1A1AA' }}>
-            We are an agency built around the needs of growth-stage businesses. Three things keep us out of the template-builder crowd.
+            These are working terms on every Relicsol proposal, not slogans. They are also the reason most of our work comes from repeat clients and referrals.
           </p>
         </Reveal>
         <div>
@@ -852,53 +852,64 @@ function VideoTestimonialCard({ video }: { video: (typeof videoTestimonials)[num
   );
 }
 
-function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) return;
-    const id = window.setInterval(() => setCurrent((c) => (c + 1) % testimonials.length), 5500);
-    return () => window.clearInterval(id);
-  }, []);
+function Stars({ size = 16 }: { size?: number }) {
+  return (
+    <div style={{ display: 'flex', gap: 3 }} aria-label="5 out of 5 stars">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} width={size} height={size} viewBox="0 0 256 256" fill="#F97316" aria-hidden>
+          <path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
 
+function TestimonialsSection() {
   return (
     <section style={{ padding: '140px 32px', background: '#0f0f0f' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
-        <Reveal>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <Reveal style={{ textAlign: 'center' }}>
           <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 11, color: '#F97316', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 24 }}>
-            {'{}'} Testimonials
+            {'{}'} Client Reviews
           </div>
-          <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 0.98, letterSpacing: '-0.04em', margin: '0 0 80px 0' }}>
-            Client Success<br />
-            <span style={{ color: '#52525b' }}>Stories.</span>
+          <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 0.98, letterSpacing: '-0.04em', margin: '0 0 32px 0' }}>
+            Rated 4.9 out of 5<br />
+            <span style={{ color: '#52525b' }}>by the people who pay us.</span>
           </h2>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: '#161616', border: '1px solid #262626', borderRadius: 999, padding: '12px 24px', marginBottom: 72 }}>
+            <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 800, fontSize: 28, color: '#ffffff', lineHeight: 1 }}>4.9</span>
+            <Stars size={18} />
+            <span style={{ fontSize: 13, color: '#71717a' }}>average across 200+ delivered projects</span>
+          </div>
         </Reveal>
 
-        <div style={{ position: 'relative', minHeight: 280 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
           {testimonials.map((t, i) => (
-            <div
-              key={i}
-              aria-hidden={i !== current}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: i === current ? 1 : 0,
-                transition: 'opacity .8s ease',
-                pointerEvents: i === current ? 'auto' : 'none'
-              }}
-            >
-              <svg width="40" height="32" viewBox="0 0 256 256" fill="#F97316" style={{ margin: '0 auto 32px', display: 'block', opacity: 0.6 }} aria-hidden>
-                <path d="M116,72v88a48.05,48.05,0,0,1-48,48,8,8,0,0,1,0-16,32,32,0,0,0,32-32V128H64A24,24,0,0,1,40,104V72A24,24,0,0,1,64,48H92A24,24,0,0,1,116,72Zm100-24H188a24,24,0,0,0-24,24v32a24,24,0,0,0,24,24h24v16a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A24,24,0,0,0,216,48Z" />
-              </svg>
-              <blockquote style={{ margin: 0 }}>
-                <p style={{ fontFamily: 'var(--font-jakarta), sans-serif', color: '#ffffff', fontSize: 'clamp(22px,2.4vw,32px)', lineHeight: 1.4, letterSpacing: '-0.015em', fontWeight: 400, margin: '0 auto 40px', maxWidth: 900 }}>
-                  “{t.quote}”
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center' }}>
+            <Reveal key={t.name} delayMs={i * 80}>
+              <div
+                style={{
+                  background: '#0a0a0a',
+                  border: '1px solid #262626',
+                  borderRadius: 4,
+                  padding: 32,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 18,
+                  textAlign: 'left'
+                }}
+              >
+                <Stars />
+                <blockquote style={{ margin: 0, flex: 1 }}>
+                  <p style={{ fontSize: 16, lineHeight: 1.7, color: '#e4e4e7', margin: 0 }}>
+                    “{t.quote}”
+                  </p>
+                </blockquote>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 18, borderTop: '1px solid #1a1a1a' }}>
                   <div
                     style={{
-                      width: 48,
-                      height: 48,
+                      width: 44,
+                      height: 44,
                       borderRadius: '50%',
                       background: 'linear-gradient(135deg,#F97316,#c2410c)',
                       display: 'flex',
@@ -907,65 +918,24 @@ function TestimonialsSection() {
                       fontFamily: 'var(--font-syne), sans-serif',
                       fontWeight: 700,
                       color: '#fff',
-                      fontSize: 16
+                      fontSize: 15,
+                      flexShrink: 0
                     }}
                     aria-hidden
                   >
                     {t.initials}
                   </div>
-                  <cite style={{ textAlign: 'left', fontStyle: 'normal' }}>
-                    <div style={{ color: '#ffffff', fontSize: 15, fontWeight: 500 }}>{t.name}</div>
+                  <cite style={{ fontStyle: 'normal' }}>
+                    <div style={{ color: '#ffffff', fontSize: 15, fontWeight: 600 }}>{t.name}</div>
                     <div style={{ color: '#71717a', fontSize: 13 }}>{t.role}</div>
                   </cite>
                 </div>
-              </blockquote>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, marginTop: 64 }}>
-          <button
-            onClick={() => setCurrent((c) => (c + testimonials.length - 1) % testimonials.length)}
-            aria-label="Previous testimonial"
-            style={{ width: 44, height: 44, borderRadius: '50%', background: 'transparent', border: '1px solid #262626', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden>
-              <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z" />
-            </svg>
-          </button>
-          <div style={{ display: 'flex', gap: 8 }} role="tablist" aria-label="Testimonial dots">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                role="tab"
-                aria-selected={i === current}
-                aria-label={`Testimonial ${i + 1}`}
-                style={{
-                  width: i === current ? 32 : 8,
-                  height: 4,
-                  borderRadius: 2,
-                  background: i === current ? '#F97316' : '#262626',
-                  transition: 'all .4s cubic-bezier(.16,1,.3,1)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0
-                }}
-              />
-            ))}
-          </div>
-          <button
-            onClick={() => setCurrent((c) => (c + 1) % testimonials.length)}
-            aria-label="Next testimonial"
-            style={{ width: 44, height: 44, borderRadius: '50%', background: 'transparent', border: '1px solid #262626', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden>
-              <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z" />
-            </svg>
-          </button>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 96 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 72 }}>
           {videoTestimonials.map((v, i) => (
             <Reveal key={i} delayMs={i * 100}>
               <VideoTestimonialCard video={v} />
