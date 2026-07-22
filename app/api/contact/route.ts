@@ -231,17 +231,24 @@ export async function POST(request: Request) {
     const { Resend } = await import('resend');
     const resend = new Resend(apiKey);
 
-    const subject = `New enquiry from ${name}${payload.budget ? ` — ${payload.budget}` : ''}`;
+    // Keep the subject plain: no currency amounts or symbols, which trip
+    // SpamAssassin money rules and were contributing to 554 rejections.
+    const subject = `Website enquiry: ${name}`;
     const html = renderBody(payload);
 
     const [notify, autoReply] = await Promise.all([
       resend.emails.send({
         from,
-        to,
+        to: to.split(',').map((a) => a.trim()).filter(Boolean),
         subject,
         replyTo: email,
         html,
-        text: renderText(payload)
+        text: renderText(payload),
+        headers: {
+          // Marks this as an auto-generated transactional message, which
+          // some filters score more leniently than bulk mail.
+          'Auto-Submitted': 'auto-generated'
+        }
       }),
       resend.emails.send({
         from,
