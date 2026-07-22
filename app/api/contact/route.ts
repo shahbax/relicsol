@@ -13,9 +13,88 @@ type Payload = {
   services?: string[];
   message?: string;
   newsletter?: boolean;
+  // Anti-abuse fields, set by the client forms
+  website?: string; // honeypot — must stay empty
+  startedAt?: number; // ms epoch when the form was rendered
 };
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/* ------------------------------------------------------------------ *
+ * Abuse protection
+ *
+ * This endpoint sends an auto-reply to whatever address is submitted,
+ * which makes it a spam relay if left unguarded — a bot farm was using
+ * it to mail unsolicited messages to third parties. Every rejection
+ * below returns a normal-looking success so bots get no signal about
+ * which check caught them, but nothing is ever sent.
+ * ------------------------------------------------------------------ */
+
+// Minimum time a human plausibly needs to fill the form.
+const MIN_FILL_MS = 3000;
+
+// Per-instance rate limit. Serverless instances do not share memory, so
+// this is a speed bump rather than a wall; the heuristics do the heavy work.
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const recentByIp = new Map<string, number[]>();
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (recentByIp.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  hits.push(now);
+  recentByIp.set(ip, hits);
+  if (recentByIp.size > 500) {
+    // Bound memory growth on long-lived instances
+    for (const [k, v] of recentByIp) {
+      if (v.every((t) => now - t >= RATE_LIMIT_WINDOW_MS)) recentByIp.delete(k);
+    }
+  }
+  return hits.length > RATE_LIMIT_MAX;
+}
+
+/**
+ * Returns a short reason string when the submission looks automated,
+ * or null when it looks like a real person.
+ */
+function botSignal(p: Payload): string | null {
+  const name = (p.name || '').trim();
+  const message = (p.message || '').trim();
+
+  // 1. Honeypot: a field hidden from humans. Only scripts fill it.
+  if (p.website && p.website.trim() !== '') return 'honeypot';
+
+  // 2. Submitted faster than a human could type.
+  if (typeof p.startedAt === 'number' && Number.isFinite(p.startedAt)) {
+    const elapsed = Date.now() - p.startedAt;
+    if (elapsed >= 0 && elapsed < MIN_FILL_MS) return 'too-fast';
+  }
+
+  // 3. Random-string names ("NkepBUTkyhSxpzULETNCc") — one long word with
+  //    erratic capitalisation, the signature of the farm hitting this form.
+  if (!name.includes(' ') && name.length >= 12) {
+    let flips = 0;
+    for (let i = 1; i < name.length; i++) {
+      const a = name[i - 1];
+      const b = name[i];
+      if (!/[a-zA-Z]/.test(a) || !/[a-zA-Z]/.test(b)) continue;
+      if ((a === a.toUpperCase()) !== (b === b.toUpperCase())) flips++;
+    }
+    if (flips >= 4) return 'gibberish-name';
+  }
+
+  // 4. Links in the message body. Real enquiries occasionally include one,
+  //    but two or more is reliably spam.
+  const linkCount = (message.match(/https?:\/\/|www\.|\[url[=\]]|<a\s/gi) || []).length;
+  if (linkCount >= 2) return 'links';
+
+  // 5. Classic spam payload markers.
+  if (/\[url=|\[\/url\]|viagra|casino|crypto\s+invest|seo\s+backlinks?\s+package/i.test(message)) {
+    return 'spam-markers';
+  }
+
+  return null;
+}
 
 function escapeHtml(s: string): string {
   return s
@@ -117,6 +196,25 @@ export async function POST(request: Request) {
   }
   if (message.length > 5000) {
     return NextResponse.json({ error: 'Message is too long.' }, { status: 400 });
+  }
+
+  // --- Abuse gate -------------------------------------------------
+  // Nothing past this point sends mail unless the submission looks human.
+  // Rejections return a normal success shape so bots cannot probe which
+  // rule caught them; the reason is recorded in the function logs only.
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
+
+  const signal = botSignal(payload);
+  if (signal) {
+    console.warn(`[contact] blocked (${signal}) ip=${ip} name=${JSON.stringify(name)} email=${JSON.stringify(email)}`);
+    return NextResponse.json({ ok: true });
+  }
+  if (rateLimited(ip)) {
+    console.warn(`[contact] rate limited ip=${ip}`);
+    return NextResponse.json({ ok: true });
   }
 
   const apiKey = process.env.RESEND_API_KEY;

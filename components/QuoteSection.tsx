@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { siteConfig } from '@/lib/siteConfig';
 import { testimonials } from '@/lib/homeData';
 
@@ -37,6 +37,8 @@ export function QuoteSection() {
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
   const [tIndex, setTIndex] = useState(0);
+  // Used by the API to reject submissions filled faster than a human can type
+  const startedAt = useRef<number>(Date.now());
 
   const toggleService = (id: string) =>
     setServices((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
@@ -57,7 +59,9 @@ export function QuoteSection() {
       budget: '',
       services,
       message: String(fd.get('message') || '').trim(),
-      newsletter: false
+      newsletter: false,
+      website: String(fd.get('website') || ''),
+      startedAt: startedAt.current
     };
     try {
       const res = await fetch('/api/contact', {
@@ -149,6 +153,14 @@ export function QuoteSection() {
           <p style={{ fontSize: 13, color: '#71717a', margin: '0 0 8px', textAlign: 'center' }}>
             Fixed pricing within 48 hours. No obligation.
           </p>
+
+          {/* Honeypot — hidden from humans, filled by bots. Not display:none,
+              since some bots skip those; kept out of the tab order and the
+              accessibility tree instead. */}
+          <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+            <label htmlFor="q-website">Leave this field empty</label>
+            <input id="q-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
 
           <div>
             <label htmlFor="q-name" style={{ display: 'none' }}>Full name</label>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 
 const budgets = [
   { id: 'under-1k', label: '< $1,000' },
@@ -46,6 +46,8 @@ export function ContactForm() {
   const [services, setServices] = useState<string[]>([]);
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState<string>('');
+  // Used by the API to reject submissions filled faster than a human can type
+  const startedAt = useRef<number>(Date.now());
 
   const toggleService = (id: string) => {
     setServices((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
@@ -67,7 +69,9 @@ export function ContactForm() {
       budget,
       services,
       message: String(formData.get('message') || '').trim(),
-      newsletter: formData.get('newsletter') === 'on'
+      newsletter: formData.get('newsletter') === 'on',
+      website: String(formData.get('website') || ''),
+      startedAt: startedAt.current
     };
 
     try {
@@ -95,6 +99,14 @@ export function ContactForm() {
 
   return (
     <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+      {/* Honeypot — hidden from humans, filled by bots. Not display:none,
+          since some bots skip those; kept out of the tab order and the
+          accessibility tree instead. */}
+      <div aria-hidden style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="c-website">Leave this field empty</label>
+        <input id="c-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       {/* Name + Email */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
         <div>
