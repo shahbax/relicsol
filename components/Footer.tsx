@@ -86,12 +86,14 @@ export function Footer() {
               >
                 {siteConfig.contact.primaryEmail}
               </a>
-              <a
-                href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
-                style={{ color: '#71717a', textDecoration: 'none', fontFamily: 'var(--font-mono), monospace', fontSize: 13 }}
-              >
-                {siteConfig.contact.phone}
-              </a>
+              {siteConfig.contact.phone ? (
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                  style={{ color: '#71717a', textDecoration: 'none', fontFamily: 'var(--font-mono), monospace', fontSize: 13 }}
+                >
+                  {siteConfig.contact.phone}
+                </a>
+              ) : null}
             </div>
           </div>
 

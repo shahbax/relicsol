@@ -74,7 +74,7 @@ export default function PrivacyPage() {
           <section>
             <h2 style={{ color: '#ffffff', fontFamily: 'var(--font-syne), sans-serif', fontSize: 24, marginBottom: 12 }}>Contact</h2>
             <p>
-              Any privacy questions? Email {siteConfig.contact.primaryEmail} or call {siteConfig.contact.phone}.
+              Any privacy questions? Email {siteConfig.contact.primaryEmail} and we will help.
             </p>
           </section>
         </div>

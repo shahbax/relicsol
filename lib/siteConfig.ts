@@ -9,7 +9,10 @@ export const siteConfig = {
   contact: {
     primaryEmail: 'info@relicsol.com',
     founderEmail: 'shahbaz@relicsol.com',
-    phone: '+92 332-5209568',
+    // No public phone number. Set a US or UK number here (e.g. '+1 555 123 4567')
+    // to re-enable it in the footer and on the contact page automatically.
+    // Typed as string (not the '' literal) so the conditional renders type-check.
+    phone: '' as string,
     responsePromise: 'We respond within 1 hour.'
   },
   address: {

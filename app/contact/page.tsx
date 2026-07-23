@@ -65,19 +65,25 @@ export default function ContactPage() {
           <aside>
             <div style={{ background: '#0f0f0f', border: '1px solid #262626', borderRadius: 4, padding: 32, marginBottom: 24 }}>
               <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 11, color: '#F97316', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20 }}>
-                Direct
+                Prefer email?
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <a href={`mailto:${siteConfig.contact.primaryEmail}`} style={{ color: '#ffffff', textDecoration: 'none', fontSize: 15 }}>
-                  {siteConfig.contact.primaryEmail}
-                </a>
-                <a href={`mailto:${siteConfig.contact.founderEmail}`} style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14 }}>
-                  {siteConfig.contact.founderEmail}
-                </a>
-                <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontFamily: 'var(--font-mono), monospace' }}>
+              <a
+                href={`mailto:${siteConfig.contact.primaryEmail}`}
+                style={{ color: '#ffffff', textDecoration: 'none', fontSize: 20, fontWeight: 600, letterSpacing: '-0.01em', display: 'inline-block' }}
+              >
+                {siteConfig.contact.primaryEmail}
+              </a>
+              <p style={{ color: '#71717a', fontSize: 14, lineHeight: 1.6, margin: '12px 0 0' }}>
+                Write to us directly and we reply within one hour during working hours in the USA, UK and Europe.
+              </p>
+              {siteConfig.contact.phone ? (
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                  style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14, fontFamily: 'var(--font-mono), monospace', display: 'inline-block', marginTop: 16 }}
+                >
                   {siteConfig.contact.phone}
                 </a>
-              </div>
+              ) : null}
             </div>
             <div style={{ background: '#0f0f0f', border: '1px solid #262626', borderRadius: 4, padding: 32, marginBottom: 24 }}>
               <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 11, color: '#F97316', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 20 }}>
