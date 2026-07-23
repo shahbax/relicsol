@@ -543,6 +543,103 @@ h3 {
   }
 }
 
+/* === Service hero artifact === */
+.rl-service-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 1023px) {
+  .rl-service-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+.rl-service-art {
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+}
+@keyframes rl-art-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes rl-art-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rl-art-chip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes rl-art-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.05;
+  }
+}
+@keyframes rl-art-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.rl-art-float {
+  animation: rl-art-float 6s ease-in-out infinite;
+}
+.rl-art-orbit {
+  animation: rl-art-orbit 46s linear infinite;
+}
+.rl-art-chip {
+  animation: rl-art-chip 5s ease-in-out infinite;
+}
+.rl-art-pulse {
+  animation: rl-art-pulse 3.2s ease-in-out infinite;
+}
+.rl-art-caret {
+  animation: rl-art-caret 1.1s step-end infinite;
+}
+/* On phones the artifact sits below the heading, centred and smaller */
+@media (max-width: 767px) {
+  .rl-service-art {
+    max-width: 320px;
+    margin: 8px auto 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rl-art-float,
+  .rl-art-orbit,
+  .rl-art-chip,
+  .rl-art-pulse,
+  .rl-art-caret {
+    animation: none !important;
+  }
+}
+
 /* Preloader: repeat views in the same session never paint it */
 html[data-skip-preloader] #rl-preloader {
   display: none !important;

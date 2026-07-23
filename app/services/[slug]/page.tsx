@@ -8,6 +8,7 @@ import { serviceBySlug, services } from '@/lib/services';
 import { siteConfig } from '@/lib/siteConfig';
 import { twitterCard } from '@/lib/seo';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { ServiceHeroArt } from '@/components/ServiceHeroArt';
 import { ServiceFAQClient } from './ServiceFAQClient';
 
 type Params = { slug: string };
@@ -131,7 +132,8 @@ export default function ServicePage({ params }: { params: Params }) {
           aria-hidden
         />
         <div style={{ maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
-          <div style={{ maxWidth: 1000 }}>
+          <div className="rl-service-hero-grid">
+            <div>
             <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 11, color: '#F97316', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 24 }}>
               {s.heroLabel}
             </div>
@@ -172,6 +174,10 @@ export default function ServicePage({ params }: { params: Params }) {
               <Link href="/portfolio" className="rl-btn-secondary" style={{ background: 'transparent', color: '#ffffff', textDecoration: 'none', padding: '16px 28px', borderRadius: 999, fontSize: 14, fontWeight: 500, border: '1px solid #262626' }}>
                 View Portfolio
               </Link>
+            </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <ServiceHeroArt slug={s.slug} />
             </div>
           </div>
         </div>
