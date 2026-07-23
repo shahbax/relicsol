@@ -6,6 +6,7 @@ import { Reveal } from '@/components/Reveal';
 import { MagneticButton } from '@/components/MagneticButton';
 import { serviceBySlug, services } from '@/lib/services';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
 import { ServiceFAQClient } from './ServiceFAQClient';
 
 type Params = { slug: string };
@@ -20,7 +21,6 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   return {
     title: s.metaTitle,
     description: s.metaDescription,
-    keywords: s.keywords,
     alternates: { canonical: `/services/${s.slug}` },
     openGraph: {
       type: 'article',
@@ -28,7 +28,8 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       description: s.metaDescription,
       url: `/services/${s.slug}`,
       images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
-    }
+    },
+    twitter: twitterCard({ title: s.metaTitle, description: s.metaDescription })
   };
 }
 

@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
+
+const termsDesc =
+  'The terms and conditions under which Relicsol provides web design, software, AI automation and SEO services.';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description:
-    'The terms and conditions under which Relicsol provides web design, software, AI automation and SEO services.',
+  description: termsDesc,
   alternates: { canonical: '/terms' },
-  openGraph: { title: 'Terms of Service | Relicsol', url: '/terms', type: 'article',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] }
+  openGraph: { title: 'Terms of Service | Relicsol', description: termsDesc, url: '/terms', type: 'article',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
+  twitter: twitterCard({ title: 'Terms of Service | Relicsol', description: termsDesc })
 };
 
 export default function TermsPage() {

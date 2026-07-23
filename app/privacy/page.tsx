@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
+
+const privacyDesc =
+  'How Relicsol handles your data when you use our website, submit our contact form, or engage us for services.';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description:
-    'How Relicsol handles your data when you use our website, submit our contact form, or engage us for services.',
+  description: privacyDesc,
   alternates: { canonical: '/privacy' },
-  openGraph: { title: 'Privacy Policy | Relicsol', url: '/privacy', type: 'article',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] }
+  openGraph: { title: 'Privacy Policy | Relicsol', description: privacyDesc, url: '/privacy', type: 'article',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
+  twitter: twitterCard({ title: 'Privacy Policy | Relicsol', description: privacyDesc })
 };
 
 export default function PrivacyPage() {

@@ -7,6 +7,7 @@ import { Reveal } from '@/components/Reveal';
 import { MagneticButton } from '@/components/MagneticButton';
 import { blogPosts, blogPostBySlug } from '@/lib/blogPosts';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
 import type { BlogSection } from '@/lib/blogPosts';
 
 type Params = { slug: string };
@@ -20,18 +21,18 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   if (!p) return { title: 'Article not found' };
   return {
     title: p.title.length > 60 ? p.title.slice(0, 57) + '…' : p.title,
-    description: p.excerpt,
-    keywords: [p.category, 'Relicsol', 'web design', 'AI automation'],
+    description: p.description,
     alternates: { canonical: `/blog/${p.slug}` },
     openGraph: {
       type: 'article',
       title: p.title,
-      description: p.excerpt,
+      description: p.description,
       url: `/blog/${p.slug}`,
       publishedTime: p.isoDate,
       authors: [p.author],
       images: [{ url: p.image, width: 1600, height: 900, alt: p.title }]
-    }
+    },
+    twitter: twitterCard({ title: p.title, description: p.description, image: p.image })
   };
 }
 

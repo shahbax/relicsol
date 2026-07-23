@@ -3,6 +3,11 @@ import { HomeClient } from './HomeClient';
 import { JsonLd } from '@/components/JsonLd';
 import { siteConfig } from '@/lib/siteConfig';
 import { services } from '@/lib/services';
+import { twitterCard } from '@/lib/seo';
+
+const ogTitle = 'Relicsol — Digital systems that convert.';
+const ogDesc =
+  'Premium web design, custom software, AI automation and SEO for ambitious businesses in the USA, UK and Europe.';
 
 export const metadata: Metadata = {
   title: 'Relicsol — Web Design, Software, AI Automation & SEO Agency',
@@ -12,10 +17,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Relicsol — Digital systems that convert.',
-    description:
-      'Premium web design, custom software, AI automation and SEO for ambitious businesses in the USA, UK and Europe.'
-  }
+    title: ogTitle,
+    description: ogDesc,
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
+  },
+  twitter: twitterCard({ title: ogTitle, description: ogDesc })
 };
 
 const proService = {

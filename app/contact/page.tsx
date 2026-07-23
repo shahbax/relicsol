@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/components/JsonLd';
 import { ContactForm } from './ContactForm';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Contact Relicsol — Start Your Project · Response in 1 Hour',
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
     description: 'Response within one hour. USA, UK and Europe.',
     url: '/contact',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
-  }
+  },
+  twitter: twitterCard({ title: 'Contact Relicsol', description: 'Response within one hour. USA, UK and Europe.' })
 };
 
 const contactLd = {

@@ -41,16 +41,6 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: siteConfig.siteUrl }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
-  keywords: [
-    'web design agency',
-    'custom software development',
-    'AI automation',
-    'SEO agency',
-    'Next.js development',
-    'Shopify development',
-    'WordPress development',
-    'USA UK Europe agency'
-  ],
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,

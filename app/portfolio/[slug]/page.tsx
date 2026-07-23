@@ -7,6 +7,7 @@ import { Reveal } from '@/components/Reveal';
 import { MagneticButton } from '@/components/MagneticButton';
 import { caseStudies, caseStudyBySlug } from '@/lib/caseStudies';
 import { siteConfig } from '@/lib/siteConfig';
+import { twitterCard } from '@/lib/seo';
 
 type Params = { slug: string };
 
@@ -29,7 +30,8 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       description,
       url: `/portfolio/${c.slug}`,
       images: [{ url: c.image, width: 1600, height: 900, alt: c.name }]
-    }
+    },
+    twitter: twitterCard({ title, description, image: c.image })
   };
 }
 

@@ -20,6 +20,8 @@ export type BlogPost = {
   category: string;
   title: string;
   excerpt: string;
+  /** Written meta description for SEO (140–155 chars). Not derived from body. */
+  description: string;
   date: string;
   isoDate: string;
   readMinutes: number;
@@ -36,6 +38,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `Website Maintenance in 2026: What You Actually Need (and What You Don't)`,
     excerpt: `Website maintenance is one of those topics that most business owners only think about after something goes wrong — a security breach, a plugin conflict that⬦`,
+    description: `What website maintenance actually involves in 2026: which tasks are essential, which can wait, and whether to handle it in-house or hire it out.`,
     date: `July 22, 2026`,
     isoDate: `2026-07-22`,
     readMinutes: 6,
@@ -272,6 +275,7 @@ export const blogPosts: BlogPost[] = [
     category: `SEO`,
     title: `Local SEO in 2026: The Complete Guide for Service Businesses`,
     excerpt: `Local SEO is fundamentally different from general SEO.`,
+    description: `A practical local SEO playbook for service businesses: Google Business Profile, citations, reviews and the ranking factors that win the map pack.`,
     date: `July 15, 2026`,
     isoDate: `2026-07-15`,
     readMinutes: 11,
@@ -515,6 +519,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `Shopify vs WooCommerce in 2026: The Honest Comparison for Growing Brands`,
     excerpt: `The Shopify vs WooCommerce decision is one of the most consequential platform choices an e-commerce business makes.`,
+    description: `Shopify or WooCommerce for your store in 2026? An honest comparison of cost, control, scalability and ownership to help you choose the right one.`,
     date: `July 8, 2026`,
     isoDate: `2026-07-08`,
     readMinutes: 8,
@@ -728,6 +733,7 @@ export const blogPosts: BlogPost[] = [
     category: `AI Automation`,
     title: `n8n vs Make.com: Which Automation Platform Is Right for Your Business?`,
     excerpt: `Choosing the right automation platform can mean the difference between a system that runs reliably for years and one that needs constant attention and⬦`,
+    description: `n8n vs Make.com compared for real businesses: pricing, flexibility, ease of use and which automation platform actually fits your team and stack.`,
     date: `July 1, 2026`,
     isoDate: `2026-07-01`,
     readMinutes: 7,
@@ -925,6 +931,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `E-Commerce Conversion Rate Optimisation: 12 Changes That Actually Work`,
     excerpt: `The average e-commerce conversion rate in 2026 is 2.5–3.5%.`,
+    description: `Twelve conversion changes that measurably lift e-commerce revenue, from product pages to checkout, ranked by real impact versus effort to ship.`,
     date: `June 25, 2026`,
     isoDate: `2026-06-25`,
     readMinutes: 10,
@@ -1110,6 +1117,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `Web Design Trends for 2026: What's Actually Worth Adopting`,
     excerpt: `Every year produces a new wave of web design trends — some of which represent genuine improvements to how websites serve their users, and many of which are⬦`,
+    description: `The 2026 web design trends worth adopting and the ones to skip, judged on real impact to conversions, performance and brand credibility.`,
     date: `June 18, 2026`,
     isoDate: `2026-06-18`,
     readMinutes: 7,
@@ -1283,6 +1291,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `WordPress vs Next.js in 2026: Which Should You Choose for Your Business Website?`,
     excerpt: `WordPress powers 43% of all websites.`,
+    description: `WordPress or Next.js for your business website in 2026? Compare speed, SEO, cost and maintenance to pick the right foundation for growth.`,
     date: `June 10, 2026`,
     isoDate: `2026-06-10`,
     readMinutes: 8,
@@ -1480,6 +1489,7 @@ export const blogPosts: BlogPost[] = [
     category: `SEO`,
     title: `SEO for Small Business in 2026: What Actually Works (and What Doesn't)`,
     excerpt: `SEO advice online ranges from genuinely useful to dangerously outdated.`,
+    description: `What actually moves search rankings for small businesses in 2026, which tactics waste your budget, and a realistic SEO plan to start this month.`,
     date: `June 3, 2026`,
     isoDate: `2026-06-03`,
     readMinutes: 9,
@@ -1714,6 +1724,7 @@ export const blogPosts: BlogPost[] = [
     category: `Web Design`,
     title: `How Much Does a Business Website Cost in 2026? (USA & UK Guide)`,
     excerpt: `Ask ten different web design agencies what a website costs and you will get ten different answers — ranging from $300 to $300,000.`,
+    description: `Real business website pricing for the USA and UK in 2026: what each budget tier gets you, where the money goes, and how to avoid overpaying.`,
     date: `May 28, 2026`,
     isoDate: `2026-05-28`,
     readMinutes: 10,
@@ -2008,6 +2019,7 @@ export const blogPosts: BlogPost[] = [
     category: `AI Automation`,
     title: `How AI Automation Can Save Your Business 20+ Hours Per Week`,
     excerpt: `If your team is spending hours every week copying data between tools, sending manual follow-up emails, chasing approvals, or building the same reports from⬦`,
+    description: `How AI automation reclaims 20+ hours a week for your team: the highest-impact workflows to automate, the tools that do it, and the ROI to expect.`,
     date: `May 12, 2026`,
     isoDate: `2026-05-12`,
     readMinutes: 8,

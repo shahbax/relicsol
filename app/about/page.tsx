@@ -6,8 +6,10 @@ import { CountUp } from '@/components/CountUp';
 import { MagneticButton } from '@/components/MagneticButton';
 import { siteConfig, yearsInBusiness } from '@/lib/siteConfig';
 import { aboutStats, aboutValues, techIcons } from '@/lib/aboutData';
+import { twitterCard } from '@/lib/seo';
 
 const yrs = yearsInBusiness();
+const aboutOgDesc = `Founded in ${siteConfig.founded}. Web design, custom software and AI automation for the USA, UK and Europe.`;
 
 export const metadata: Metadata = {
   title: `About Relicsol — ${yrs}+ years, 200+ projects across USA, UK & Europe`,
@@ -16,10 +18,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'article',
     title: 'About Relicsol',
-    description: `Founded in ${siteConfig.founded}. Web design, custom software and AI automation for the USA, UK and Europe.`,
+    description: aboutOgDesc,
     url: '/about',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }]
-  }
+  },
+  twitter: twitterCard({ title: 'About Relicsol', description: aboutOgDesc })
 };
 
 const aboutLd = {
