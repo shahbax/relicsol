@@ -31,18 +31,22 @@ const aboutLd = {
   name: 'About Relicsol',
   url: `${siteConfig.siteUrl}/about`,
   description: `Founded in ${siteConfig.founded}. ${yrs}+ years of digital work.`,
-  about: {
-    '@type': 'Organization',
-    name: siteConfig.name,
-    foundingDate: `${siteConfig.founded}-01-01`,
-    url: siteConfig.siteUrl
-  }
+  about: { '@id': `${siteConfig.siteUrl}/#organization` }
+};
+const aboutBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'About', item: `${siteConfig.siteUrl}/about` }
+  ]
 };
 
 export default function AboutPage() {
   return (
     <main>
       <JsonLd data={aboutLd} id="ld-about" />
+      <JsonLd data={aboutBreadcrumb} id="ld-bc-about" />
 
       {/* Hero */}
       <section style={{ padding: '160px 32px 100px' }}>

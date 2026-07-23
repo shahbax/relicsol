@@ -7,6 +7,7 @@ import { MagneticButton } from '@/components/MagneticButton';
 import { serviceBySlug, services } from '@/lib/services';
 import { siteConfig } from '@/lib/siteConfig';
 import { twitterCard } from '@/lib/seo';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ServiceFAQClient } from './ServiceFAQClient';
 
 type Params = { slug: string };
@@ -41,15 +42,20 @@ export default function ServicePage({ params }: { params: Params }) {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: s.name,
-    provider: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      url: siteConfig.siteUrl
-    },
+    serviceType: s.name,
+    provider: { '@id': `${siteConfig.siteUrl}/#organization` },
     description: s.metaDescription,
     areaServed: siteConfig.address.markets,
     url: `${siteConfig.siteUrl}/services/${s.slug}`,
-    offers: { '@type': 'Offer', priceCurrency: 'USD' }
+    // Sub-services drawn from the visible "What We Build" cards on the page.
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${s.name} — what we build`,
+      itemListElement: s.whatWeBuild.map((w) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: w.title, description: w.body }
+      }))
+    }
   };
   const breadcrumb = {
     '@context': 'https://schema.org',
@@ -76,8 +82,16 @@ export default function ServicePage({ params }: { params: Params }) {
       <JsonLd data={breadcrumb} id={`ld-bc-${s.slug}`} />
       <JsonLd data={faqLd} id={`ld-faq-${s.slug}`} />
 
+      <Breadcrumbs
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Services', href: '/#services' },
+          { name: s.navLabel, href: `/services/${s.slug}` }
+        ]}
+      />
+
       {/* Service filter pills */}
-      <div style={{ padding: '120px 32px 0' }}>
+      <div style={{ padding: '32px 32px 0' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {services.map((svc) => (
             <Link

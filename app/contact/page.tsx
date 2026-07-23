@@ -24,7 +24,8 @@ const contactLd = {
   '@type': 'ContactPage',
   name: 'Contact Relicsol',
   url: `${siteConfig.siteUrl}/contact`,
-  description: 'Contact the Relicsol team about web design, software, AI automation and SEO projects.'
+  description: 'Contact the Relicsol team about web design, software, AI automation and SEO projects.',
+  about: { '@id': `${siteConfig.siteUrl}/#organization` }
 };
 const breadcrumbLd = {
   '@context': 'https://schema.org',

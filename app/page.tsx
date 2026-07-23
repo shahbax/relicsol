@@ -24,21 +24,21 @@ export const metadata: Metadata = {
   twitter: twitterCard({ title: ogTitle, description: ogDesc })
 };
 
+// ProfessionalService describes the business itself. No aggregateRating:
+// Google disallows self-serving review markup and it can trigger a manual
+// action. No telephone: the phone number is being removed sitewide.
 const proService = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  '@id': `${siteConfig.siteUrl}/#organization`,
   name: siteConfig.name,
   url: siteConfig.siteUrl,
-  image: `${siteConfig.siteUrl}/images/og-home.jpg`,
-  telephone: siteConfig.contact.phone,
+  image: `${siteConfig.siteUrl}/opengraph-image`,
+  logo: `${siteConfig.siteUrl}/images/logo.png`,
   email: siteConfig.contact.primaryEmail,
   priceRange: '$$–$$$',
   areaServed: siteConfig.address.markets,
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '87'
-  },
+  sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Digital services',

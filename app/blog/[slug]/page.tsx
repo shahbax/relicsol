@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { MagneticButton } from '@/components/MagneticButton';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { blogPosts, blogPostBySlug } from '@/lib/blogPosts';
 import { siteConfig } from '@/lib/siteConfig';
 import { twitterCard } from '@/lib/seo';
@@ -156,6 +157,20 @@ function BodyRenderer({ sections }: { sections: BlogSection[] }) {
   );
 }
 
+// Count words across every text field in the post body so wordCount is real,
+// not hardcoded.
+function countWords(sections: BlogSection[]): number {
+  const strings: string[] = [];
+  for (const s of sections) {
+    if ('text' in s && s.text) strings.push(s.text);
+    if ('items' in s && Array.isArray(s.items)) strings.push(...s.items);
+    if ('title' in s && s.title) strings.push(s.title);
+    if (s.type === 'beforeAfter') strings.push(s.before, s.after, s.savings);
+    if (s.type === 'code' && s.code) strings.push(s.code);
+  }
+  return strings.join(' ').trim().split(/\s+/).filter(Boolean).length;
+}
+
 export default function BlogPostPage({ params }: { params: Params }) {
   const p = blogPostBySlug[params.slug];
   if (!p) notFound();
@@ -164,16 +179,13 @@ export default function BlogPostPage({ params }: { params: Params }) {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: p.title,
-    description: p.excerpt,
+    description: p.description,
     datePublished: p.isoDate,
     dateModified: p.isoDate,
     image: `${siteConfig.siteUrl}${p.image}`,
+    wordCount: countWords(p.body),
     author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.siteUrl },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: { '@type': 'ImageObject', url: `${siteConfig.siteUrl}/images/logo.png` }
-    },
+    publisher: { '@id': `${siteConfig.siteUrl}/#organization` },
     mainEntityOfPage: `${siteConfig.siteUrl}/blog/${p.slug}`,
     articleSection: p.category
   };
@@ -192,8 +204,16 @@ export default function BlogPostPage({ params }: { params: Params }) {
       <JsonLd data={posting} id={`ld-post-${p.slug}`} />
       <JsonLd data={breadcrumb} id={`ld-bc-${p.slug}`} />
 
+      <Breadcrumbs
+        items={[
+          { name: 'Home', href: '/' },
+          { name: 'Blog', href: '/blog' },
+          { name: p.category, href: `/blog?category=${p.category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}` }
+        ]}
+      />
+
       {/* Hero */}
-      <section style={{ padding: '160px 32px 48px', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '48px 32px 48px', position: 'relative', overflow: 'hidden' }}>
         <div
           style={{
             position: 'absolute',

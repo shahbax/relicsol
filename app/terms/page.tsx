@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/siteConfig';
 import { twitterCard } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
 
 const termsDesc =
   'The terms and conditions under which Relicsol provides web design, software, AI automation and SEO services.';
@@ -14,9 +15,19 @@ export const metadata: Metadata = {
   twitter: twitterCard({ title: 'Terms of Service | Relicsol', description: termsDesc })
 };
 
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: `${siteConfig.siteUrl}/terms` }
+  ]
+};
+
 export default function TermsPage() {
   return (
     <main style={{ padding: '160px 32px 100px' }}>
+      <JsonLd data={breadcrumbLd} id="ld-bc-terms" />
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <h1
           style={{

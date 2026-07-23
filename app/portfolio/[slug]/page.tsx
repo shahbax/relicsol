@@ -44,19 +44,27 @@ export default function CaseStudyPage({ params }: { params: Params }) {
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: c.name,
+    headline: `${c.name} — ${c.overview.industry} case study`,
     description: c.heroDescription,
     image: `${siteConfig.siteUrl}${c.image}`,
-    author: { '@type': 'Organization', name: siteConfig.name },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: { '@type': 'ImageObject', url: `${siteConfig.siteUrl}/images/logo.png` }
-    },
-    datePublished: `${c.overview.year}-01-01`,
-    dateModified: `${c.overview.year}-01-01`,
+    author: { '@id': `${siteConfig.siteUrl}/#organization` },
+    publisher: { '@id': `${siteConfig.siteUrl}/#organization` },
+    // Only the project year is known, so use a year-only date rather than
+    // inventing a specific day.
+    datePublished: String(c.overview.year),
+    dateModified: String(c.overview.year),
     mainEntityOfPage: `${siteConfig.siteUrl}/portfolio/${c.slug}`,
-    about: c.overview.industry
+    about: c.overview.industry,
+    keywords: c.techTags.join(', '),
+    // The project this case study documents.
+    mainEntity: {
+      '@type': 'CreativeWork',
+      name: c.name,
+      about: c.overview.industry,
+      creator: { '@id': `${siteConfig.siteUrl}/#organization` },
+      dateCreated: c.overview.year,
+      keywords: c.techTags.join(', ')
+    }
   };
   const breadcrumbLd = {
     '@context': 'https://schema.org',

@@ -63,36 +63,45 @@ export const metadata: Metadata = {
   }
 };
 
+// Stable @id so per-page schema (Service provider, Article publisher, etc.)
+// can reference this single Organization node rather than redefining it.
+const orgId = `${siteConfig.siteUrl}/#organization`;
+
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': orgId,
   name: siteConfig.name,
   url: siteConfig.siteUrl,
-  logo: `${siteConfig.siteUrl}/images/logo.png`,
-  foundingDate: `${siteConfig.founded}-01-01`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteConfig.siteUrl}/images/logo.png`,
+    width: 512,
+    height: 512
+  },
+  description: siteConfig.description,
+  // Founding year as shown on the site (EST. 2018). Exact date unknown — TODO.
+  foundingDate: String(siteConfig.founded),
   email: siteConfig.contact.primaryEmail,
-  telephone: siteConfig.contact.phone,
   areaServed: siteConfig.address.markets,
   sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
   contactPoint: {
     '@type': 'ContactPoint',
     email: siteConfig.contact.primaryEmail,
-    telephone: siteConfig.contact.phone,
     contactType: 'customer service',
     availableLanguage: ['English']
   }
 };
 
+// No SearchAction: the site has no on-site search endpoint, so advertising
+// one would be inaccurate markup.
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${siteConfig.siteUrl}/#website`,
   name: siteConfig.name,
   url: siteConfig.siteUrl,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteConfig.siteUrl}/blog?q={search_term_string}`,
-    'query-input': 'required name=search_term_string'
-  }
+  publisher: { '@id': orgId }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
