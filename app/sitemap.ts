@@ -3,6 +3,7 @@ import { siteConfig } from '@/lib/siteConfig';
 import { caseStudies } from '@/lib/caseStudies';
 import { blogPosts } from '@/lib/blogPosts';
 import { services } from '@/lib/services';
+import { locationPages } from '@/lib/locations';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.siteUrl.replace(/\/$/, '');
@@ -39,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...caseStudyRoutes, ...blogRoutes];
+  const locationRoutes: MetadataRoute.Sitemap = locationPages.map((l) => ({
+    url: `${base}/${l.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.85
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...caseStudyRoutes, ...blogRoutes, ...locationRoutes];
 }

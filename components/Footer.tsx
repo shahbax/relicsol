@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteConfig, yearsInBusiness } from '@/lib/siteConfig';
+import { locationPages } from '@/lib/locations';
 
 const columns = [
   {
@@ -126,6 +127,36 @@ export function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Where we work */}
+      <div style={{ borderTop: '1px solid #1a1a1a', padding: '32px' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono), monospace',
+              fontSize: 11,
+              color: '#F97316',
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              marginBottom: 20
+            }}
+          >
+            Where we work
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 24px' }}>
+            {locationPages.map((l) => (
+              <Link
+                key={l.slug}
+                href={`/${l.slug}`}
+                className="rl-foot-link"
+                style={{ color: '#A1A1AA', textDecoration: 'none', fontSize: 14 }}
+              >
+                Web Design {l.displayName}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 
