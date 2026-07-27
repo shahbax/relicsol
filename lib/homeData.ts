@@ -1,6 +1,7 @@
-import { yearsInBusiness } from './siteConfig';
+import { siteConfig, yearsInBusiness } from './siteConfig';
 
 const yrs = yearsInBusiness();
+const projects = siteConfig.proof.projectsDelivered;
 
 /* ============================================================ */
 /* HOMEPAGE STATS                                                */
@@ -9,9 +10,8 @@ export type HomeStat = { value: string; label: string; target?: number; suffix?:
 
 export const homeStats: HomeStat[] = [
   { value: `${yrs}+`, label: 'Years building digital systems', target: yrs, suffix: '+' },
-  { value: '200+', label: 'Projects delivered', target: 200, suffix: '+' },
-  { value: '18', label: 'Portfolio case studies', target: 18, suffix: '' },
-  { value: '4.9', label: 'Client satisfaction rating', target: 4.9, suffix: '' },
+  { value: `${projects}+`, label: 'Projects delivered since 2018', target: projects, suffix: '+' },
+  { value: '100%', label: 'Code & files you own', target: 100, suffix: '%' },
   { value: '1hr', label: 'Average response time' }
 ];
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Syne, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, hasPostalAddress } from '@/lib/siteConfig';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -60,8 +60,23 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' }
+  },
+  // Search Console + Bing Webmaster ownership. Paste the tokens into Vercel env
+  // (GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION) and redeploy; each meta
+  // tag only renders once its token exists, so nothing empty ships before then.
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.BING_SITE_VERIFICATION
+      ? { other: { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } }
+      : {})
   }
 };
+
+// Google Analytics 4 — only loads when a measurement ID is present in the env,
+// so the site stays script-free (and cookie-banner-free) until you opt in.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 // Stable @id so per-page schema (Service provider, Article publisher, etc.)
 // can reference this single Organization node rather than redefining it.
@@ -88,9 +103,27 @@ const orgSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     email: siteConfig.contact.primaryEmail,
+    ...(siteConfig.contact.phone ? { telephone: siteConfig.contact.phone } : {}),
     contactType: 'customer service',
     availableLanguage: ['English']
-  }
+  },
+  // Postal address + phone appear only after they are filled into siteConfig —
+  // no placeholder location is ever published.
+  ...(hasPostalAddress()
+    ? {
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: siteConfig.address.streetAddress,
+          addressLocality: siteConfig.address.addressLocality,
+          ...(siteConfig.address.addressRegion
+            ? { addressRegion: siteConfig.address.addressRegion }
+            : {}),
+          postalCode: siteConfig.address.postalCode,
+          addressCountry: siteConfig.address.addressCountry
+        }
+      }
+    : {}),
+  ...(siteConfig.contact.phone ? { telephone: siteConfig.contact.phone } : {})
 };
 
 // No SearchAction: the site has no on-site search endpoint, so advertising
@@ -112,6 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        {gaId ? <link rel="preconnect" href="https://www.googletagmanager.com" /> : null}
         {/* Runs before paint: repeat views in this session skip the preloader */}
         <script
           dangerouslySetInnerHTML={{
@@ -133,6 +167,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="rl-noscript" strategy="afterInteractive">
           {`document.documentElement.dataset.jsReady = 'true';`}
         </Script>
+        {gaId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}',{anonymize_ip:true});`}
+            </Script>
+          </>
+        ) : null}
       </body>
     </html>
   );

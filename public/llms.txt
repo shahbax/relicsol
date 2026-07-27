@@ -1,0 +1,35 @@
+# Relicsol
+
+> Relicsol is a web design, custom software, AI automation and SEO agency founded in 2018, serving businesses across the USA, UK and Europe. Every engagement is scoped and priced in writing before work begins, and clients own all code, design files and accounts.
+
+## What Relicsol does
+- Web design & development: marketing sites, landing pages, e-commerce (Shopify, WooCommerce), and custom web apps built on Next.js, React and WordPress for speed, conversion and SEO.
+- Software development: custom CRMs, client portals, dashboards, APIs and internal tools that replace multiple disconnected apps.
+- AI automation: workflow automation and AI integrations (OpenAI, Claude, n8n, Make.com) that remove repetitive manual work and speed up lead handling.
+- SEO & digital marketing: technical SEO, on-page optimisation, local SEO and content-led growth to generate qualified leads.
+
+## How Relicsol works
+- Fixed price agreed in writing before any work starts.
+- Core Web Vitals, schema markup and clean SEO groundwork included by default.
+- Clients own the code, design files, content and hosting from day one.
+- Typical response time to enquiries: within one hour during working hours.
+
+## Key pages
+- Home: https://www.relicsol.com/
+- Services: https://www.relicsol.com/services/web-design-development
+- Services: https://www.relicsol.com/services/software-development
+- Services: https://www.relicsol.com/services/ai-automation
+- Services: https://www.relicsol.com/services/seo-services
+- Portfolio / case studies: https://www.relicsol.com/portfolio
+- About: https://www.relicsol.com/about
+- Blog: https://www.relicsol.com/blog
+- Contact: https://www.relicsol.com/contact
+
+## Locations served
+- USA: https://www.relicsol.com/web-design-agency-usa
+- UK: https://www.relicsol.com/web-design-agency-uk
+- Europe: https://www.relicsol.com/web-design-agency-europe
+
+## Contact
+- Email: info@relicsol.com
+- Website: https://www.relicsol.com

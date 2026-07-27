@@ -163,7 +163,7 @@ function HeroSection() {
               fontWeight: 400
             }}
           >
-            Web design, custom software and AI automation for businesses in the USA, UK and Europe. 200+ projects since 2018, every one on a fixed quote.
+            Most business websites look fine and bring in nothing. We design and build websites, custom software and AI automations that turn visitors into booked enquiries, scoped and priced in writing before a line of code.
           </p>
           <div data-reveal={isIn('cta')} style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
             <MagneticButton
@@ -207,15 +207,11 @@ function HeroSection() {
 
           <div data-reveal={isIn('proof')} style={{ marginTop: 80, display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ display: 'flex', gap: 2 }} aria-label="4.9 star rating">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="14" height="14" viewBox="0 0 256 256" fill="#F97316" aria-hidden>
-                    <path d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Z" />
-                  </svg>
-                ))}
-              </div>
+              <svg width="16" height="16" viewBox="0 0 256 256" fill="#F97316" aria-hidden>
+                <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z" />
+              </svg>
               <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 12, color: '#A1A1AA' }}>
-                4.9 / 5 · 200+ projects
+                {siteConfig.proof.projectsDelivered}+ projects delivered since 2018
               </span>
             </div>
             <div style={{ width: 1, height: 16, background: '#262626' }} />
@@ -344,7 +340,7 @@ function AboutStatsSection() {
             <span style={{ color: '#52525b' }}>who actually build.</span>
           </h2>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: '0 0 20px' }}>
-            Relicsol is a small senior team, not an agency with account managers between you and the work. Since 2018 we have shipped 200+ projects for founders and marketing leads across the USA, UK and Europe: marketing sites, e-commerce stores, custom software and AI automation that carries real revenue.
+            Relicsol is a small senior team, not an agency with account managers between you and the work. Since 2018 we have shipped {siteConfig.proof.projectsDelivered}+ projects for founders and marketing leads across the USA, UK and Europe: marketing sites, e-commerce stores, custom software and AI automation that carries real revenue.
           </p>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: '0 0 36px' }}>
             Every project starts with understanding your business goals, your audience and the outcomes you need. Then we build digital systems that convert visitors into enquiries, and enquiries into revenue.
@@ -545,7 +541,7 @@ function PortfolioMarqueeSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24, paddingBottom: 12 }}>
             <p style={{ fontSize: 16, lineHeight: 1.7, color: '#A1A1AA', margin: 0 }}>
               <span style={{ color: '#F97316', fontFamily: 'var(--font-mono), monospace', fontSize: 13 }}>*</span>
-              {' '}18 case studies across e-commerce, SaaS, software, health tech and premium consumer brands. USA · UK · Europe.
+              {' '}{caseStudies.length} case studies across e-commerce, SaaS, software, health tech and premium consumer brands. USA · UK · Europe.
             </p>
             <Link
               href="/portfolio"
@@ -873,14 +869,22 @@ function TestimonialsSection() {
             {'{}'} Client Reviews
           </div>
           <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, color: '#ffffff', fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 0.98, letterSpacing: '-0.04em', margin: '0 0 32px 0' }}>
-            Rated 4.9 out of 5<br />
-            <span style={{ color: '#52525b' }}>by the people who pay us.</span>
+            In the words of<br />
+            <span style={{ color: '#52525b' }}>the people who pay us.</span>
           </h2>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: '#161616', border: '1px solid #262626', borderRadius: 999, padding: '12px 24px', marginBottom: 72 }}>
-            <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 800, fontSize: 28, color: '#ffffff', lineHeight: 1 }}>4.9</span>
-            <Stars size={18} />
-            <span style={{ fontSize: 13, color: '#71717a' }}>average across 200+ delivered projects</span>
-          </div>
+          {siteConfig.proof.reviewCount > 0 ? (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 14, background: '#161616', border: '1px solid #262626', borderRadius: 999, padding: '12px 24px', marginBottom: 72 }}>
+              <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 800, fontSize: 28, color: '#ffffff', lineHeight: 1 }}>
+                {siteConfig.proof.reviewValue.toFixed(1)}
+              </span>
+              <Stars size={18} />
+              <span style={{ fontSize: 13, color: '#71717a' }}>
+                across {siteConfig.proof.reviewCount} verified client reviews
+              </span>
+            </div>
+          ) : (
+            <div style={{ marginBottom: 72 }} />
+          )}
         </Reveal>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>

@@ -1,4 +1,4 @@
-import { yearsInBusiness } from './siteConfig';
+import { siteConfig, yearsInBusiness } from './siteConfig';
 
 export type AboutStat = { value: string; label: string };
 export type AboutValue = { num: string; title: string; body: string };
@@ -8,10 +8,8 @@ const yrs = yearsInBusiness();
 
 export const aboutStats: AboutStat[] = [
   { value: `${yrs}+`, label: 'Years in business' },
-  { value: '200+', label: 'Projects delivered' },
-  { value: '18', label: 'Case studies' },
-  { value: '4.9★', label: 'Client rating' },
-  { value: 'USA/UK', label: 'Primary markets' },
+  { value: `${siteConfig.proof.projectsDelivered}+`, label: 'Projects delivered' },
+  { value: '100%', label: 'Code & files you own' },
   { value: '1hr', label: 'Avg response time' }
 ];
 

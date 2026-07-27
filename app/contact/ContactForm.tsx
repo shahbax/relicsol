@@ -2,6 +2,12 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const budgets = [
   { id: 'under-1k', label: '< $1,000' },
   { id: '1k-1.5k', label: '$1,000 – $1,500' },
@@ -88,6 +94,11 @@ export function ContactForm() {
       }
       setStatus('ok');
       setMessage('Thanks, your message is in. We will reply within one hour.');
+      // Analytics: mark a lead. No-op until GA4 is enabled (NEXT_PUBLIC_GA_ID);
+      // in GA, mark "generate_lead" as a conversion to import into Google Ads.
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { form: 'contact', value: 1 });
+      }
       form.reset();
       setBudget('');
       setServices([]);

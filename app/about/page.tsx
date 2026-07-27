@@ -12,8 +12,8 @@ const yrs = yearsInBusiness();
 const aboutOgDesc = `Founded in ${siteConfig.founded}. Web design, custom software and AI automation for the USA, UK and Europe.`;
 
 export const metadata: Metadata = {
-  title: `About Relicsol — ${yrs}+ years, 200+ projects across USA, UK & Europe`,
-  description: `Founded in ${siteConfig.founded}, Relicsol is a web design, software and AI automation agency serving businesses in the USA, UK and Europe. 200+ projects, 4.9★ rating.`,
+  title: `About Relicsol — ${yrs}+ years, ${siteConfig.proof.projectsDelivered}+ projects across USA, UK & Europe`,
+  description: `Founded in ${siteConfig.founded}, Relicsol is a web design, software and AI automation agency serving businesses in the USA, UK and Europe. ${siteConfig.proof.projectsDelivered}+ projects delivered, every one on a fixed written quote.`,
   alternates: { canonical: '/about' },
   openGraph: {
     type: 'article',
@@ -72,7 +72,7 @@ export default function AboutPage() {
       {/* Stats grid */}
       <section style={{ padding: '80px 32px', background: '#0f0f0f', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
             {aboutStats.map((s, i) => (
               <Reveal key={i} delayMs={i * 60}>
                 <div style={{ background: '#080808', border: '1px solid #262626', borderRadius: 4, padding: 40 }}>

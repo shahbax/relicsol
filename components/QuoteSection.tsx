@@ -13,8 +13,8 @@ const serviceOptions = [
 
 const trustPoints = [
   'Web design, custom software and AI automation under one roof',
-  '200+ projects delivered for businesses in the USA, UK and Europe',
-  '4.9 / 5 average client rating across 8+ years',
+  `${siteConfig.proof.projectsDelivered}+ projects delivered for businesses in the USA, UK and Europe`,
+  'You own all code, design files and accounts from day one',
   'Fixed-price proposals within 48 hours, response within 1 hour'
 ];
 

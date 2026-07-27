@@ -1,24 +1,54 @@
 export const siteConfig = {
   name: 'Relicsol',
+  // Registered company name — update to the exact UK Ltd name once incorporated
+  // (e.g. 'Relicsol Ltd'). Used in legal/schema contexts.
+  legalName: 'Relicsol' as string,
   tagline: 'We Build Digital Systems That Convert.',
   description:
     'Premium web design, custom software, AI automation and SEO for ambitious businesses in the USA, UK and Europe.',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.relicsol.com',
   founded: 2018,
   trustBar: 'EST. 2018 · USA · UK · EUROPE',
+
+  // --------------------------------------------------------------------------
+  // CREDIBILITY NUMBERS — shown across the whole site from here.
+  // Keep every value TRUE and defensible. A prospect (or a competitor) can ask
+  // you to back these up, and inflated figures are both a trust risk and, for
+  // ratings, a Google / UK CMA / US FTC compliance risk. Change the number here
+  // once and it updates everywhere it appears.
+  // --------------------------------------------------------------------------
+  proof: {
+    // Set to the real figure you can stand behind if asked.
+    projectsDelivered: 200,
+    // PUBLIC STAR RATING: leave count at 0 until you have REAL collected reviews
+    // (Google Business Profile / Clutch / Trustpilot). Then set reviewCount and
+    // reviewValue from the actual totals, and the star badges switch back on.
+    reviewCount: 0 as number,
+    reviewValue: 0 as number
+  },
+
   contact: {
     primaryEmail: 'info@relicsol.com',
     founderEmail: 'shahbaz@relicsol.com',
-    // No public phone number. Set a US or UK number here (e.g. '+1 555 123 4567')
-    // to re-enable it in the footer and on the contact page automatically.
-    // Typed as string (not the '' literal) so the conditional renders type-check.
+    // No public phone number yet. Set a UK or US number here (e.g. '+44 20 1234 5678')
+    // once the company is registered — it re-enables in the footer, on the contact
+    // page and in schema automatically. Typed as string so conditionals type-check.
     phone: '' as string,
     responsePromise: 'We respond within 1 hour.'
   },
+
+  // Registered business address. Fill these in the week the UK company is
+  // registered; the LocalBusiness schema and contact page pick them up
+  // automatically. Leave blank until then — no fake address ships.
   address: {
-    country: 'PK',
-    markets: ['USA', 'UK', 'Europe']
+    markets: ['USA', 'UK', 'Europe'],
+    streetAddress: '' as string,
+    addressLocality: '' as string, // town / city
+    addressRegion: '' as string, // county / state
+    postalCode: '' as string,
+    addressCountry: '' as string // ISO code, e.g. 'GB' once registered in the UK
   },
+
   social: {
     linkedin: 'https://www.linkedin.com/company/relicsol',
     facebook: 'https://www.facebook.com/relicsol'
@@ -27,4 +57,10 @@ export const siteConfig = {
 
 export function yearsInBusiness(now: Date = new Date()): number {
   return now.getFullYear() - siteConfig.founded;
+}
+
+/** True once a registered postal address has been filled into siteConfig.address. */
+export function hasPostalAddress(): boolean {
+  const a = siteConfig.address;
+  return Boolean(a.streetAddress && a.addressLocality && a.postalCode && a.addressCountry);
 }
