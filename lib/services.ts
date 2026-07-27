@@ -95,7 +95,7 @@ export const services: Service[] = [
       {
         num: 'STEP 02',
         title: 'Strategy & Proposal',
-        body: 'Written project brief, sitemap, and fixed-price proposal within 48 hours. No vague "contact us for a quote" — real numbers.',
+        body: 'Written project brief, sitemap, and fixed-price proposal within 48 hours. No vague "contact us for a quote" - real numbers.',
         duration: 'Days 2–3',
       },
       {
@@ -159,7 +159,7 @@ export const services: Service[] = [
       },
       {
         q: 'Will my website rank on Google?',
-        a: 'We build every site with on-page SEO fundamentals in place — correct structure, fast loading, schema markup, clean code. For ongoing ranking improvement, we offer a separate SEO service.',
+        a: 'We build every site with on-page SEO fundamentals in place - correct structure, fast loading, schema markup, clean code. For ongoing ranking improvement, we offer a separate SEO service.',
       },
       {
         q: 'Can I update the website myself after launch?',
@@ -204,7 +204,7 @@ export const services: Service[] = [
       {
         num: '02',
         title: 'Client & Partner Portals',
-        body: 'Secure online portals where clients log in, view project status, submit documents, make payments, and communicate — all under your brand.',
+        body: 'Secure online portals where clients log in, view project status, submit documents, make payments, and communicate - all under your brand.',
         idealFor: 'Agencies, consultancies, service firms',
       },
       {
@@ -236,7 +236,7 @@ export const services: Service[] = [
       {
         num: 'STEP 01',
         title: 'Workflow Audit',
-        body: 'We map your current workflow, identify the points of friction, and define exactly what the software needs to do — and what it does not need to do.',
+        body: 'We map your current workflow, identify the points of friction, and define exactly what the software needs to do - and what it does not need to do.',
         duration: 'Week 1',
       },
       {
@@ -248,7 +248,7 @@ export const services: Service[] = [
       {
         num: 'STEP 03',
         title: 'UI Design in Figma',
-        body: 'Every screen designed and reviewed before development. We design for daily use — your team has to live in this for years.',
+        body: 'Every screen designed and reviewed before development. We design for daily use - your team has to live in this for years.',
         duration: 'Weeks 2–3',
       },
       {
@@ -282,7 +282,7 @@ export const services: Service[] = [
       {
         num: '01',
         title: 'We replace tools, not add them.',
-        body: 'Most agencies build software that adds to your stack. We build software that lets you cancel three or four other tools — that is the win.',
+        body: 'Most agencies build software that adds to your stack. We build software that lets you cancel three or four other tools - that is the win.',
       },
       {
         num: '02',
@@ -351,7 +351,7 @@ export const services: Service[] = [
       {
         num: '02',
         title: 'CRM & Sales Automation',
-        body: 'Auto-populate your CRM from any source. Automated pipeline movement, deal reminders, task creation, reporting — no manual entry.',
+        body: 'Auto-populate your CRM from any source. Automated pipeline movement, deal reminders, task creation, reporting - no manual entry.',
         idealFor: 'Sales-heavy businesses',
       },
       {
@@ -434,7 +434,7 @@ export const services: Service[] = [
       {
         num: '02',
         title: 'AI where it earns its place.',
-        body: 'We use AI where it actually adds value — not as a marketing buzzword. Some automations use no AI at all. The result matters, not the label.',
+        body: 'We use AI where it actually adds value - not as a marketing buzzword. Some automations use no AI at all. The result matters, not the label.',
       },
       {
         num: '03',
@@ -581,7 +581,7 @@ export const services: Service[] = [
       {
         num: '02',
         title: 'Real reporting.',
-        body: 'We report on rankings, organic traffic, and leads — not "impressions" and "brand awareness." You know exactly what your investment is producing.',
+        body: 'We report on rankings, organic traffic, and leads - not "impressions" and "brand awareness." You know exactly what your investment is producing.',
       },
       {
         num: '03',

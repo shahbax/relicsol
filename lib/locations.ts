@@ -1,4 +1,4 @@
-// Location landing pages. Each entry is hand-written, market-specific content —
+// Location landing pages. Each entry is hand-written, market-specific content - 
 // deliberately NOT a template with the city swapped in. Currency, spelling
 // (en-GB vs en-US), the market angle, the mapped case studies and the FAQs are
 // all unique per location. Case studies referenced are the real ones we have
@@ -104,7 +104,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the website when it is finished?',
-        a: 'You do — all code, design files and hosting accounts, from day one. There is no proprietary platform and no monthly licence to keep the site running.'
+        a: 'You do - all code, design files and hosting accounts, from day one. There is no proprietary platform and no monthly licence to keep the site running.'
       },
       {
         q: 'What does a project cost?',
@@ -117,7 +117,7 @@ export const locationPages: LocationPage[] = [
     ,
       {
         q: 'Can you redesign an existing US site?',
-        a: 'Yes. Redesigns are a large part of our US work — we rebuild underperforming sites for better structure, speed, SEO and conversion while keeping what already works.'
+        a: 'Yes. Redesigns are a large part of our US work - we rebuild underperforming sites for better structure, speed, SEO and conversion while keeping what already works.'
       }
     
     ],
@@ -147,7 +147,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'The UK web design problem',
         body: [
-          'The cheap end of the UK market locks you into a proprietary platform: cancel the subscription and the site disappears. The expensive end quotes by the day and drags the project out. We sit deliberately in between — a fixed price, a real timeline, and no dependency on any platform we would rather you kept paying for.',
+          'The cheap end of the UK market locks you into a proprietary platform: cancel the subscription and the site disappears. The expensive end quotes by the day and drags the project out. We sit deliberately in between - a fixed price, a real timeline, and no dependency on any platform we would rather you kept paying for.',
           'Everything we build is optimised for Core Web Vitals and structured for search from the first commit, because in the UK\'s competitive local markets a slow, poorly-structured site simply does not rank.'
         ]
       },
@@ -160,7 +160,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'VAT and invoicing',
         body: [
-          'We invoice in pounds and can issue VAT-appropriate paperwork for your records. Pricing is fixed and quoted up front, so there is never a question about what the project costs — a written proposal with real numbers within 48 hours, not a vague "get in touch for a quote".'
+          'We invoice in pounds and can issue VAT-appropriate paperwork for your records. Pricing is fixed and quoted up front, so there is never a question about what the project costs - a written proposal with real numbers within 48 hours, not a vague "get in touch for a quote".'
         ]
       },
       {
@@ -195,7 +195,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Should I use WooCommerce or Shopify for a UK store?',
-        a: 'It depends on your catalogue and how much control you want. We build on both and recommend the right one for your case — WooCommerce for full control and content depth, Shopify for speed of setup and lower maintenance.'
+        a: 'It depends on your catalogue and how much control you want. We build on both and recommend the right one for your case - WooCommerce for full control and content depth, Shopify for speed of setup and lower maintenance.'
       },
       {
         q: 'Will I be locked into a platform?',
@@ -235,14 +235,14 @@ export const locationPages: LocationPage[] = [
     h1Lead: 'A web design agency for',
     h1Accent: 'European brands.',
     intro: [
-      'Selling across European borders means more than translating a homepage. It means multiple languages, multiple currencies, local payment methods and GDPR done properly — all in one build that still loads fast. That is the kind of project we are built for.',
+      'Selling across European borders means more than translating a homepage. It means multiple languages, multiple currencies, local payment methods and GDPR done properly - all in one build that still loads fast. That is the kind of project we are built for.',
       'We work with brands across the continent, from Dutch marketplaces to German premium-product makers, in fluent English, on fixed pricing, with everything we build owned entirely by you.'
     ],
     sections: [
       {
         heading: 'Building for more than one European market',
         body: [
-          'A site aimed at the Netherlands, Germany and France cannot be one language with a flag dropdown bolted on. We architect multilingual sites properly — clean URL structure per language, correct hreflang, translated metadata — so each market ranks in its own search results rather than competing with itself.',
+          'A site aimed at the Netherlands, Germany and France cannot be one language with a flag dropdown bolted on. We architect multilingual sites properly - clean URL structure per language, correct hreflang, translated metadata - so each market ranks in its own search results rather than competing with itself.',
           'Multi-currency and localised pricing are handled at the platform level, so a shopper in Berlin sees euros and a shopper in Stockholm sees kronor without a jarring redirect.'
         ]
       },
@@ -255,7 +255,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'Payment methods across Europe',
         body: [
-          'Card-only checkout leaves money on the table in Europe. We integrate the methods each market actually uses — SEPA direct debit, iDEAL in the Netherlands, Bancontact in Belgium, Klarna and SOFORT where they convert — through Stripe or your platform\'s native gateways, invoiced to you in euros.'
+          'Card-only checkout leaves money on the table in Europe. We integrate the methods each market actually uses - SEPA direct debit, iDEAL in the Netherlands, Bancontact in Belgium, Klarna and SOFORT where they convert - through Stripe or your platform\'s native gateways, invoiced to you in euros.'
         ]
       },
       {
@@ -278,7 +278,7 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Can you build a multilingual, multi-currency site?',
-        a: 'Yes — this is core to what we do. We build proper per-language URL structures with correct hreflang and translated metadata, and handle multi-currency pricing at the platform level so each market sees its own language and currency.'
+        a: 'Yes - this is core to what we do. We build proper per-language URL structures with correct hreflang and translated metadata, and handle multi-currency pricing at the platform level so each market sees its own language and currency.'
       },
       {
         q: 'How do you handle EU VAT?',
@@ -290,7 +290,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Which European payment methods can you integrate?',
-        a: 'SEPA, iDEAL, Bancontact, Klarna, SOFORT and card, via Stripe or your platform\'s native gateways — chosen for the markets you actually sell into.'
+        a: 'SEPA, iDEAL, Bancontact, Klarna, SOFORT and card, via Stripe or your platform\'s native gateways - chosen for the markets you actually sell into.'
       },
       {
         q: 'Do you work across European time zones and in English?',
@@ -298,7 +298,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the finished site?',
-        a: 'You do — all code, design files and hosting accounts, with no platform lock-in or ongoing licence fee.'
+        a: 'You do - all code, design files and hosting accounts, with no platform lock-in or ongoing licence fee.'
       },
       {
         q: 'Can you maintain the site after launch?',
@@ -330,21 +330,21 @@ export const locationPages: LocationPage[] = [
     h1Lead: 'A web design agency for',
     h1Accent: 'London brands.',
     intro: [
-      'London brands are held to a high visual standard — hospitality, retail and fintech customers in the city expect a site to look as considered as the product. We build to that standard, without charging London-agency rates or trapping you in a retainer.',
+      'London brands are held to a high visual standard - hospitality, retail and fintech customers in the city expect a site to look as considered as the product. We build to that standard, without charging London-agency rates or trapping you in a retainer.',
       'One of our favourite recent builds was for a London specialty-coffee roaster, and the approach there is the approach we bring to any London brand: editorial design, fast performance and commerce that converts.'
     ],
     sections: [
       {
         heading: 'A London brand we have built for',
         body: [
-          'WatchHouse is one of London\'s finest specialty-coffee roasters, and we built them a split-screen editorial brand site with subscription commerce underneath. The design had to carry the brand\'s reputation while making the subscription flow effortless — the sort of balance London hospitality brands live or die by.',
+          'WatchHouse is one of London\'s finest specialty-coffee roasters, and we built them a split-screen editorial brand site with subscription commerce underneath. The design had to carry the brand\'s reputation while making the subscription flow effortless - the sort of balance London hospitality brands live or die by.',
           'That project is representative of how we work with London businesses: the design does the brand justice, and the commerce quietly does the selling.'
         ]
       },
       {
         heading: 'Premium design without London-agency rates',
         body: [
-          'A Shoreditch or Soho agency will quote a London day rate and take a quarter to deliver. We give you a senior team, a fixed price agreed up front, and a launch in weeks — because we run lean and remote rather than carrying the overhead of a central-London office. The output is the same premium standard; the invoice is not.'
+          'A Shoreditch or Soho agency will quote a London day rate and take a quarter to deliver. We give you a senior team, a fixed price agreed up front, and a launch in weeks - because we run lean and remote rather than carrying the overhead of a central-London office. The output is the same premium standard; the invoice is not.'
         ]
       },
       {
@@ -373,7 +373,7 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Can you match a London agency\'s quality?',
-        a: 'Yes — our London work, including WatchHouse, is built to the premium standard the city expects. We simply deliver it on a fixed price and a faster timeline by running remotely rather than from a central-London office.'
+        a: 'Yes - our London work, including WatchHouse, is built to the premium standard the city expects. We simply deliver it on a fixed price and a faster timeline by running remotely rather than from a central-London office.'
       },
       {
         q: 'Do you meet clients in person in London?',
@@ -381,7 +381,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Do you build hospitality and retail commerce?',
-        a: 'Yes — subscriptions, bookings, gift cards and click-and-collect on WooCommerce or Shopify, with checkout tuned for conversion. WatchHouse\'s subscription commerce is a good example.'
+        a: 'Yes - subscriptions, bookings, gift cards and click-and-collect on WooCommerce or Shopify, with checkout tuned for conversion. WatchHouse\'s subscription commerce is a good example.'
       },
       {
         q: 'How much does a London project cost?',
@@ -397,7 +397,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Do you offer ongoing support for London clients?',
-        a: 'Yes — a handover with training plus optional monthly maintenance covering updates, backups, monitoring and small changes.'
+        a: 'Yes - a handover with training plus optional monthly maintenance covering updates, backups, monitoring and small changes.'
       }
     ,
       {
@@ -451,7 +451,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'Contracts and payments',
         body: [
-          'Engagements run on a fixed-price services agreement with milestone billing, invoiced in US dollars, paid by ACH, wire or card via Stripe. You own all code, design files and hosting accounts from day one — clean handover, no lock-in.'
+          'Engagements run on a fixed-price services agreement with milestone billing, invoiced in US dollars, paid by ACH, wire or card via Stripe. You own all code, design files and hosting accounts from day one - clean handover, no lock-in.'
         ]
       },
       {
@@ -468,7 +468,7 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Do you have New York clients specifically?',
-        a: 'Our documented case studies are US clients rather than specifically New York ones — including Firmate, Push Digital and NextSense. We work with US businesses nationwide and hold the same standard for New York projects.'
+        a: 'Our documented case studies are US clients rather than specifically New York ones - including Firmate, Push Digital and NextSense. We work with US businesses nationwide and hold the same standard for New York projects.'
       },
       {
         q: 'Do your hours overlap Eastern time?',
@@ -476,7 +476,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'How fast can you launch for a startup?',
-        a: 'A standard business or SaaS launch site ships in two to three weeks from design approval, on a fixed price agreed before we start — useful when a launch is tied to a raise or a campaign.'
+        a: 'A standard business or SaaS launch site ships in two to three weeks from design approval, on a fixed price agreed before we start - useful when a launch is tied to a raise or a campaign.'
       },
       {
         q: 'How do payments work?',
@@ -484,7 +484,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the code and design?',
-        a: 'You do, from day one — all code, files and hosting accounts, with no proprietary platform or licence fee.'
+        a: 'You do, from day one - all code, files and hosting accounts, with no proprietary platform or licence fee.'
       },
       {
         q: 'Can you work as overflow for a NYC agency?',
@@ -492,7 +492,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Do you offer post-launch support?',
-        a: 'Yes — training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
+        a: 'Yes - training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
       }
     ,
       {
@@ -521,7 +521,7 @@ export const locationPages: LocationPage[] = [
     h1Accent: 'Manchester businesses.',
     intro: [
       'Manchester\'s digital, creative and e-commerce scene has grown into one of the strongest outside London, and the businesses in it want agency-quality work without paying London day rates. That is exactly the gap Relicsol fills: custom, owned-outright sites on a fixed price.',
-      'We work remotely with businesses across the North West and the wider UK. To be straight with you, our documented case studies are UK clients rather than specifically Manchester ones — and the standard we hold for them is the standard we would bring to yours.'
+      'We work remotely with businesses across the North West and the wider UK. To be straight with you, our documented case studies are UK clients rather than specifically Manchester ones - and the standard we hold for them is the standard we would bring to yours.'
     ],
     sections: [
       {
@@ -534,7 +534,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'UK clients we have built for',
         body: [
-          'Our UK portfolio includes WatchHouse, a London specialty-coffee roaster with subscription commerce, and Core Atelier, an elevated fitness studio whose site became its strongest booking channel. They are London-based rather than Manchester-based, but the craft — editorial design, fast performance, conversion-tuned commerce — travels directly to any UK city.'
+          'Our UK portfolio includes WatchHouse, a London specialty-coffee roaster with subscription commerce, and Core Atelier, an elevated fitness studio whose site became its strongest booking channel. They are London-based rather than Manchester-based, but the craft - editorial design, fast performance, conversion-tuned commerce - travels directly to any UK city.'
         ]
       },
       {
@@ -571,7 +571,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Do you invoice in pounds and handle VAT?',
-        a: 'Yes — GBP invoicing with VAT-appropriate documentation, on a fixed price agreed in writing before work starts.'
+        a: 'Yes - GBP invoicing with VAT-appropriate documentation, on a fixed price agreed in writing before work starts.'
       },
       {
         q: 'Do you work UK business hours?',
@@ -616,7 +616,7 @@ export const locationPages: LocationPage[] = [
     h1Accent: 'LA brands.',
     intro: [
       'Los Angeles brands live or die on how they look. DTC products, wellness, media and lifestyle companies need a site that feels as considered as the brand and still converts cold traffic into orders. That visual-led, commerce-first build is our comfort zone.',
-      'We work remotely with US clients on hours that overlap the Pacific business day. To be straight with you, our case studies are US brands rather than specifically LA brands — and several are exactly the DTC and wellness profile LA is known for.'
+      'We work remotely with US clients on hours that overlap the Pacific business day. To be straight with you, our case studies are US brands rather than specifically LA brands - and several are exactly the DTC and wellness profile LA is known for.'
     ],
     sections: [
       {
@@ -647,7 +647,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'Built for the creator and DTC economy',
         body: [
-          'Los Angeles is where brand and commerce meet hardest — creator-led labels, DTC products and media companies that live on how they look and how well they convert attention into orders. Those brands need fast, image-heavy pages that still hit performance targets, product storytelling that sells on feel, and a checkout tuned for paid-social traffic.',
+          'Los Angeles is where brand and commerce meet hardest - creator-led labels, DTC products and media companies that live on how they look and how well they convert attention into orders. Those brands need fast, image-heavy pages that still hit performance targets, product storytelling that sells on feel, and a checkout tuned for paid-social traffic.',
           'That is exactly the build we specialize in, most often on Shopify, and it is why our DTC and wellness case studies translate directly to the LA market. The brand carries the click; the build carries the conversion.'
         ]
       }
@@ -658,11 +658,11 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Do you have Los Angeles clients specifically?',
-        a: 'Our documented case studies are US brands rather than specifically LA ones — including Saki Products, Drink Pouch and The Unleashed Heart, which match the DTC and wellness profile LA is known for. We hold the same standard for LA projects.'
+        a: 'Our documented case studies are US brands rather than specifically LA ones - including Saki Products, Drink Pouch and The Unleashed Heart, which match the DTC and wellness profile LA is known for. We hold the same standard for LA projects.'
       },
       {
         q: 'Do you build DTC and Shopify stores?',
-        a: 'Yes — most of our DTC work is on Shopify, with brand-led product pages, fast image-heavy layouts and a checkout tuned to convert paid traffic.'
+        a: 'Yes - most of our DTC work is on Shopify, with brand-led product pages, fast image-heavy layouts and a checkout tuned to convert paid traffic.'
       },
       {
         q: 'Do your hours overlap Pacific time?',
@@ -674,7 +674,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the finished store?',
-        a: 'You do — all code, files and hosting accounts from day one, with no platform lock-in or licence fee.'
+        a: 'You do - all code, files and hosting accounts from day one, with no platform lock-in or licence fee.'
       },
       {
         q: 'How quickly can you launch for a product drop?',
@@ -682,7 +682,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Do you offer support after launch?',
-        a: 'Yes — training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
+        a: 'Yes - training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
       }
     ,
       {
@@ -710,14 +710,14 @@ export const locationPages: LocationPage[] = [
     h1Lead: 'A web design agency for',
     h1Accent: 'Amsterdam brands.',
     intro: [
-      'Dutch audiences have a particular design sensibility — clean, confident, unfussy — and they expect a checkout that speaks their language and offers iDEAL as a matter of course. We build for that, in fluent English, on a fixed price agreed before we start.',
+      'Dutch audiences have a particular design sensibility - clean, confident, unfussy - and they expect a checkout that speaks their language and offers iDEAL as a matter of course. We build for that, in fluent English, on a fixed price agreed before we start.',
       'We recently built a custom multi-vendor marketplace for a Dutch client, and that project shaped how we approach any Amsterdam brand: restrained design, solid commerce, and the local payment and language details handled properly.'
     ],
     sections: [
       {
         heading: 'A Dutch brand we have built for',
         body: [
-          'House Wine is an independent Dutch wine marketplace, and we built it as a custom multi-vendor WooCommerce platform with a Dutch design sensibility and AI cellar features underneath. Getting a marketplace right means the design stays calm while the logic underneath handles many sellers, many products and a smooth buyer journey — and that is what we delivered.'
+          'House Wine is an independent Dutch wine marketplace, and we built it as a custom multi-vendor WooCommerce platform with a Dutch design sensibility and AI cellar features underneath. Getting a marketplace right means the design stays calm while the logic underneath handles many sellers, many products and a smooth buyer journey - and that is what we delivered.'
         ]
       },
       {
@@ -729,7 +729,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'iDEAL and European payments',
         body: [
-          'A Dutch store without iDEAL is losing sales at checkout — it is the payment method most Dutch shoppers expect. We integrate iDEAL alongside SEPA, card and Klarna where it fits, through Stripe or your platform\'s native gateway, invoiced to you in euros.'
+          'A Dutch store without iDEAL is losing sales at checkout - it is the payment method most Dutch shoppers expect. We integrate iDEAL alongside SEPA, card and Klarna where it fits, through Stripe or your platform\'s native gateway, invoiced to you in euros.'
         ]
       },
       {
@@ -741,7 +741,7 @@ export const locationPages: LocationPage[] = [
       {
         heading: 'Built for the Dutch scale-up scene',
         body: [
-          'Amsterdam punches far above its size in e-commerce and scale-ups, and those companies want the same thing: a site that looks unmistakably Dutch — clean and confident — and a commerce layer that scales without drama.',
+          'Amsterdam punches far above its size in e-commerce and scale-ups, and those companies want the same thing: a site that looks unmistakably Dutch - clean and confident - and a commerce layer that scales without drama.',
           'Whether that is a marketplace with many sellers, a subscription product or a cross-border store selling into Germany and Belgium, we build the design and the logic to match. English is the working language throughout, so nothing is lost in translation and reviews move quickly.'
         ]
       },
@@ -758,11 +758,11 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Do you understand Dutch design expectations?',
-        a: 'Yes — our editorial, restrained style suits the Dutch preference for clean, confident, unfussy design, and our House Wine marketplace was built with exactly that sensibility.'
+        a: 'Yes - our editorial, restrained style suits the Dutch preference for clean, confident, unfussy design, and our House Wine marketplace was built with exactly that sensibility.'
       },
       {
         q: 'Can you integrate iDEAL?',
-        a: 'Yes. We integrate iDEAL alongside SEPA, card and Klarna through Stripe or your platform\'s native gateway — essential for converting Dutch shoppers at checkout.'
+        a: 'Yes. We integrate iDEAL alongside SEPA, card and Klarna through Stripe or your platform\'s native gateway - essential for converting Dutch shoppers at checkout.'
       },
       {
         q: 'Can you build a Dutch/English multilingual site?',
@@ -778,7 +778,7 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the finished site?',
-        a: 'You do — all code, files and hosting accounts, with no platform lock-in or licence fee.'
+        a: 'You do - all code, files and hosting accounts, with no platform lock-in or licence fee.'
       },
       {
         q: 'Do you offer maintenance after launch?',
@@ -810,20 +810,20 @@ export const locationPages: LocationPage[] = [
     h1Lead: 'A web design agency for',
     h1Accent: 'Berlin brands.',
     intro: [
-      'Berlin runs on two engines: a relentless startup scene and a deep respect for German product quality. Both want the same thing from a website — precision, speed and no corners cut. We build performance-first sites, often on Next.js, to exactly that standard, on a fixed price agreed before we start.',
+      'Berlin runs on two engines: a relentless startup scene and a deep respect for German product quality. Both want the same thing from a website - precision, speed and no corners cut. We build performance-first sites, often on Next.js, to exactly that standard, on a fixed price agreed before we start.',
       'We recently rebuilt the site for a German premium-product brand, and that work informs how we approach any Berlin project: rigorous, fast and correct down to the details German audiences notice.'
     ],
     sections: [
       {
         heading: 'A German brand we have built for',
         body: [
-          'Silberthal makes premium German kitchenware, and we rebuilt their commerce experience around the brand\'s 100-day trial and the trust signals that carry a considered purchase — photography-led, calm, and built to convert a discerning German buyer. Getting a premium German brand right means the quality of the build has to match the quality of the product, and that was the bar.'
+          'Silberthal makes premium German kitchenware, and we rebuilt their commerce experience around the brand\'s 100-day trial and the trust signals that carry a considered purchase - photography-led, calm, and built to convert a discerning German buyer. Getting a premium German brand right means the quality of the build has to match the quality of the product, and that was the bar.'
         ]
       },
       {
         heading: 'Performance and precision',
         body: [
-          'German audiences notice a slow or sloppy site, and Berlin\'s technical crowd doubly so. We build performance-first — often on Next.js with sub-second loads and full SEO control — and hold every build to Core Web Vitals in the green. Nothing ships that we would not be comfortable putting our name to.'
+          'German audiences notice a slow or sloppy site, and Berlin\'s technical crowd doubly so. We build performance-first - often on Next.js with sub-second loads and full SEO control - and hold every build to Core Web Vitals in the green. Nothing ships that we would not be comfortable putting our name to.'
         ]
       },
       {
@@ -858,19 +858,19 @@ export const locationPages: LocationPage[] = [
     faqs: [
       {
         q: 'Can you meet German quality expectations?',
-        a: 'Yes — our Silberthal rebuild was built to match a premium German product, performance-first and precise. We hold every build to Core Web Vitals in the green and a standard we would put our name to.'
+        a: 'Yes - our Silberthal rebuild was built to match a premium German product, performance-first and precise. We hold every build to Core Web Vitals in the green and a standard we would put our name to.'
       },
       {
         q: 'How strictly do you handle GDPR?',
-        a: 'Consent-first by default: no non-essential cookies before opt-in, minimal data collection, and a clean technical basis for your Datenschutzerklärung — appropriate for Germany\'s strict enforcement.'
+        a: 'Consent-first by default: no non-essential cookies before opt-in, minimal data collection, and a clean technical basis for your Datenschutzerklärung - appropriate for Germany\'s strict enforcement.'
       },
       {
         q: 'Can you integrate SEPA and German payment methods?',
-        a: 'Yes — SEPA direct debit alongside card and other methods German shoppers use, through Stripe or your platform\'s native gateway, invoiced in euros.'
+        a: 'Yes - SEPA direct debit alongside card and other methods German shoppers use, through Stripe or your platform\'s native gateway, invoiced in euros.'
       },
       {
         q: 'Do you build with Next.js?',
-        a: 'Yes. For performance-critical and premium builds we use Next.js for sub-second loads and full SEO control — a good fit for Berlin\'s technical audience.'
+        a: 'Yes. For performance-critical and premium builds we use Next.js for sub-second loads and full SEO control - a good fit for Berlin\'s technical audience.'
       },
       {
         q: 'Can you build a German/English multilingual site?',
@@ -878,11 +878,11 @@ export const locationPages: LocationPage[] = [
       },
       {
         q: 'Who owns the finished site?',
-        a: 'You do — all code, files and hosting accounts, with no platform lock-in or licence fee.'
+        a: 'You do - all code, files and hosting accounts, with no platform lock-in or licence fee.'
       },
       {
         q: 'Do you offer support after launch?',
-        a: 'Yes — training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
+        a: 'Yes - training at handover plus optional monthly maintenance for updates, backups, monitoring and small changes.'
       }
     ,
       {

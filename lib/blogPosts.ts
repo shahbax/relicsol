@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     slug: `website-maintenance`,
     category: `Web Design`,
     title: `Website Maintenance in 2026: What You Actually Need (and What You Don't)`,
-    excerpt: `Website maintenance is one of those topics that most business owners only think about after something goes wrong — a security breach, a plugin conflict that⬦`,
+    excerpt: `Website maintenance is one of those topics that most business owners only think about after something goes wrong - a security breach, a plugin conflict that⬦`,
     description: `What website maintenance actually involves in 2026: which tasks are essential, which can wait, and whether to handle it in-house or hire it out.`,
     date: `July 22, 2026`,
     isoDate: `2026-07-22`,
@@ -48,7 +48,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `Website maintenance is one of those topics that most business owners only think about after something goes wrong — a security breach, a plugin conflict that breaks the checkout, or a page that has been loading slowly for months without anyone noticing.`
+        text: `Website maintenance is one of those topics that most business owners only think about after something goes wrong - a security breach, a plugin conflict that breaks the checkout, or a page that has been loading slowly for months without anyone noticing.`
       },
       {
         type: `p`,
@@ -60,7 +60,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A website is not a finished product that you build once and forget. It runs on software — WordPress core, plugins, themes, server software, PHP versions — that is constantly being updated to fix security vulnerabilities, improve performance, and maintain compatibility.`
+        text: `A website is not a finished product that you build once and forget. It runs on software - WordPress core, plugins, themes, server software, PHP versions - that is constantly being updated to fix security vulnerabilities, improve performance, and maintain compatibility.`
       },
       {
         type: `p`,
@@ -84,7 +84,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Best practice: apply updates to a staging copy of the site first, verify that all functionality works correctly, then apply to the live site. Never update plugins directly on a live site without testing — a single plugin conflict can take down your entire website.`
+        text: `Best practice: apply updates to a staging copy of the site first, verify that all functionality works correctly, then apply to the live site. Never update plugins directly on a live site without testing - a single plugin conflict can take down your entire website.`
       },
       {
         type: `h3`,
@@ -92,7 +92,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Run a monthly security scan using Wordfence, Sucuri, or similar tools. These scans check for malware, modified core files, suspicious user accounts, and known vulnerabilities in installed plugins and themes. Most security issues caught in monthly scans are preventable — they result from outdated software rather than sophisticated attacks.`
+        text: `Run a monthly security scan using Wordfence, Sucuri, or similar tools. These scans check for malware, modified core files, suspicious user accounts, and known vulnerabilities in installed plugins and themes. Most security issues caught in monthly scans are preventable - they result from outdated software rather than sophisticated attacks.`
       },
       {
         type: `h3`,
@@ -100,7 +100,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Verify that your uptime monitoring service (UptimeRobot, Pingdom, or similar) is active and correctly configured. Review the previous month's uptime data. If uptime has dropped below 99.9%, investigate the cause — it may indicate hosting problems that need to be addressed.`
+        text: `Verify that your uptime monitoring service (UptimeRobot, Pingdom, or similar) is active and correctly configured. Review the previous month's uptime data. If uptime has dropped below 99.9%, investigate the cause - it may indicate hosting problems that need to be addressed.`
       },
       {
         type: `h3`,
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Having backups is not enough — you need to verify that they are actually working. Monthly, confirm that your backup service has completed its scheduled backups successfully and that the backup files are accessible and restorable. A backup that fails silently is worse than no backup at all, because it creates false confidence.`
+        text: `Having backups is not enough - you need to verify that they are actually working. Monthly, confirm that your backup service has completed its scheduled backups successfully and that the backup files are accessible and restorable. A backup that fails silently is worse than no backup at all, because it creates false confidence.`
       },
       {
         type: `h3`,
@@ -136,7 +136,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A thorough performance audit using GTmetrix and PageSpeed Insights. Check all key pages — not just the homepage. Identify and address performance issues: oversized images, unused CSS/JavaScript, render-blocking resources, and server response times.`
+        text: `A thorough performance audit using GTmetrix and PageSpeed Insights. Check all key pages - not just the homepage. Identify and address performance issues: oversized images, unused CSS/JavaScript, render-blocking resources, and server response times.`
       },
       {
         type: `h3`,
@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Evaluate your hosting provider annually. Is the service reliable? Are response times acceptable? Is the pricing competitive? Hosting technology evolves quickly — a hosting plan that was excellent three years ago may now be outperformed by newer alternatives at a lower price.`
+        text: `Evaluate your hosting provider annually. Is the service reliable? Are response times acceptable? Is the pricing competitive? Hosting technology evolves quickly - a hosting plan that was excellent three years ago may now be outperformed by newer alternatives at a lower price.`
       },
       {
         type: `h3`,
@@ -226,11 +226,11 @@ export const blogPosts: BlogPost[] = [
       {
         type: `ul`,
         items: [
-          `Clear scope of work — exactly what is included monthly, quarterly, and annually`,
-          `Response time guarantees — how quickly they respond to emergencies (4-hour response time for critical issues is reasonable)`,
-          `Backup frequency — daily backups minimum, with off-site storage`,
-          `Reporting — monthly reports on work completed, security status, and performance metrics`,
-          `Staging environment — all updates tested on a staging copy before being applied to your live site`
+          `Clear scope of work - exactly what is included monthly, quarterly, and annually`,
+          `Response time guarantees - how quickly they respond to emergencies (4-hour response time for critical issues is reasonable)`,
+          `Backup frequency - daily backups minimum, with off-site storage`,
+          `Reporting - monthly reports on work completed, security status, and performance metrics`,
+          `Staging environment - all updates tested on a staging copy before being applied to your live site`
         ]
       },
       {
@@ -241,7 +241,7 @@ export const blogPosts: BlogPost[] = [
         type: `callout`,
         title: `Key Takeaways`,
         items: [
-          `Outdated plugins are responsible for over 90% of WordPress security breaches — regular updates are essential, not optional`,
+          `Outdated plugins are responsible for over 90% of WordPress security breaches - regular updates are essential, not optional`,
           `Always test updates on a staging environment before applying them to a live site`,
           `Monthly tasks (updates, security scan, backup verification, performance check) prevent the majority of website problems`,
           `Content updates and analytics monitoring can be handled by non-technical owners; security, updates, and performance need a developer`,
@@ -285,7 +285,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `Local SEO is fundamentally different from general SEO. While traditional SEO focuses on ranking for keywords on a national or global level, local SEO is about appearing when someone nearby searches for the services you provide. For service businesses — plumbers, accountants, web design agencies, dental practices, law firms — local SEO is typically the highest-ROI marketing channel available.`
+        text: `Local SEO is fundamentally different from general SEO. While traditional SEO focuses on ranking for keywords on a national or global level, local SEO is about appearing when someone nearby searches for the services you provide. For service businesses - plumbers, accountants, web design agencies, dental practices, law firms - local SEO is typically the highest-ROI marketing channel available.`
       },
       {
         type: `p`,
@@ -297,19 +297,19 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `When someone searches for —Sweb design agency near me⬝ or —Splumber in Manchester,⬝ Google uses a different set of ranking signals than it does for informational searches. Three factors dominate local rankings:`
+        text: `When someone searches for - Sweb design agency near me⬝ or - Splumber in Manchester,⬝ Google uses a different set of ranking signals than it does for informational searches. Three factors dominate local rankings:`
       },
       {
         type: `ul`,
         items: [
-          `Proximity — how close your business is to the searcher`,
-          `Relevance — how well your business matches the search query`,
-          `Prominence — how well-known and trusted your business is (reviews, citations, links)`
+          `Proximity - how close your business is to the searcher`,
+          `Relevance - how well your business matches the search query`,
+          `Prominence - how well-known and trusted your business is (reviews, citations, links)`
         ]
       },
       {
         type: `p`,
-        text: `The map pack — the three businesses that appear in a box with a map at the top of local search results — drives a disproportionate share of clicks and calls for local searches. Appearing in this map pack is the primary goal of local SEO.`
+        text: `The map pack - the three businesses that appear in a box with a map at the top of local search results - drives a disproportionate share of clicks and calls for local searches. Appearing in this map pack is the primary goal of local SEO.`
       },
       {
         type: `h2`,
@@ -337,7 +337,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Businesses with photos receive 42% more requests for directions and 35% more click-throughs to their website than those without. Upload genuine photos of your team, your premises (interior and exterior), your work, and your products. Avoid stock photography — Google's systems can identify it, and customers find it inauthentic.`
+        text: `Businesses with photos receive 42% more requests for directions and 35% more click-throughs to their website than those without. Upload genuine photos of your team, your premises (interior and exterior), your work, and your products. Avoid stock photography - Google's systems can identify it, and customers find it inauthentic.`
       },
       {
         type: `p`,
@@ -349,7 +349,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Google Posts are short updates that appear on your GBP. They function similarly to social media posts but appear directly in search results. Post updates at least twice a month — share new projects, service announcements, seasonal promotions, or helpful tips related to your industry.`
+        text: `Google Posts are short updates that appear on your GBP. They function similarly to social media posts but appear directly in search results. Post updates at least twice a month - share new projects, service announcements, seasonal promotions, or helpful tips related to your industry.`
       },
       {
         type: `h3`,
@@ -357,7 +357,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `The Q&A section of your GBP is publicly editable — anyone can ask and answer questions. Proactively populate this section with common questions and helpful answers. Monitor it regularly for new questions, and answer them promptly and thoroughly.`
+        text: `The Q&A section of your GBP is publicly editable - anyone can ask and answer questions. Proactively populate this section with common questions and helpful answers. Monitor it regularly for new questions, and answer them promptly and thoroughly.`
       },
       {
         type: `h2`,
@@ -373,7 +373,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Google cross-references your NAP information across the web to verify your business details. Inconsistent information — a different phone number on Yelp than on your website, an old address on Yellow Pages — creates confusion and reduces Google's confidence in your business data. This directly harms your local rankings.`
+        text: `Google cross-references your NAP information across the web to verify your business details. Inconsistent information - a different phone number on Yelp than on your website, an old address on Yellow Pages - creates confusion and reduces Google's confidence in your business data. This directly harms your local rankings.`
       },
       {
         type: `h3`,
@@ -389,7 +389,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Before building new citations, audit your existing ones. Tools like BrightLocal, Whitespark, or Moz Local can scan for existing citations and identify inconsistencies. Fix inconsistencies before creating new listings — contradictory information does more harm than missing information.`
+        text: `Before building new citations, audit your existing ones. Tools like BrightLocal, Whitespark, or Moz Local can scan for existing citations and identify inconsistencies. Fix inconsistencies before creating new listings - contradictory information does more harm than missing information.`
       },
       {
         type: `h2`,
@@ -405,7 +405,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Automated review request sequences — triggered by project completion or service delivery — generate 3–5x more reviews than manual requests. At Relicsol, we build these automations using n8n or Make.com, sending a personalised email or SMS 48–72 hours after service delivery with a direct link to the Google review form.`
+        text: `Automated review request sequences - triggered by project completion or service delivery - generate 3–5x more reviews than manual requests. At Relicsol, we build these automations using n8n or Make.com, sending a personalised email or SMS 48–72 hours after service delivery with a direct link to the Google review form.`
       },
       {
         type: `h3`,
@@ -413,7 +413,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Respond to every review — positive and negative. For positive reviews, a genuine thank-you that references something specific from the project or interaction shows attentiveness. For negative reviews, respond professionally, acknowledge the concern, and offer to resolve it offline. Never argue publicly.`
+        text: `Respond to every review - positive and negative. For positive reviews, a genuine thank-you that references something specific from the project or interaction shows attentiveness. For negative reviews, respond professionally, acknowledge the concern, and offer to resolve it offline. Never argue publicly.`
       },
       {
         type: `p`,
@@ -429,7 +429,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `If you serve multiple cities or areas, create a dedicated landing page for each one. A genuine page targeting —Sweb design agency Birmingham⬝ with Birmingham-specific content, case studies from Birmingham clients, and local testimonials will outperform a generic —Sareas we serve⬝ page listing 20 cities.`
+        text: `If you serve multiple cities or areas, create a dedicated landing page for each one. A genuine page targeting - Sweb design agency Birmingham⬝ with Birmingham-specific content, case studies from Birmingham clients, and local testimonials will outperform a generic - Sareas we serve⬝ page listing 20 cities.`
       },
       {
         type: `p`,
@@ -441,7 +441,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Blog content with a local angle signals geographical relevance. Topics like —SBest business networking events in [city]⬝, —SHow [local regulation] affects [your industry] businesses⬝, or case studies featuring local clients all strengthen your local topical authority.`
+        text: `Blog content with a local angle signals geographical relevance. Topics like - SBest business networking events in [city]⬝, - SHow [local regulation] affects [your industry] businesses⬝, or case studies featuring local clients all strengthen your local topical authority.`
       },
       {
         type: `h2`,
@@ -475,7 +475,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `For rank tracking, tools like Local Viking, BrightLocal, or Whitespark allow you to track your map pack and organic rankings from specific locations — essential because local rankings vary significantly based on the searcher's physical position.`
+        text: `For rank tracking, tools like Local Viking, BrightLocal, or Whitespark allow you to track your map pack and organic rankings from specific locations - essential because local rankings vary significantly based on the searcher's physical position.`
       },
       {
         type: `p`,
@@ -485,7 +485,7 @@ export const blogPosts: BlogPost[] = [
         type: `callout`,
         title: `Key Takeaways`,
         items: [
-          `Google Business Profile is the single most important local SEO asset — complete every field and update it regularly`,
+          `Google Business Profile is the single most important local SEO asset - complete every field and update it regularly`,
           `NAP consistency across all citations is critical; inconsistent information directly harms local rankings`,
           `Automated review request sequences generate 3–5x more reviews than manual requests`,
           `City-specific landing pages with genuine unique content outperform generic service area listings`,
@@ -529,7 +529,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `The Shopify vs WooCommerce decision is one of the most consequential platform choices an e-commerce business makes. Both platforms power millions of successful stores, but they serve fundamentally different types of businesses — and choosing the wrong one creates friction that compounds over time.`
+        text: `The Shopify vs WooCommerce decision is one of the most consequential platform choices an e-commerce business makes. Both platforms power millions of successful stores, but they serve fundamentally different types of businesses - and choosing the wrong one creates friction that compounds over time.`
       },
       {
         type: `p`,
@@ -541,7 +541,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Shopify is a fully hosted e-commerce platform. You pay a monthly subscription ($39—$399 for standard plans, $2,300/month for Shopify Plus) and Shopify handles hosting, security, payment processing, and platform updates. You focus on your products and sales; Shopify manages the technology.`
+        text: `Shopify is a fully hosted e-commerce platform. You pay a monthly subscription ($39 - $399 for standard plans, $2,300/month for Shopify Plus) and Shopify handles hosting, security, payment processing, and platform updates. You focus on your products and sales; Shopify manages the technology.`
       },
       {
         type: `p`,
@@ -557,7 +557,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `WooCommerce is a free, open-source e-commerce plugin for WordPress. Unlike Shopify, WooCommerce is self-hosted — you install it on a server you control, and you are responsible for hosting, security, updates, and performance.`
+        text: `WooCommerce is a free, open-source e-commerce plugin for WordPress. Unlike Shopify, WooCommerce is self-hosted - you install it on a server you control, and you are responsible for hosting, security, updates, and performance.`
       },
       {
         type: `p`,
@@ -565,7 +565,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `WooCommerce's key strength: Flexibility. If you can imagine it, WooCommerce can be customised to do it — product configurators, complex pricing rules, membership systems, multi-vendor marketplaces, and integrations with any external system.`
+        text: `WooCommerce's key strength: Flexibility. If you can imagine it, WooCommerce can be customised to do it - product configurators, complex pricing rules, membership systems, multi-vendor marketplaces, and integrations with any external system.`
       },
       {
         type: `h2`,
@@ -577,7 +577,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A well-optimised WooCommerce store on quality hosting (Cloudways, Kinsta, or similar) can match Shopify's performance. But achieving and maintaining that performance requires ongoing attention — a responsibility that falls on you or your development team.`
+        text: `A well-optimised WooCommerce store on quality hosting (Cloudways, Kinsta, or similar) can match Shopify's performance. But achieving and maintaining that performance requires ongoing attention - a responsibility that falls on you or your development team.`
       },
       {
         type: `h2`,
@@ -585,15 +585,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Startup Stage ($0—$100K/year revenue)`
+        text: `Startup Stage ($0 - $100K/year revenue)`
       },
       {
         type: `p`,
-        text: `Shopify: $39/month (Basic plan) + 2.9% + 30&cent; transaction fees on Shopify Payments. Theme: $0—$350 one-time. Apps: $0—$100/month for essential apps. Total: approximately $50—$150/month.`
+        text: `Shopify: $39/month (Basic plan) + 2.9% + 30&cent; transaction fees on Shopify Payments. Theme: $0 - $350 one-time. Apps: $0 - $100/month for essential apps. Total: approximately $50 - $150/month.`
       },
       {
         type: `p`,
-        text: `WooCommerce: Hosting: $15—$40/month. Theme: $0—$80 one-time. Essential plugins: $0—$200/year. Payment gateway fees: 2.9% + 30&cent; (Stripe). SSL: free. Total: approximately $20—$60/month + plugin renewals.`
+        text: `WooCommerce: Hosting: $15 - $40/month. Theme: $0 - $80 one-time. Essential plugins: $0 - $200/year. Payment gateway fees: 2.9% + 30&cent; (Stripe). SSL: free. Total: approximately $20 - $60/month + plugin renewals.`
       },
       {
         type: `p`,
@@ -601,15 +601,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Growth Stage ($100K—$1M/year)`
+        text: `Growth Stage ($100K - $1M/year)`
       },
       {
         type: `p`,
-        text: `Shopify: $105/month (Shopify plan) + lower transaction rates at higher volume + $200—$500/month in apps for advanced functionality.`
+        text: `Shopify: $105/month (Shopify plan) + lower transaction rates at higher volume + $200 - $500/month in apps for advanced functionality.`
       },
       {
         type: `p`,
-        text: `WooCommerce: $40—$100/month hosting (higher-tier plan for traffic) + $500—$1,500/year in premium plugins + potential development costs for customisation.`
+        text: `WooCommerce: $40 - $100/month hosting (higher-tier plan for traffic) + $500 - $1,500/year in premium plugins + potential development costs for customisation.`
       },
       {
         type: `p`,
@@ -621,11 +621,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Shopify: Shopify Plus at $2,300/month provides enterprise features, dedicated support, and lower transaction rates. Total platform cost: $2,500—$4,000/month.`
+        text: `Shopify: Shopify Plus at $2,300/month provides enterprise features, dedicated support, and lower transaction rates. Total platform cost: $2,500 - $4,000/month.`
       },
       {
         type: `p`,
-        text: `WooCommerce: Premium hosting: $100—$300/month. Premium plugins and maintenance: $300—$800/month. Ongoing development support: $500—$2,000/month. Total: $900—$3,100/month.`
+        text: `WooCommerce: Premium hosting: $100 - $300/month. Premium plugins and maintenance: $300 - $800/month. Ongoing development support: $500 - $2,000/month. Total: $900 - $3,100/month.`
       },
       {
         type: `p`,
@@ -637,11 +637,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `WooCommerce wins on customisation depth. As an open-source platform on self-hosted infrastructure, there are genuinely no limits to what you can build. Complex product configurators, custom checkout flows, integration with proprietary systems — all possible without platform restrictions.`
+        text: `WooCommerce wins on customisation depth. As an open-source platform on self-hosted infrastructure, there are genuinely no limits to what you can build. Complex product configurators, custom checkout flows, integration with proprietary systems - all possible without platform restrictions.`
       },
       {
         type: `p`,
-        text: `Shopify imposes some constraints by design. The checkout process, for example, is controlled by Shopify on standard plans (customisable only on Shopify Plus). Theme customisation has limits compared to a fully custom WordPress/WooCommerce build. These constraints exist to maintain platform stability and security — but they can be frustrating for businesses with specific requirements.`
+        text: `Shopify imposes some constraints by design. The checkout process, for example, is controlled by Shopify on standard plans (customisable only on Shopify Plus). Theme customisation has limits compared to a fully custom WordPress/WooCommerce build. These constraints exist to maintain platform stability and security - but they can be frustrating for businesses with specific requirements.`
       },
       {
         type: `h2`,
@@ -689,7 +689,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `For most e-commerce businesses starting or growing in 2026, Shopify is the safer choice. Its managed infrastructure, reliable performance, and lower maintenance burden let you focus on what matters most — your products and customers.`
+        text: `For most e-commerce businesses starting or growing in 2026, Shopify is the safer choice. Its managed infrastructure, reliable performance, and lower maintenance burden let you focus on what matters most - your products and customers.`
       },
       {
         type: `p`,
@@ -703,7 +703,7 @@ export const blogPosts: BlogPost[] = [
           `WooCommerce is typically cheaper at startup stage; costs converge at growth stage; Shopify Plus vs custom WooCommerce is situation-dependent at enterprise scale`,
           `WooCommerce offers unlimited customisation; Shopify imposes constraints that maintain stability but limit flexibility`,
           `Shopify is right for businesses wanting to focus on selling; WooCommerce for those needing deep customisation with development resources available`,
-          `Platform migration is feasible but significant — ensure the destination genuinely solves your problems before committing`
+          `Platform migration is feasible but significant - ensure the destination genuinely solves your problems before committing`
         ]
       }
     ],
@@ -747,7 +747,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `This comparison breaks down the practical differences — not the marketing claims — so you can choose the platform that fits your team, your budget, and your automation ambitions.`
+        text: `This comparison breaks down the practical differences - not the marketing claims - so you can choose the platform that fits your team, your budget, and your automation ambitions.`
       },
       {
         type: `h2`,
@@ -755,11 +755,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `n8n is an open-source workflow automation platform that can be self-hosted on your own server or used via n8n Cloud. It was built by developers, for developers — and that heritage shows in every aspect of the product. The interface uses a node-based workflow editor where you connect triggers, actions, and logic nodes to build automations.`
+        text: `n8n is an open-source workflow automation platform that can be self-hosted on your own server or used via n8n Cloud. It was built by developers, for developers - and that heritage shows in every aspect of the product. The interface uses a node-based workflow editor where you connect triggers, actions, and logic nodes to build automations.`
       },
       {
         type: `p`,
-        text: `Self-hosted n8n has no per-execution pricing. You pay only for your server costs (typically $5—$50/month depending on volume), which makes it dramatically cheaper at scale than any competitor. n8n Cloud starts at $20/month for 2,500 executions.`
+        text: `Self-hosted n8n has no per-execution pricing. You pay only for your server costs (typically $5 - $50/month depending on volume), which makes it dramatically cheaper at scale than any competitor. n8n Cloud starts at $20/month for 2,500 executions.`
       },
       {
         type: `p`,
@@ -775,7 +775,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Make.com integrates with over 1,500 applications out of the box, with each integration pre-built and maintained by the Make.com team. This means less configuration time for common integrations — connecting your CRM to your email platform typically takes minutes rather than the hours it might take to configure the same connection via API in n8n.`
+        text: `Make.com integrates with over 1,500 applications out of the box, with each integration pre-built and maintained by the Make.com team. This means less configuration time for common integrations - connecting your CRM to your email platform typically takes minutes rather than the hours it might take to configure the same connection via API in n8n.`
       },
       {
         type: `p`,
@@ -815,11 +815,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `n8n wins dramatically. Self-hosted n8n running on a $20/month server can handle tens of thousands of executions per month with no per-execution cost. The same volume on Make.com could cost $99—$299/month or more depending on operation count.`
+        text: `n8n wins dramatically. Self-hosted n8n running on a $20/month server can handle tens of thousands of executions per month with no per-execution cost. The same volume on Make.com could cost $99 - $299/month or more depending on operation count.`
       },
       {
         type: `p`,
-        text: `For a business running 50,000+ automation operations per month, the annual cost difference between self-hosted n8n and Make.com can be $2,000—$3,000 per year.`
+        text: `For a business running 50,000+ automation operations per month, the annual cost difference between self-hosted n8n and Make.com can be $2,000 - $3,000 per year.`
       },
       {
         type: `h3`,
@@ -851,7 +851,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Both platforms provide workflow execution logs, error notifications, and retry capabilities. n8n's self-hosted version gives you complete control over logging and monitoring — you can integrate with your existing monitoring stack. Make.com provides a clean built-in execution history with visual indicators of where failures occurred.`
+        text: `Both platforms provide workflow execution logs, error notifications, and retry capabilities. n8n's self-hosted version gives you complete control over logging and monitoring - you can integrate with your existing monitoring stack. Make.com provides a clean built-in execution history with visual indicators of where failures occurred.`
       },
       {
         type: `h2`,
@@ -887,7 +887,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Both platforms are excellent — the right choice depends entirely on your team's technical capacity and your automation volume. If you have developers available and plan to run automations at scale, n8n will save you money and give you more control. If you need non-technical team members to build and manage automations, Make.com is the safer, faster choice.`
+        text: `Both platforms are excellent - the right choice depends entirely on your team's technical capacity and your automation volume. If you have developers available and plan to run automations at scale, n8n will save you money and give you more control. If you need non-technical team members to build and manage automations, Make.com is the safer, faster choice.`
       },
       {
         type: `p`,
@@ -898,7 +898,7 @@ export const blogPosts: BlogPost[] = [
         title: `Key Takeaways`,
         items: [
           `Make.com is significantly easier for non-technical users; n8n requires development knowledge but offers far more flexibility`,
-          `Self-hosted n8n is dramatically cheaper at scale — no per-execution pricing vs Make.com's operation-based billing`,
+          `Self-hosted n8n is dramatically cheaper at scale - no per-execution pricing vs Make.com's operation-based billing`,
           `Make.com's 1,500+ pre-built integrations save setup time; n8n compensates with universal API connectivity`,
           `Both platforms handle AI integration well; n8n offers more control for custom AI workflows`,
           `Choose based on your team's technical capacity and automation volume, not on feature comparisons alone`
@@ -941,11 +941,11 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `The average e-commerce conversion rate in 2026 is 2.5–3.5%. That means for every 100 visitors to a typical online store, 97 leave without buying. Conversion rate optimisation (CRO) is the practice of improving that number — getting more of the visitors you already have to convert, without spending more on traffic.`
+        text: `The average e-commerce conversion rate in 2026 is 2.5–3.5%. That means for every 100 visitors to a typical online store, 97 leave without buying. Conversion rate optimisation (CRO) is the practice of improving that number - getting more of the visitors you already have to convert, without spending more on traffic.`
       },
       {
         type: `p`,
-        text: `A 1% improvement in conversion rate on a store doing $500,000 in annual revenue adds $5,000 in monthly revenue. The changes that drive that improvement are often not dramatic redesigns — they are specific, targeted fixes to friction points that are preventing your visitors from completing a purchase.`
+        text: `A 1% improvement in conversion rate on a store doing $500,000 in annual revenue adds $5,000 in monthly revenue. The changes that drive that improvement are often not dramatic redesigns - they are specific, targeted fixes to friction points that are preventing your visitors from completing a purchase.`
       },
       {
         type: `p`,
@@ -981,7 +981,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Trust signals reduce purchase anxiety — the hesitation a first-time buyer feels before giving their card details to an unfamiliar store. The most effective trust signals are: customer reviews (with photos where possible), security badges near the checkout, clear returns policy linked from the product page, and a money-back guarantee displayed prominently.`
+        text: `Trust signals reduce purchase anxiety - the hesitation a first-time buyer feels before giving their card details to an unfamiliar store. The most effective trust signals are: customer reviews (with photos where possible), security badges near the checkout, clear returns policy linked from the product page, and a money-back guarantee displayed prominently.`
       },
       {
         type: `p`,
@@ -1005,7 +1005,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Mobile now accounts for 60–70% of e-commerce traffic but only 35–45% of conversions — a gap driven almost entirely by poor mobile experiences. Common mobile friction points: small tap targets, multi-column product grids that are too small to see clearly, checkout forms that do not trigger the right mobile keyboard type, and images that load slowly on cellular connections.`
+        text: `Mobile now accounts for 60–70% of e-commerce traffic but only 35–45% of conversions - a gap driven almost entirely by poor mobile experiences. Common mobile friction points: small tap targets, multi-column product grids that are too small to see clearly, checkout forms that do not trigger the right mobile keyboard type, and images that load slowly on cellular connections.`
       },
       {
         type: `p`,
@@ -1017,7 +1017,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Reviews and social proof need to be visible at the moment of purchase decision — on the product page, near the add-to-cart button, not just on a separate Reviews tab. —S47 people bought this in the last 48 hours⬝ and —S4.8 stars from 234 verified reviews⬝ near the CTA reduce purchase anxiety at the critical moment.`
+        text: `Reviews and social proof need to be visible at the moment of purchase decision - on the product page, near the add-to-cart button, not just on a separate Reviews tab. - S47 people bought this in the last 48 hours⬝ and - S4.8 stars from 234 verified reviews⬝ near the CTA reduce purchase anxiety at the critical moment.`
       },
       {
         type: `h2`,
@@ -1025,7 +1025,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Approximately 70% of shopping carts are abandoned before checkout completion. An exit-intent popup — triggered when a user's mouse moves toward the browser's close button — offering a small discount or free shipping can recover 5–15% of those abandoning visitors.`
+        text: `Approximately 70% of shopping carts are abandoned before checkout completion. An exit-intent popup - triggered when a user's mouse moves toward the browser's close button - offering a small discount or free shipping can recover 5–15% of those abandoning visitors.`
       },
       {
         type: `p`,
@@ -1045,7 +1045,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A generous, clearly communicated returns policy removes one of the biggest barriers to online purchase. —S30-day free returns, no questions asked⬝ near the add-to-cart button consistently improves conversion rates. If your returns policy is genuinely generous, make it prominent — do not bury it.`
+        text: `A generous, clearly communicated returns policy removes one of the biggest barriers to online purchase. - S30-day free returns, no questions asked⬝ near the add-to-cart button consistently improves conversion rates. If your returns policy is genuinely generous, make it prominent - do not bury it.`
       },
       {
         type: `h2`,
@@ -1065,7 +1065,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A three-email abandoned cart sequence — sent at 1 hour, 24 hours, and 72 hours after abandonment — typically recovers 5–10% of abandoned carts. The first email is a simple reminder with a direct link back to the cart. The second adds social proof. The third, if you choose to offer a discount, makes it time-limited.`
+        text: `A three-email abandoned cart sequence - sent at 1 hour, 24 hours, and 72 hours after abandonment - typically recovers 5–10% of abandoned carts. The first email is a simple reminder with a direct link back to the cart. The second adds social proof. The third, if you choose to offer a discount, makes it time-limited.`
       },
       {
         type: `p`,
@@ -1084,7 +1084,7 @@ export const blogPosts: BlogPost[] = [
         title: `Key Takeaways`,
         items: [
           `Product photography quality is the single highest-impact change for most e-commerce stores`,
-          `Guest checkout is essential — account creation before purchase kills conversions`,
+          `Guest checkout is essential - account creation before purchase kills conversions`,
           `Mobile experience quality, not mobile traffic quality, explains the gap between mobile traffic and mobile conversion rates`,
           `Trust signals need to be visible on the product page near the CTA, not buried in the footer`,
           `Abandoned cart email sequences consistently recover 5–10% of abandoned carts with minimal ongoing cost`
@@ -1116,7 +1116,7 @@ export const blogPosts: BlogPost[] = [
     slug: `web-design-trends`,
     category: `Web Design`,
     title: `Web Design Trends for 2026: What's Actually Worth Adopting`,
-    excerpt: `Every year produces a new wave of web design trends — some of which represent genuine improvements to how websites serve their users, and many of which are⬦`,
+    excerpt: `Every year produces a new wave of web design trends - some of which represent genuine improvements to how websites serve their users, and many of which are⬦`,
     description: `The 2026 web design trends worth adopting and the ones to skip, judged on real impact to conversions, performance and brand credibility.`,
     date: `June 18, 2026`,
     isoDate: `2026-06-18`,
@@ -1127,7 +1127,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `Every year produces a new wave of web design trends — some of which represent genuine improvements to how websites serve their users, and many of which are aesthetic choices that look impressive in portfolio showcases but add friction to real user journeys.`
+        text: `Every year produces a new wave of web design trends - some of which represent genuine improvements to how websites serve their users, and many of which are aesthetic choices that look impressive in portfolio showcases but add friction to real user journeys.`
       },
       {
         type: `p`,
@@ -1143,7 +1143,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Dark mode is no longer a trend — it is a mainstream expectation. Operating systems default to dark mode for a significant portion of users, and websites that do not support it feel jarring by comparison. Beyond user preference, dark backgrounds make high-quality product photography and video content pop in ways that light backgrounds cannot match.`
+        text: `Dark mode is no longer a trend - it is a mainstream expectation. Operating systems default to dark mode for a significant portion of users, and websites that do not support it feel jarring by comparison. Beyond user preference, dark backgrounds make high-quality product photography and video content pop in ways that light backgrounds cannot match.`
       },
       {
         type: `p`,
@@ -1159,7 +1159,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Micro-interactions are small, purposeful animations that respond to user actions — a button that changes state when hovered, a card that lifts slightly when focused, an icon that moves when a form is submitted successfully.`
+        text: `Micro-interactions are small, purposeful animations that respond to user actions - a button that changes state when hovered, a card that lifts slightly when focused, an icon that moves when a form is submitted successfully.`
       },
       {
         type: `p`,
@@ -1187,7 +1187,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Large, confident headline typography — particularly variable-weight serif and geometric sans-serif fonts — is defining a new generation of premium business websites. Typography is being used as a design element in its own right, not just as a vehicle for text.`
+        text: `Large, confident headline typography - particularly variable-weight serif and geometric sans-serif fonts - is defining a new generation of premium business websites. Typography is being used as a design element in its own right, not just as a vehicle for text.`
       },
       {
         type: `p`,
@@ -1199,7 +1199,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Content that reveals itself as the user scrolls has become a standard pattern for premium websites. When implemented correctly — with appropriate timing, easing curves, and sensitivity to the user's reduced-motion preferences — scroll animations make content feel intentional and guided rather than static.`
+        text: `Content that reveals itself as the user scrolls has become a standard pattern for premium websites. When implemented correctly - with appropriate timing, easing curves, and sensitivity to the user's reduced-motion preferences - scroll animations make content feel intentional and guided rather than static.`
       },
       {
         type: `p`,
@@ -1215,7 +1215,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `The purple-gradient, liquid mesh background, generic floating card aesthetic that has come to define —SAI company⬝ design is already feeling dated. Its widespread adoption in 2024-2025 means that it no longer signals innovation — it signals that the brand used a template.`
+        text: `The purple-gradient, liquid mesh background, generic floating card aesthetic that has come to define - SAI company⬝ design is already feeling dated. Its widespread adoption in 2024-2025 means that it no longer signals innovation - it signals that the brand used a template.`
       },
       {
         type: `p`,
@@ -1227,7 +1227,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Heavy parallax scrolling — where background elements move at different speeds to foreground content — was impressive in 2018. In 2026, it often causes performance issues on mobile, creates accessibility problems for users with vestibular disorders, and has become strongly associated with outdated design aesthetics.`
+        text: `Heavy parallax scrolling - where background elements move at different speeds to foreground content - was impressive in 2018. In 2026, it often causes performance issues on mobile, creates accessibility problems for users with vestibular disorders, and has become strongly associated with outdated design aesthetics.`
       },
       {
         type: `p`,
@@ -1239,7 +1239,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Sites that show a loading screen before revealing any content are making a bet that their animation is more valuable than the time they are taking from the user. For most business websites, that bet is wrong. Users want to read content immediately — not watch a logo animation.`
+        text: `Sites that show a loading screen before revealing any content are making a bet that their animation is more valuable than the time they are taking from the user. For most business websites, that bet is wrong. Users want to read content immediately - not watch a logo animation.`
       },
       {
         type: `h2`,
@@ -1261,7 +1261,7 @@ export const blogPosts: BlogPost[] = [
           `Micro-interactions add genuine quality when implemented correctly and sparingly`,
           `Bold typography reduces reliance on photography and communicates brand personality immediately`,
           `Scroll-triggered animations work when they aid comprehension, not when they delay it`,
-          `AI-gradient aesthetics are already dated — differentiation matters more than following category conventions`
+          `AI-gradient aesthetics are already dated - differentiation matters more than following category conventions`
         ]
       }
     ],
@@ -1301,7 +1301,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `WordPress powers 43% of all websites. Next.js is the framework of choice for companies like Netflix, TikTok, and Vercel. Both are excellent platforms — but for very different situations. Choosing the wrong one leads to either an overpowered, expensive solution or a constrained platform that limits your growth.`
+        text: `WordPress powers 43% of all websites. Next.js is the framework of choice for companies like Netflix, TikTok, and Vercel. Both are excellent platforms - but for very different situations. Choosing the wrong one leads to either an overpowered, expensive solution or a constrained platform that limits your growth.`
       },
       {
         type: `p`,
@@ -1325,7 +1325,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Next.js is a React-based framework for building web applications. Unlike WordPress, it does not come with a built-in content management interface — it is a development framework that can be connected to various headless CMS platforms (Sanity, Contentful, Notion, custom APIs) to manage content.`
+        text: `Next.js is a React-based framework for building web applications. Unlike WordPress, it does not come with a built-in content management interface - it is a development framework that can be connected to various headless CMS platforms (Sanity, Contentful, Notion, custom APIs) to manage content.`
       },
       {
         type: `p`,
@@ -1341,7 +1341,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `WordPress can match this with proper setup — but it requires WP Rocket or a similar caching plugin, a CDN like Cloudflare, image optimisation via Imagify or ShortPixel, and a quality hosting provider. Out of the box, WordPress is significantly slower than Next.js.`
+        text: `WordPress can match this with proper setup - but it requires WP Rocket or a similar caching plugin, a CDN like Cloudflare, image optimisation via Imagify or ShortPixel, and a quality hosting provider. Out of the box, WordPress is significantly slower than Next.js.`
       },
       {
         type: `p`,
@@ -1361,7 +1361,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Next.js requires SEO metadata to be configured in code or through a connected CMS. The result can be technically superior — particularly for large sites with complex URL structures — but requires developer involvement to set up correctly.`
+        text: `Next.js requires SEO metadata to be configured in code or through a connected CMS. The result can be technically superior - particularly for large sites with complex URL structures - but requires developer involvement to set up correctly.`
       },
       {
         type: `p`,
@@ -1377,7 +1377,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Next.js requires a headless CMS (Sanity, Contentful, Notion, or similar) to provide a content management interface. These are excellent tools — in some ways more powerful than WordPress's editor — but they add cost ($0—$300/month depending on the platform and plan) and require initial setup.`
+        text: `Next.js requires a headless CMS (Sanity, Contentful, Notion, or similar) to provide a content management interface. These are excellent tools - in some ways more powerful than WordPress's editor - but they add cost ($0 - $300/month depending on the platform and plan) and require initial setup.`
       },
       {
         type: `h2`,
@@ -1389,7 +1389,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Next.js uses npm packages — the JavaScript ecosystem's equivalent of plugins. The selection is vast but requires developer knowledge to evaluate, install, and configure. There is no equivalent to the WordPress plugin directory's one-click installation experience.`
+        text: `Next.js uses npm packages - the JavaScript ecosystem's equivalent of plugins. The selection is vast but requires developer knowledge to evaluate, install, and configure. There is no equivalent to the WordPress plugin directory's one-click installation experience.`
       },
       {
         type: `h2`,
@@ -1397,11 +1397,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `WordPress: Hosting from $15—$50/month (quality managed providers). Premium plugins: $0—$500/year depending on needs. Developer costs for custom work: lower than Next.js because of the larger talent pool.`
+        text: `WordPress: Hosting from $15 - $50/month (quality managed providers). Premium plugins: $0 - $500/year depending on needs. Developer costs for custom work: lower than Next.js because of the larger talent pool.`
       },
       {
         type: `p`,
-        text: `Next.js: Hosting on Vercel's free tier for most small business sites. Premium CMS: $0—$300/month. Developer costs: typically higher than WordPress due to the smaller talent pool of Next.js specialists.`
+        text: `Next.js: Hosting on Vercel's free tier for most small business sites. Premium CMS: $0 - $300/month. Developer costs: typically higher than WordPress due to the smaller talent pool of Next.js specialists.`
       },
       {
         type: `p`,
@@ -1449,7 +1449,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `The choice is not WordPress vs Next.js — it is which tool solves your specific problem at the best cost. A skilled agency will recommend the right platform for your situation, not the one that is most fashionable in developer circles.`
+        text: `The choice is not WordPress vs Next.js - it is which tool solves your specific problem at the best cost. A skilled agency will recommend the right platform for your situation, not the one that is most fashionable in developer circles.`
       },
       {
         type: `callout`,
@@ -1457,7 +1457,7 @@ export const blogPosts: BlogPost[] = [
         items: [
           `Next.js delivers better raw performance out of the box; WordPress requires configuration to match it`,
           `WordPress wins on content management accessibility and plugin ecosystem`,
-          `Next.js hosting on Vercel is often free; WordPress hosting costs $15—$50/month minimum`,
+          `Next.js hosting on Vercel is often free; WordPress hosting costs $15 - $50/month minimum`,
           `Most small businesses are better served by WordPress; Next.js suits performance-critical or application-like projects`,
           `The right platform depends on your specific requirements, not on what is currently trending in tech`
         ]
@@ -1499,7 +1499,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `SEO advice online ranges from genuinely useful to dangerously outdated. Articles written in 2019 are still ranking for "SEO tips for small business" in 2026 — and recommending tactics that Google has either penalised or rendered irrelevant.`
+        text: `SEO advice online ranges from genuinely useful to dangerously outdated. Articles written in 2019 are still ranking for "SEO tips for small business" in 2026 - and recommending tactics that Google has either penalised or rendered irrelevant.`
       },
       {
         type: `p`,
@@ -1534,10 +1534,10 @@ export const blogPosts: BlogPost[] = [
         type: `ul`,
         items: [
           `Comprehensive, genuinely useful content that answers real questions thoroughly`,
-          `Technical performance — fast loading sites rank better than slow ones`,
+          `Technical performance - fast loading sites rank better than slow ones`,
           `E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness)`,
           `Local SEO for businesses serving a specific geography`,
-          `Topic clusters — a network of related content that establishes topical authority`
+          `Topic clusters - a network of related content that establishes topical authority`
         ]
       },
       {
@@ -1562,7 +1562,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Over 60% of Google searches happen on mobile devices. A site that works well on desktop but is difficult to use on a phone will rank lower than a mobile-first alternative. Google uses mobile-first indexing — it crawls and evaluates the mobile version of your site, not the desktop version.`
+        text: `Over 60% of Google searches happen on mobile devices. A site that works well on desktop but is difficult to use on a phone will rank lower than a mobile-first alternative. Google uses mobile-first indexing - it crawls and evaluates the mobile version of your site, not the desktop version.`
       },
       {
         type: `h3`,
@@ -1606,7 +1606,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Use one H1 per page — the main topic of the page. Use H2s for major sections. Use H3s for subsections. Do not skip levels (H1 —  H3) and do not use headings for visual styling purposes.`
+        text: `Use one H1 per page - the main topic of the page. Use H2s for major sections. Use H3s for subsections. Do not skip levels (H1 - H3) and do not use headings for visual styling purposes.`
       },
       {
         type: `h3`,
@@ -1648,7 +1648,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A local citation is any online mention of your business name, address, and phone number (NAP). Consistent NAP information across directories (Yelp, Yellow Pages, industry-specific directories) reinforces your local presence. Inconsistent NAP — where your address or phone number differs between listings — actively harms your local rankings.`
+        text: `A local citation is any online mention of your business name, address, and phone number (NAP). Consistent NAP information across directories (Yelp, Yellow Pages, industry-specific directories) reinforces your local presence. Inconsistent NAP - where your address or phone number differs between listings - actively harms your local rankings.`
       },
       {
         type: `h3`,
@@ -1664,7 +1664,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Content marketing is not a quick win. The businesses that dominate organic search in any given niche have typically been publishing consistently for 12-18 months or more. But the competitive advantage it creates is significant — organic traffic, unlike paid advertising, does not stop when you stop paying.`
+        text: `Content marketing is not a quick win. The businesses that dominate organic search in any given niche have typically been publishing consistently for 12-18 months or more. But the competitive advantage it creates is significant - organic traffic, unlike paid advertising, does not stop when you stop paying.`
       },
       {
         type: `h3`,
@@ -1690,10 +1690,10 @@ export const blogPosts: BlogPost[] = [
         type: `callout`,
         title: `Key Takeaways`,
         items: [
-          `Technical SEO — speed, mobile experience, structured data — must come before content investment`,
+          `Technical SEO - speed, mobile experience, structured data - must come before content investment`,
           `Google Business Profile optimisation is the single highest-ROI action for local service businesses`,
           `Topic clusters outperform isolated articles for establishing topical authority`,
-          `Content must match search intent — informational, commercial, or transactional`,
+          `Content must match search intent - informational, commercial, or transactional`,
           `Local SEO with genuine city-specific pages outperforms generic service area listings`
         ]
       }
@@ -1723,7 +1723,7 @@ export const blogPosts: BlogPost[] = [
     slug: `website-cost`,
     category: `Web Design`,
     title: `How Much Does a Business Website Cost in 2026? (USA & UK Guide)`,
-    excerpt: `Ask ten different web design agencies what a website costs and you will get ten different answers — ranging from $300 to $300,000.`,
+    excerpt: `Ask ten different web design agencies what a website costs and you will get ten different answers - ranging from $300 to $300,000.`,
     description: `Real business website pricing for the USA and UK in 2026: what each budget tier gets you, where the money goes, and how to avoid overpaying.`,
     date: `May 28, 2026`,
     isoDate: `2026-05-28`,
@@ -1734,7 +1734,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `Ask ten different web design agencies what a website costs and you will get ten different answers — ranging from $300 to $300,000. That range is not dishonest, it reflects genuine differences in what you are buying. But it is not particularly helpful when you are trying to make a decision.`
+        text: `Ask ten different web design agencies what a website costs and you will get ten different answers - ranging from $300 to $300,000. That range is not dishonest, it reflects genuine differences in what you are buying. But it is not particularly helpful when you are trying to make a decision.`
       },
       {
         type: `p`,
@@ -1746,7 +1746,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Tier 1: $300—$800 (Template or DIY)`
+        text: `Tier 1: $300 - $800 (Template or DIY)`
       },
       {
         type: `p`,
@@ -1763,7 +1763,7 @@ export const blogPosts: BlogPost[] = [
           `Limited flexibility when your business needs change`,
           `Adequate for a sole trader or hobby business with very low traffic expectations`,
           `No SEO strategy beyond the basics the platform provides`,
-          `Often requires ongoing monthly platform fees ($16—$40/month)`
+          `Often requires ongoing monthly platform fees ($16 - $40/month)`
         ]
       },
       {
@@ -1776,7 +1776,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Tier 2: $800—$2,500 (Entry-Level Custom)`
+        text: `Tier 2: $800 - $2,500 (Entry-Level Custom)`
       },
       {
         type: `p`,
@@ -1807,11 +1807,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Relicsol's entry point: Our Starter Website Package starts at $999 and covers all of the above with genuine custom design — not a purchased theme.`
+        text: `Relicsol's entry point: Our Starter Website Package starts at $999 and covers all of the above with genuine custom design - not a purchased theme.`
       },
       {
         type: `h3`,
-        text: `Tier 3: $2,500—$8,000 (Professional Custom)`
+        text: `Tier 3: $2,500 - $8,000 (Professional Custom)`
       },
       {
         type: `p`,
@@ -1838,7 +1838,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Tier 4: $8,000—$25,000 (Premium Agency or E-Commerce)`
+        text: `Tier 4: $8,000 - $25,000 (Premium Agency or E-Commerce)`
       },
       {
         type: `p`,
@@ -1891,7 +1891,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `In 2026, a professional custom website in the USA costs $3,000—$8,000. The equivalent in the UK costs £2,200—£6,000. At current exchange rates, these are broadly comparable.`
+        text: `In 2026, a professional custom website in the USA costs $3,000 - $8,000. The equivalent in the UK costs £2,200 - £6,000. At current exchange rates, these are broadly comparable.`
       },
       {
         type: `p`,
@@ -1907,11 +1907,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Hosting: $10—$50/month for quality managed WordPress hosting. $0/month on Vercel for Next.js sites on their free tier.`
+        text: `Hosting: $10 - $50/month for quality managed WordPress hosting. $0/month on Vercel for Next.js sites on their free tier.`
       },
       {
         type: `p`,
-        text: `Domain: $10—$20/year.`
+        text: `Domain: $10 - $20/year.`
       },
       {
         type: `p`,
@@ -1919,15 +1919,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Email: Google Workspace costs $6—$12 per user per month for professional business email.`
+        text: `Email: Google Workspace costs $6 - $12 per user per month for professional business email.`
       },
       {
         type: `p`,
-        text: `Maintenance: Budget $100—$400/month for a professional maintenance service covering security updates, backups, and small changes.`
+        text: `Maintenance: Budget $100 - $400/month for a professional maintenance service covering security updates, backups, and small changes.`
       },
       {
         type: `p`,
-        text: `SEO: Ongoing SEO work typically starts at $500—$1,500/month with a specialist.`
+        text: `SEO: Ongoing SEO work typically starts at $500 - $1,500/month with a specialist.`
       },
       {
         type: `h2`,
@@ -1939,7 +1939,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Custom functionality: Anything that requires custom code — booking systems, calculators, configurators, member portals, API integrations — adds significant development time.`
+        text: `Custom functionality: Anything that requires custom code - booking systems, calculators, configurators, member portals, API integrations - adds significant development time.`
       },
       {
         type: `p`,
@@ -1971,7 +1971,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Ask for case studies, not just portfolio screenshots. Any agency can show you a pretty website. Ask what results it generated — traffic, leads, conversions.`
+        text: `Ask for case studies, not just portfolio screenshots. Any agency can show you a pretty website. Ask what results it generated - traffic, leads, conversions.`
       },
       {
         type: `p`,
@@ -1985,9 +1985,9 @@ export const blogPosts: BlogPost[] = [
         type: `callout`,
         title: `Key Takeaways`,
         items: [
-          `$300—$800 buys a template site; $999—$2,500 buys a genuine entry-level custom website; $3,000—$8,000 buys professional custom work with real SEO foundations`,
+          `$300 - $800 buys a template site; $999 - $2,500 buys a genuine entry-level custom website; $3,000 - $8,000 buys professional custom work with real SEO foundations`,
           `UK prices run approximately 15–25% lower than USA equivalents for comparable work`,
-          `Hidden ongoing costs (hosting, email, maintenance, SEO) typically add $200—$600/month`,
+          `Hidden ongoing costs (hosting, email, maintenance, SEO) typically add $200 - $600/month`,
           `Custom functionality, page count, e-commerce complexity, and design quality are the main drivers of higher project costs`,
           `Always ask for results data from portfolio projects, not just visual examples`
         ]
@@ -2029,11 +2029,11 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: `p`,
-        text: `If your team is spending hours every week copying data between tools, sending manual follow-up emails, chasing approvals, or building the same reports from scratch — you are not alone. And more importantly, every single one of those tasks can be automated.`
+        text: `If your team is spending hours every week copying data between tools, sending manual follow-up emails, chasing approvals, or building the same reports from scratch - you are not alone. And more importantly, every single one of those tasks can be automated.`
       },
       {
         type: `p`,
-        text: `AI automation is no longer something reserved for enterprise companies with dedicated IT departments. In 2026, tools like n8n, Make.com, and Claude API make it possible for any business — from a 3-person agency to a 50-person e-commerce brand — to eliminate the manual work that eats into productive time.`
+        text: `AI automation is no longer something reserved for enterprise companies with dedicated IT departments. In 2026, tools like n8n, Make.com, and Claude API make it possible for any business - from a 3-person agency to a 50-person e-commerce brand - to eliminate the manual work that eats into productive time.`
       },
       {
         type: `p`,
@@ -2061,7 +2061,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `New client onboarding — sending contracts, welcome packs, intake forms, setting up project folders, notifying team members — is almost entirely manual at most agencies and service businesses. A proper automation workflow handles all of this the moment a contract is signed. No human needs to touch it.`
+        text: `New client onboarding - sending contracts, welcome packs, intake forms, setting up project folders, notifying team members - is almost entirely manual at most agencies and service businesses. A proper automation workflow handles all of this the moment a contract is signed. No human needs to touch it.`
       },
       {
         type: `h3`,
@@ -2069,7 +2069,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `If someone on your team spends Monday mornings pulling numbers from Google Analytics, your CRM, and your e-commerce platform into a spreadsheet — that is a job for automation. Tools like n8n can pull from all three sources, calculate the metrics you care about, and deliver a formatted summary to your Slack channel or inbox before 9am.`
+        text: `If someone on your team spends Monday mornings pulling numbers from Google Analytics, your CRM, and your e-commerce platform into a spreadsheet - that is a job for automation. Tools like n8n can pull from all three sources, calculate the metrics you care about, and deliver a formatted summary to your Slack channel or inbox before 9am.`
       },
       {
         type: `h3`,
@@ -2077,7 +2077,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Review requests, post-purchase sequences, appointment reminders, and re-engagement campaigns — all of these are typically sent manually or not at all. Automated sequences triggered by customer behaviour handle these consistently, at scale, without anyone pressing send.`
+        text: `Review requests, post-purchase sequences, appointment reminders, and re-engagement campaigns - all of these are typically sent manually or not at all. Automated sequences triggered by customer behaviour handle these consistently, at scale, without anyone pressing send.`
       },
       {
         type: `h2`,
@@ -2085,7 +2085,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `n8n — Open Source Workflow Automation`
+        text: `n8n - Open Source Workflow Automation`
       },
       {
         type: `p`,
@@ -2093,11 +2093,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `A typical n8n workflow might look like this: a customer submits a contact form —  n8n captures the data —  creates a contact in HubSpot —  sends a personalised follow-up email via SendGrid —  notifies the sales team in Slack —  adds the lead to a tracking spreadsheet in Google Sheets. All of this happens in under two minutes, automatically, every time.`
+        text: `A typical n8n workflow might look like this: a customer submits a contact form - n8n captures the data - creates a contact in HubSpot - sends a personalised follow-up email via SendGrid - notifies the sales team in Slack - adds the lead to a tracking spreadsheet in Google Sheets. All of this happens in under two minutes, automatically, every time.`
       },
       {
         type: `h3`,
-        text: `Make.com — Visual Workflow Builder`
+        text: `Make.com - Visual Workflow Builder`
       },
       {
         type: `p`,
@@ -2105,11 +2105,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Make.com is particularly strong for marketing workflows — connecting lead forms to email sequences, syncing customer data across platforms, and automating social media scheduling.`
+        text: `Make.com is particularly strong for marketing workflows - connecting lead forms to email sequences, syncing customer data across platforms, and automating social media scheduling.`
       },
       {
         type: `h3`,
-        text: `Claude API and OpenAI — AI-Powered Processing`
+        text: `Claude API and OpenAI - AI-Powered Processing`
       },
       {
         type: `p`,
@@ -2135,7 +2135,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `E-Commerce Brand — Review Automation`
+        text: `E-Commerce Brand - Review Automation`
       },
       {
         type: `beforeAfter`,
@@ -2145,7 +2145,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Digital Agency — Client Onboarding`
+        text: `Digital Agency - Client Onboarding`
       },
       {
         type: `beforeAfter`,
@@ -2155,7 +2155,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `h3`,
-        text: `Professional Services Firm — Weekly Reporting`
+        text: `Professional Services Firm - Weekly Reporting`
       },
       {
         type: `beforeAfter`,
@@ -2173,7 +2173,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Spend one week noting every task that follows a predictable pattern — if you do it the same way more than once, it can probably be automated. Common candidates: form responses, status update emails, data entry, file organisation, scheduling.`
+        text: `Spend one week noting every task that follows a predictable pattern - if you do it the same way more than once, it can probably be automated. Common candidates: form responses, status update emails, data entry, file organisation, scheduling.`
       },
       {
         type: `h3`,
@@ -2181,7 +2181,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Multiply the time a task takes by how often it happens per week. A 5-minute task done 20 times a week is 100 minutes — worth automating. A 30-minute task done once a month is less urgent.`
+        text: `Multiply the time a task takes by how often it happens per week. A 5-minute task done 20 times a week is 100 minutes - worth automating. A 30-minute task done once a month is less urgent.`
       },
       {
         type: `h3`,
@@ -2189,7 +2189,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Do not try to automate everything at once. Pick the single highest-impact workflow and get it working reliably before moving to the next. The most common starting point is lead capture and follow-up — it has an immediate and measurable impact on revenue.`
+        text: `Do not try to automate everything at once. Pick the single highest-impact workflow and get it working reliably before moving to the next. The most common starting point is lead capture and follow-up - it has an immediate and measurable impact on revenue.`
       },
       {
         type: `h3`,
@@ -2205,7 +2205,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: `p`,
-        text: `Most businesses we work with save between 10 and 25 hours per week after their first automation project. At an average team member cost of $40-50 per hour, that is $20,000—$62,000 per year in recovered productive time — from a single automation investment that typically costs $2,000—$5,000 to build.`
+        text: `Most businesses we work with save between 10 and 25 hours per week after their first automation project. At an average team member cost of $40-50 per hour, that is $20,000 - $62,000 per year in recovered productive time - from a single automation investment that typically costs $2,000 - $5,000 to build.`
       },
       {
         type: `p`,

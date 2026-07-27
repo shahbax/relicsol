@@ -49,7 +49,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Premium products, undersold by their own commerce.`,
-      paragraphs: [`Saki manufactures premium smart kitchen appliances — coffee makers, egg cookers, kitchen tools — competing with Breville and Cuisinart at a higher design standard.`, `The existing product pages were functional but did not communicate the premium positioning or justify the price point to a discerning American consumer.`],
+      paragraphs: [`Saki manufactures premium smart kitchen appliances - coffee makers, egg cookers, kitchen tools - competing with Breville and Cuisinart at a higher design standard.`, `The existing product pages were functional but did not communicate the premium positioning or justify the price point to a discerning American consumer.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `The new site finally gives our products the room to breathe. Customers stay on the page, read the story, and convert.`,
-      attribution: `— SAKI PRODUCTS, US BRAND TEAM`,
+      attribution: `SAKI PRODUCTS, US BRAND TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -103,7 +103,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `First time our website actually felt like us. We get on calls now and clients are already pre-sold by the time we pick up the phone.`,
-      attribution: `— PUSH DIGITAL GROUP LEADERSHIP`,
+      attribution: `PUSH DIGITAL GROUP LEADERSHIP`,
     },
     result: {
       label: `03 / The Result`,
@@ -139,7 +139,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `A luxury brand on a templated platform.`,
-      paragraphs: [`L'Oiseau De is a premium cosmetics brand targeting the European luxury market. The challenge was building a commerce experience that matched the brand positioning — not just a Shopify template with a logo dropped in.`, `The product photography was high quality. The platform needed to amplify it, not compete with it.`],
+      paragraphs: [`L'Oiseau De is a premium cosmetics brand targeting the European luxury market. The challenge was building a commerce experience that matched the brand positioning - not just a Shopify template with a logo dropped in.`, `The product photography was high quality. The platform needed to amplify it, not compete with it.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -148,7 +148,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `Finally a website that feels like our products. Our customers tell us this on the first visit.`,
-      attribution: `— L'OISEAU DE, BRAND TEAM`,
+      attribution: `L'OISEAU DE, BRAND TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -184,16 +184,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `A category-defining product, two very different audiences.`,
-      paragraphs: [`NextSense is developing the world's first EEG earbuds — a genuinely category-defining health-tech product. The challenge was presenting deep science to two audiences at once.`, `Researchers and investors need clinical depth. Consumers need to understand why they would wear these in daily life. One site had to speak to both.`],
+      paragraphs: [`NextSense is developing the world's first EEG earbuds - a genuinely category-defining health-tech product. The challenge was presenting deep science to two audiences at once.`, `Researchers and investors need clinical depth. Consumers need to understand why they would wear these in daily life. One site had to speak to both.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `A single narrative arc, two reading paths.`,
-      paragraphs: [`We built a dark cinematic Next.js site with a clear narrative arc — starting with the emotional "imagine" hook for consumers, moving into the clinical science for credibility, and landing in a research partnership and waitlist CTA.`, `Scroll-triggered animations revealed content in sequence that matched the storytelling. The design leaned into the health-tech dark aesthetic — precise, scientific, premium — without sacrificing accessibility on either content track.`],
+      paragraphs: [`We built a dark cinematic Next.js site with a clear narrative arc - starting with the emotional "imagine" hook for consumers, moving into the clinical science for credibility, and landing in a research partnership and waitlist CTA.`, `Scroll-triggered animations revealed content in sequence that matched the storytelling. The design leaned into the health-tech dark aesthetic - precise, scientific, premium - without sacrificing accessibility on either content track.`],
     },
     quote: {
       text: `This is the first site that actually feels like the product we are building. Researchers and consumers respond to it.`,
-      attribution: `— NEXTSENSE TEAM`,
+      attribution: `NEXTSENSE TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -238,7 +238,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `We can finally point to our website in a sales conversation. It does part of the convincing for us.`,
-      attribution: `— FORERUNNERS GROUP, LEADERSHIP`,
+      attribution: `FORERUNNERS GROUP, LEADERSHIP`,
     },
     result: {
       label: `03 / The Result`,
@@ -274,16 +274,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Independent wines on a generic store.`,
-      paragraphs: [`House Wine is an independent wine marketplace connecting small estates, sellers, and collectors across Europe. The existing platform looked like a generic WooCommerce store.`, `The challenge was building something that felt as curated and refined as the wines themselves — while handling the operational complexity of a multi-vendor marketplace.`],
+      paragraphs: [`House Wine is an independent wine marketplace connecting small estates, sellers, and collectors across Europe. The existing platform looked like a generic WooCommerce store.`, `The challenge was building something that felt as curated and refined as the wines themselves - while handling the operational complexity of a multi-vendor marketplace.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Earthy Dutch design and discovery by mood.`,
-      paragraphs: [`We built a custom WooCommerce marketplace with an earthy, sophisticated Dutch design language. Muted earth tones, generous whitespace, producer story pages, and a discovery architecture that helped buyers find bottles by mood, occasion, and food pairing — not just variety and vintage.`, `We added a basic AI cellar management feature that helped users track and plan their collection — a differentiator no other Dutch wine marketplace offers.`],
+      paragraphs: [`We built a custom WooCommerce marketplace with an earthy, sophisticated Dutch design language. Muted earth tones, generous whitespace, producer story pages, and a discovery architecture that helped buyers find bottles by mood, occasion, and food pairing - not just variety and vintage.`, `We added a basic AI cellar management feature that helped users track and plan their collection - a differentiator no other Dutch wine marketplace offers.`],
     },
     quote: {
       text: `The discovery flow is the part that surprises everyone. Buyers stay longer and buy bottles they did not know to look for.`,
-      attribution: `— HOUSE WINE FOUNDER`,
+      attribution: `HOUSE WINE FOUNDER`,
     },
     result: {
       label: `03 / The Result`,
@@ -319,16 +319,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Crowded AI tools market, free trial conversion.`,
-      paragraphs: [`Firmate is an AI-powered platform that generates brand identities — logos, color systems, typography, and brand guidelines from a brief. In a crowded AI tools market, the landing page needed to do three things at once.`, `Communicate output quality immediately, lower the barrier to the free trial, and position Firmate against well-funded competitors — all above the first scroll.`],
+      paragraphs: [`Firmate is an AI-powered platform that generates brand identities - logos, color systems, typography, and brand guidelines from a brief. In a crowded AI tools market, the landing page needed to do three things at once.`, `Communicate output quality immediately, lower the barrier to the free trial, and position Firmate against well-funded competitors - all above the first scroll.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Product output as hero. Five trial CTAs, five contexts.`,
-      paragraphs: [`We designed a bold gradient-forward landing page that showcased the product's output quality front and center. The hero led with a live example output, not feature descriptions.`, `Social proof — reviews, usage numbers, press — was placed immediately after the hero. The free trial CTA appeared five times in the page, each with a different motivating context tailored to where the visitor was in the page.`],
+      paragraphs: [`We designed a bold gradient-forward landing page that showcased the product's output quality front and center. The hero led with a live example output, not feature descriptions.`, `Social proof - reviews, usage numbers, press - was placed immediately after the hero. The free trial CTA appeared five times in the page, each with a different motivating context tailored to where the visitor was in the page.`],
     },
     quote: {
       text: `The new site is doing the heavy lifting in fundraising conversations. Investors get it the moment they land.`,
-      attribution: `— FIRMATE FOUNDER`,
+      attribution: `FIRMATE FOUNDER`,
     },
     result: {
       label: `03 / The Result`,
@@ -364,7 +364,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Revolutionary product, two very different audiences.`,
-      paragraphs: [`CropTab is a carbon-capsule fertilizer tablet that delivers precision nutrition while capturing carbon — a genuinely revolutionary product in the AgTech space.`, `The challenge was a site that worked for farmers who needed practical crop benefits and for investors and institutions who needed to see science and market opportunity. The brief was Bloomberg-grade presentation on a farming product.`],
+      paragraphs: [`CropTab is a carbon-capsule fertilizer tablet that delivers precision nutrition while capturing carbon - a genuinely revolutionary product in the AgTech space.`, `The challenge was a site that worked for farmers who needed practical crop benefits and for investors and institutions who needed to see science and market opportunity. The brief was Bloomberg-grade presentation on a farming product.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -373,7 +373,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `Investors read it in five minutes and understood the opportunity. That is the conversion we were chasing.`,
-      attribution: `— FARM MINERALS LEADERSHIP`,
+      attribution: `FARM MINERALS LEADERSHIP`,
     },
     result: {
       label: `03 / The Result`,
@@ -409,7 +409,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Heritage brand, modest digital presence.`,
-      paragraphs: [`Evanlite has been handcrafting premium carbon cycling wheels for 25+ years — a heritage brand with exceptional product quality but a digital presence that did not reflect either the price point or the expertise.`, `Competitive cyclists comparing carbon wheels at ——2,000+ per set need deep technical data and a site that builds trust through specificity, not marketing copy.`],
+      paragraphs: [`Evanlite has been handcrafting premium carbon cycling wheels for 25+ years - a heritage brand with exceptional product quality but a digital presence that did not reflect either the price point or the expertise.`, `Competitive cyclists comparing carbon wheels at €2,000+ per set need deep technical data and a site that builds trust through specificity, not marketing copy.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -418,7 +418,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `Best online quarter we have ever had. The configurator is doing what our sales team used to do on the phone.`,
-      attribution: `— EVANLITE TEAM`,
+      attribution: `EVANLITE TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -454,7 +454,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Premium studio, gym-template website.`,
-      paragraphs: [`Core Atelier is an elevated pilates studio targeting high-value wellness clients. The previous site looked like a generic gym website — stock photos, cluttered layout, no clear premium signal.`, `The studio was filling classes through word of mouth but the website was not converting online discovery into bookings, especially from a wealthy demographic looking for a premium experience.`],
+      paragraphs: [`Core Atelier is an elevated pilates studio targeting high-value wellness clients. The previous site looked like a generic gym website - stock photos, cluttered layout, no clear premium signal.`, `The studio was filling classes through word of mouth but the website was not converting online discovery into bookings, especially from a wealthy demographic looking for a premium experience.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -463,7 +463,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `Our new clients arrive already feeling like they belong here. The site does the qualifying for us.`,
-      attribution: `— CORE ATELIER FOUNDER`,
+      attribution: `CORE ATELIER FOUNDER`,
     },
     result: {
       label: `03 / The Result`,
@@ -499,7 +499,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Crowded US supplement market, instant-purchase intent.`,
-      paragraphs: [`Drink Pouch is a premium performance hydration brand using IV-formula electrolyte science in a convenient pouch format. The US supplement market is intensely competitive — with Liquid IV and LMNT dominating awareness.`, `Drink Pouch needed a site that immediately communicated premium science positioning while converting high-intent buyers on the first visit, especially on mobile.`],
+      paragraphs: [`Drink Pouch is a premium performance hydration brand using IV-formula electrolyte science in a convenient pouch format. The US supplement market is intensely competitive - with Liquid IV and LMNT dominating awareness.`, `Drink Pouch needed a site that immediately communicated premium science positioning while converting high-intent buyers on the first visit, especially on mobile.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -508,7 +508,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `The subscription conversion alone paid for the rebuild in the first quarter.`,
-      attribution: `— DRINK POUCH FOUNDER`,
+      attribution: `DRINK POUCH FOUNDER`,
     },
     result: {
       label: `03 / The Result`,
@@ -533,7 +533,7 @@ export const caseStudies: CaseStudy[] = [
     heroTags: [`Software`, `WordPress`, `Theme Dev`],
     headline: `Sophia Pro — A WordPress theme built for real business needs.`,
     headlineAccent: `real business needs.`,
-    heroDescription: `A multi-purpose theme with custom blocks, ACF templates, and Elementor compatibility — built for service businesses.`,
+    heroDescription: `A multi-purpose theme with custom blocks, ACF templates, and Elementor compatibility - built for service businesses.`,
     overview: {
       client: `Sophia Pro (Internal)`,
       industry: `WordPress Theme`,
@@ -544,16 +544,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `A theme for businesses, not designers.`,
-      paragraphs: [`The brief was to build a premium multi-purpose WordPress theme that service businesses could use without needing a developer for routine customisation.`, `The theme had to handle services, portfolios, team pages, testimonials, and WooCommerce — all within a cohesive design system that did not require Elementor expertise to maintain.`],
+      paragraphs: [`The brief was to build a premium multi-purpose WordPress theme that service businesses could use without needing a developer for routine customisation.`, `The theme had to handle services, portfolios, team pages, testimonials, and WooCommerce - all within a cohesive design system that did not require Elementor expertise to maintain.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Custom theme + custom blocks + ACF templates.`,
-      paragraphs: [`We built a fully custom theme with a custom Gutenberg block library, ACF-based page templates, and a WooCommerce skin. Elementor Pro compatibility was built in for users who preferred that workflow, but the theme worked fully without it.`, `The design system was documented and the admin panel included basic customisation controls for colors, typography, and layout — so non-technical owners could rebrand the entire site without code.`],
+      paragraphs: [`We built a fully custom theme with a custom Gutenberg block library, ACF-based page templates, and a WooCommerce skin. Elementor Pro compatibility was built in for users who preferred that workflow, but the theme worked fully without it.`, `The design system was documented and the admin panel included basic customisation controls for colors, typography, and layout - so non-technical owners could rebrand the entire site without code.`],
     },
     quote: {
       text: `Six months of client work later and we have not opened a support ticket. The theme just works.`,
-      attribution: `— INTERNAL TEAM`,
+      attribution: `INTERNAL TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -589,16 +589,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Procurement audience, no time for marketing-speak.`,
-      paragraphs: [`Yucca Packaging supplies food service packaging to restaurants, caterers, and food manufacturers across South Africa and internationally.`, `Their buyers are procurement managers and operations directors — a professional B2B audience who need product specifications, certifications, and easy ordering, not a flashy consumer experience.`],
+      paragraphs: [`Yucca Packaging supplies food service packaging to restaurants, caterers, and food manufacturers across South Africa and internationally.`, `Their buyers are procurement managers and operations directors - a professional B2B audience who need product specifications, certifications, and easy ordering, not a flashy consumer experience.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Category navigation, spec sheets, fewer clicks to quote.`,
-      paragraphs: [`We built a clean, product-category-first website where buyers could navigate directly to their packaging category, find specification sheets, and submit credit applications or product inquiries without friction.`, `The design was professional without being corporate — warm enough to feel like a genuine business partner rather than a faceless supplier, and structured to make repeat ordering frictionless.`],
+      paragraphs: [`We built a clean, product-category-first website where buyers could navigate directly to their packaging category, find specification sheets, and submit credit applications or product inquiries without friction.`, `The design was professional without being corporate - warm enough to feel like a genuine business partner rather than a faceless supplier, and structured to make repeat ordering frictionless.`],
     },
     quote: {
       text: `Our credit application completion rate is the biggest jump we have seen from a website project. That number is gold.`,
-      attribution: `— YUCCA PACKAGING LEADERSHIP`,
+      attribution: `YUCCA PACKAGING LEADERSHIP`,
     },
     result: {
       label: `03 / The Result`,
@@ -634,7 +634,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Trusted brand, underexpressed online.`,
-      paragraphs: [`Silberthal is a premium German kitchenware brand trusted by over 1.1 million customers across Europe. The brand quality was unquestionable but the online store did not communicate that trust to new visitors.`, `In particular, the 100-day trial guarantee — a significant competitive differentiator in the premium cookware market — was nearly invisible on the existing site.`],
+      paragraphs: [`Silberthal is a premium German kitchenware brand trusted by over 1.1 million customers across Europe. The brand quality was unquestionable but the online store did not communicate that trust to new visitors.`, `In particular, the 100-day trial guarantee - a significant competitive differentiator in the premium cookware market - was nearly invisible on the existing site.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -643,7 +643,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `New customers reach the product page already trusting us. Return rates dropped because expectations are set correctly.`,
-      attribution: `— SILBERTHAL TEAM`,
+      attribution: `SILBERTHAL TEAM`,
     },
     result: {
       label: `03 / The Result`,
@@ -679,7 +679,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `A site that needed to carry weight in the boardroom.`,
-      paragraphs: [`Strategic Gears is a UAE-based management consultancy advising enterprise clients across the MENA region. Their website needed to carry weight in boardroom conversations.`, `When a CEO googles them before a meeting, the site needed to immediately confirm that Strategic Gears operates at the same level as the world's top consultancies — without any of the templated feel that plagues most consulting sites.`],
+      paragraphs: [`Strategic Gears is a UAE-based management consultancy advising enterprise clients across the MENA region. Their website needed to carry weight in boardroom conversations.`, `When a CEO googles them before a meeting, the site needed to immediately confirm that Strategic Gears operates at the same level as the world's top consultancies - without any of the templated feel that plagues most consulting sites.`],
     },
     approach: {
       label: `02 / The Approach`,
@@ -688,7 +688,7 @@ export const caseStudies: CaseStudy[] = [
     },
     quote: {
       text: `Our partners use the site in joint pitches. It signals what we want it to signal before we say a word.`,
-      attribution: `— STRATEGIC GEARS LEADERSHIP`,
+      attribution: `STRATEGIC GEARS LEADERSHIP`,
     },
     result: {
       label: `03 / The Result`,
@@ -724,16 +724,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Growing research library, no architecture.`,
-      paragraphs: [`The Trend Chartist provides technical analysis education and stock market research to a subscriber base of serious traders and investors.`, `The platform needed to organise a growing library of research articles, courses, and market updates into something navigable — while converting free readers into paid subscribers.`],
+      paragraphs: [`The Trend Chartist provides technical analysis education and stock market research to a subscriber base of serious traders and investors.`, `The platform needed to organise a growing library of research articles, courses, and market updates into something navigable - while converting free readers into paid subscribers.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Content-architecture first. Three-touch newsletter funnel.`,
-      paragraphs: [`We built a content-architecture-first platform with a research library, article indexing by sector and methodology, and a clear freemium-to-paid conversion funnel.`, `The newsletter integration captured email at three points in the reader journey. The design was clean and editorial — appropriate for a financial audience that values signal over noise, with monospace data callouts and editorial article pages.`],
+      paragraphs: [`We built a content-architecture-first platform with a research library, article indexing by sector and methodology, and a clear freemium-to-paid conversion funnel.`, `The newsletter integration captured email at three points in the reader journey. The design was clean and editorial - appropriate for a financial audience that values signal over noise, with monospace data callouts and editorial article pages.`],
     },
     quote: {
       text: `Time-on-site went up and our paid conversion improved without changing the offer. The architecture is doing the work.`,
-      attribution: `— THE TREND CHARTIST`,
+      attribution: `THE TREND CHARTIST`,
     },
     result: {
       label: `03 / The Result`,
@@ -769,16 +769,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Earn trust on first impression. Without feeling clinical or salesy.`,
-      paragraphs: [`The coach is a certified grief recovery specialist working with people navigating loss, transition, and emotional recovery.`, `The website needed to achieve something difficult: earn deep emotional trust immediately, communicate genuine human warmth, and convert visitors into discovery call bookings — without feeling clinical, corporate, or salesy.`],
+      paragraphs: [`The coach is a certified grief recovery specialist working with people navigating loss, transition, and emotional recovery.`, `The website needed to achieve something difficult: earn deep emotional trust immediately, communicate genuine human warmth, and convert visitors into discovery call bookings - without feeling clinical, corporate, or salesy.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `The coach's own story, told first.`,
-      paragraphs: [`We led with the coach's own story — her journey through grief and into coaching — before any service description. Photography was warm, personal, and real. The copy was written in the coach's own voice.`, `Community trust signals (8,300+ active community members, client transformation stories) were woven throughout. The discovery call CTA was positioned as a supportive conversation, not a sales call, lowering the emotional barrier to the click.`],
+      paragraphs: [`We led with the coach's own story - her journey through grief and into coaching - before any service description. Photography was warm, personal, and real. The copy was written in the coach's own voice.`, `Community trust signals (8,300+ active community members, client transformation stories) were woven throughout. The discovery call CTA was positioned as a supportive conversation, not a sales call, lowering the emotional barrier to the click.`],
     },
     quote: {
       text: `My clients say they felt me on the website before we ever spoke. That is exactly what I wanted.`,
-      attribution: `— THE UNLEASHED HEART FOUNDER`,
+      attribution: `THE UNLEASHED HEART FOUNDER`,
     },
     result: {
       label: `03 / The Result`,
@@ -814,16 +814,16 @@ export const caseStudies: CaseStudy[] = [
     challenge: {
       label: `01 / The Challenge`,
       heading: `Avoid every generic "artisan coffee" trope.`,
-      paragraphs: [`WatchHouse is one of London's finest specialty coffee roasters, with multiple cafe locations and a growing online subscription business.`, `The challenge was building a site that honoured the brand's genuine craft positioning — not the generic "artisan" aesthetic that every third coffee brand uses, but something that felt as specific and considered as the beans themselves.`],
+      paragraphs: [`WatchHouse is one of London's finest specialty coffee roasters, with multiple cafe locations and a growing online subscription business.`, `The challenge was building a site that honoured the brand's genuine craft positioning - not the generic "artisan" aesthetic that every third coffee brand uses, but something that felt as specific and considered as the beans themselves.`],
     },
     approach: {
       label: `02 / The Approach`,
       heading: `Split-screen editorial. Cafe and product, equal billing.`,
-      paragraphs: [`We built a split-screen editorial hero that placed the roastery and the cafe in equal prominence — because WatchHouse is both a place and a product.`, `The subscription e-commerce was integrated with delivery scheduling and coffee preference profiles. Multi-location pages were built with individual character, not a template repeated five times — each cafe location got its own visual treatment.`],
+      paragraphs: [`We built a split-screen editorial hero that placed the roastery and the cafe in equal prominence - because WatchHouse is both a place and a product.`, `The subscription e-commerce was integrated with delivery scheduling and coffee preference profiles. Multi-location pages were built with individual character, not a template repeated five times - each cafe location got its own visual treatment.`],
     },
     quote: {
       text: `It looks and feels like our cafes look and feel. That is the highest compliment we can give a website.`,
-      attribution: `— WATCHHOUSE TEAM`,
+      attribution: `WATCHHOUSE TEAM`,
     },
     result: {
       label: `03 / The Result`,

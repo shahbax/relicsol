@@ -90,9 +90,9 @@ export default function ContactPage() {
                 Markets
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, color: '#A1A1AA', fontSize: 14 }}>
-                <div>🇺🇸 United States — remote engagements</div>
-                <div>🇬🇧 United Kingdom — remote engagements</div>
-                <div>🇪🇺 Europe — remote engagements</div>
+                <div>🇺🇸 United States - remote engagements</div>
+                <div>🇬🇧 United Kingdom - remote engagements</div>
+                <div>🇪🇺 Europe - remote engagements</div>
               </div>
             </div>
             <div style={{ background: '#0f0f0f', border: '1px solid #262626', borderRadius: 4, padding: 32 }}>

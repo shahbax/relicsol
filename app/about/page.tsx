@@ -63,7 +63,7 @@ export default function AboutPage() {
               Relicsol is a web design and software development agency working with founders, marketers and operators across the USA, UK and Europe. We combine strategy, design, engineering and automation to ship digital systems that measurably move business outcomes, not just look good in a portfolio.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, color: '#A1A1AA', margin: 0 }}>
-              Since {siteConfig.founded} we have delivered 200+ projects — from bespoke Next.js platforms and custom WordPress builds to AI automation workflows and long-term SEO programmes. Every engagement is scoped, quoted and delivered on the terms we agree upfront.
+              Since {siteConfig.founded} we have delivered 200+ projects, from bespoke Next.js platforms and custom WordPress builds to AI automation workflows and long-term SEO programmes. Every engagement is scoped, quoted and delivered on the terms we agree upfront.
             </p>
           </div>
         </div>

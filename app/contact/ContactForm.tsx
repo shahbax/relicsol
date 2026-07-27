@@ -87,7 +87,7 @@ export function ContactForm() {
         return;
       }
       setStatus('ok');
-      setMessage('Thanks — your message is in. We will reply within one hour.');
+      setMessage('Thanks, your message is in. We will reply within one hour.');
       form.reset();
       setBudget('');
       setServices([]);
