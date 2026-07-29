@@ -120,34 +120,50 @@ export const homeProcessSteps: HomeProcessStep[] = [
 export type Testimonial = { quote: string; name: string; role: string; initials: string };
 export type VideoTestimonial = { src: string; tag: string; title: string; poster?: string };
 
+// Genuine client reviews (verified via Upwork), lightly trimmed for length —
+// never reworded. Shown with first name + initial + company/country, and only
+// the 5.0 reviews are featured so the star display stays accurate.
 export const testimonials: Testimonial[] = [
   {
     quote:
-      'Relicsol built our website from scratch in under 3 weeks. It loads fast, looks premium, and has already brought in leads we would never have got with our old site.',
-    name: 'Sarah L.',
-    role: 'CEO, GreenLeaf',
-    initials: 'SL'
+      'Shahbaz is terrific at what he does: extremely knowledgeable, hardworking and cares about your project. I hired him to complete a website and it got finished even better than I had imagined. Would highly recommend.',
+    name: 'Ro S.',
+    role: 'Founder, Los Angeles',
+    initials: 'RS'
   },
   {
     quote:
-      'The combination of design quality and technical execution was impressive. They understood our brand immediately and delivered exactly what we needed, on time and on budget.',
-    name: 'Robert',
-    role: 'CEO, New You Spa',
-    initials: 'R'
+      'I had a short-notice job that needed to be done ASAP, and Shahbaz got on a meeting with me immediately and saw it through very quickly. I cannot recommend him highly enough.',
+    name: 'Chase D.',
+    role: 'United States',
+    initials: 'CD'
   },
   {
     quote:
-      'From the first call to the final delivery, the process was clear and professional. Our new site ranks on Google and converts visitors into enquiries every week.',
-    name: 'Priya K.',
-    role: 'Founder, StyleMart',
-    initials: 'PK'
+      'Shahbaz is a pro at Elementor and even clean JS coding best practices. Communication is really nice, and we finished the project before the deadline. Highly recommending.',
+    name: 'Muhammad S.',
+    role: 'Indus Code Works, UK',
+    initials: 'MS'
   },
   {
     quote:
-      'We needed a reliable agency that could handle both design and the technical backend. Relicsol delivered both without compromise. We have been with them for two projects now.',
-    name: 'David M.',
-    role: 'CEO, TechNova',
-    initials: 'DM'
+      'Shahbaz was an absolute pleasure to work with. Punctual, detailed and delivered on time, with regular updates and quick responses to questions. I could not ask for any more.',
+    name: 'Dee H.',
+    role: 'Dee is for Digital',
+    initials: 'DH'
+  },
+  {
+    quote:
+      'Shahbaz is an expert PHP developer. He helped us with our WooCommerce customisations really quickly. Will use him again for sure.',
+    name: 'Weston J.',
+    role: 'Germany',
+    initials: 'WJ'
+  },
+  {
+    quote: 'Great communication and great work, highly recommended.',
+    name: 'Jas M.',
+    role: 'Amcorp Capital, London',
+    initials: 'JM'
   }
 ];
 
