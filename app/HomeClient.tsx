@@ -887,56 +887,85 @@ function TestimonialsSection() {
           )}
         </Reveal>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delayMs={i * 80}>
-              <div
-                style={{
-                  background: '#0a0a0a',
-                  border: '1px solid #262626',
-                  borderRadius: 4,
-                  padding: 32,
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 18,
-                  textAlign: 'left'
-                }}
-              >
-                <Stars />
-                <blockquote style={{ margin: 0, flex: 1 }}>
-                  <p style={{ fontSize: 16, lineHeight: 1.7, color: '#e4e4e7', margin: 0 }}>
-                    “{t.quote}”
-                  </p>
-                </blockquote>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 18, borderTop: '1px solid #1a1a1a' }}>
-                  <div
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: '50%',
-                      background: 'linear-gradient(135deg,#F97316,#c2410c)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'var(--font-syne), sans-serif',
-                      fontWeight: 700,
-                      color: '#fff',
-                      fontSize: 15,
-                      flexShrink: 0
-                    }}
-                    aria-hidden
-                  >
-                    {t.initials}
+        {/* Auto-scrolling review slider (right to left). The set is doubled
+            for a seamless loop; the duplicate half is hidden from crawlers and
+            screen readers. Pauses on hover and with prefers-reduced-motion. */}
+        <div className="rl-test-rail" style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 90, background: 'linear-gradient(90deg,#0f0f0f, transparent)', zIndex: 2, pointerEvents: 'none' }} aria-hidden />
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 90, background: 'linear-gradient(270deg,#0f0f0f, transparent)', zIndex: 2, pointerEvents: 'none' }} aria-hidden />
+          <div className="rl-test-row" style={{ display: 'flex', gap: 20, width: 'max-content' }}>
+            {[...testimonials, ...testimonials].map((t, i) => {
+              const dup = i >= testimonials.length;
+              return (
+                <figure
+                  key={i}
+                  className="rl-test-card"
+                  aria-hidden={dup || undefined}
+                  style={{
+                    flexShrink: 0,
+                    width: 'min(400px, 82vw)',
+                    height: 280,
+                    margin: 0,
+                    background: 'linear-gradient(180deg,#141414,#0a0a0a)',
+                    border: '1px solid #232323',
+                    borderRadius: 14,
+                    padding: 28,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 16,
+                    textAlign: 'left'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Stars size={15} />
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="#F97316" style={{ opacity: 0.22 }} aria-hidden>
+                      <path d="M7.17 6A5.17 5.17 0 0 0 2 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 0 1 7.17 9.5V6Zm11 0A5.17 5.17 0 0 0 13 11.17V18h6.83v-6.83H16.5A1.67 1.67 0 0 1 18.17 9.5V6Z" />
+                    </svg>
                   </div>
-                  <cite style={{ fontStyle: 'normal' }}>
-                    <div style={{ color: '#ffffff', fontSize: 15, fontWeight: 600 }}>{t.name}</div>
-                    <div style={{ color: '#71717a', fontSize: 13 }}>{t.role}</div>
-                  </cite>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+                  <blockquote
+                    style={{
+                      margin: 0,
+                      flex: 1,
+                      fontSize: 14.5,
+                      lineHeight: 1.6,
+                      color: '#d4d4d8',
+                      overflow: 'hidden',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 6,
+                      WebkitBoxOrient: 'vertical'
+                    }}
+                  >
+                    {t.quote}
+                  </blockquote>
+                  <figcaption style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 16, borderTop: '1px solid #1c1c1c' }}>
+                    <div
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg,#F97316,#c2410c)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: 'var(--font-syne), sans-serif',
+                        fontWeight: 700,
+                        color: '#fff',
+                        fontSize: 14,
+                        flexShrink: 0
+                      }}
+                      aria-hidden
+                    >
+                      {t.initials}
+                    </div>
+                    <div>
+                      <div style={{ color: '#ffffff', fontSize: 14, fontWeight: 600 }}>{t.name}</div>
+                      <div style={{ color: '#71717a', fontSize: 12 }}>{t.role}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 72 }}>

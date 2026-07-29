@@ -333,6 +333,21 @@ h3 {
   animation-iteration-count: infinite;
 }
 
+/* === Client review slider (right to left) === */
+.rl-test-row {
+  animation: rl-marquee 55s linear infinite;
+}
+.rl-test-rail:hover .rl-test-row {
+  animation-play-state: paused;
+}
+.rl-test-card {
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.rl-test-card:hover {
+  border-color: #f97316;
+  transform: translateY(-4px);
+}
+
 /* === Testimonials progress dot === */
 @keyframes rl-progress {
   from {
@@ -538,7 +553,8 @@ h3 {
     transition: none !important;
   }
   .rl-marquee-row,
-  .rl-port-row {
+  .rl-port-row,
+  .rl-test-row {
     animation: none !important;
   }
 }

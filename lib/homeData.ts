@@ -126,35 +126,35 @@ export type VideoTestimonial = { src: string; tag: string; title: string; poster
 export const testimonials: Testimonial[] = [
   {
     quote:
-      'Shahbaz is terrific at what he does: extremely knowledgeable, hardworking and cares about your project. I hired him to complete a website and it got finished even better than I had imagined. Would highly recommend.',
+      'Sha from the Relicsol team is terrific at what he does: extremely knowledgeable, hardworking and cares about your project. He built a website for us and it turned out even better than I had imagined. Would highly recommend.',
     name: 'Ro S.',
     role: 'Founder, Los Angeles',
     initials: 'RS'
   },
   {
     quote:
-      'I had a short-notice job that needed to be done ASAP, and Shahbaz got on a meeting with me immediately and saw it through very quickly. I cannot recommend him highly enough.',
+      'The Relicsol team got on a meeting with me immediately and saw the job through very quickly. I cannot recommend them highly enough.',
     name: 'Chase D.',
     role: 'United States',
     initials: 'CD'
   },
   {
     quote:
-      'Shahbaz is a pro at Elementor and even clean JS coding best practices. Communication is really nice, and we finished the project before the deadline. Highly recommending.',
+      'The Relicsol team are pros at Elementor and even clean JS coding best practices. Communication is really nice, and we finished the project before the deadline. Highly recommending.',
     name: 'Muhammad S.',
     role: 'Indus Code Works, UK',
     initials: 'MS'
   },
   {
     quote:
-      'Shahbaz was an absolute pleasure to work with. Punctual, detailed and delivered on time, with regular updates and quick responses to questions. I could not ask for any more.',
+      'Relicsol were an absolute pleasure to work with. Punctual, detailed and delivered on time, with regular updates and quick responses to questions. I could not ask for any more.',
     name: 'Dee H.',
     role: 'Dee is for Digital',
     initials: 'DH'
   },
   {
     quote:
-      'Shahbaz is an expert PHP developer. He helped us with our WooCommerce customisations really quickly. Will use him again for sure.',
+      'The Relicsol team are expert PHP developers. They helped us with our WooCommerce customisations really quickly. Will use them again for sure.',
     name: 'Weston J.',
     role: 'Germany',
     initials: 'WJ'
