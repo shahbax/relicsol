@@ -899,3 +899,9 @@ export const locationPages: LocationPage[] = [
 export const locationBySlug: Record<string, LocationPage> = Object.fromEntries(
   locationPages.map((l) => [l.slug, l])
 );
+
+// Distinct geographic areas we serve (countries + cities), for schema
+// `areaServed`. Honest: these are service areas, not physical locations.
+export const servedAreas: string[] = Array.from(
+  new Set(locationPages.map((l) => l.displayName))
+);

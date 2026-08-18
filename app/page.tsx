@@ -3,6 +3,7 @@ import { HomeClient } from './HomeClient';
 import { JsonLd } from '@/components/JsonLd';
 import { siteConfig } from '@/lib/siteConfig';
 import { services } from '@/lib/services';
+import { servedAreas } from '@/lib/locations';
 import { twitterCard } from '@/lib/seo';
 
 const ogTitle = 'Relicsol — Digital systems that convert.';
@@ -37,7 +38,7 @@ const proService = {
   logo: `${siteConfig.siteUrl}/images/logo.png`,
   email: siteConfig.contact.primaryEmail,
   priceRange: '$$–$$$',
-  areaServed: siteConfig.address.markets,
+  areaServed: servedAreas,
   sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

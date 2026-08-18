@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Syne, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import { siteConfig, hasPostalAddress } from '@/lib/siteConfig';
+import { servedAreas } from '@/lib/locations';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -98,7 +99,18 @@ const orgSchema = {
   // Founding year as shown on the site (EST. 2018). Exact date unknown — TODO.
   foundingDate: String(siteConfig.founded),
   email: siteConfig.contact.primaryEmail,
-  areaServed: siteConfig.address.markets,
+  // Countries + cities we serve as a remote/service-area business.
+  areaServed: servedAreas,
+  knowsAbout: [
+    'Web design',
+    'Web development',
+    'Custom software development',
+    'AI automation',
+    'Search engine optimization',
+    'E-commerce development',
+    'WordPress development',
+    'Next.js development'
+  ],
   sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],
   contactPoint: {
     '@type': 'ContactPoint',

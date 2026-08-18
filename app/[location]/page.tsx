@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { QuoteSection } from '@/components/QuoteSection';
 import { locationPages, locationBySlug } from '@/lib/locations';
 import { caseStudyBySlug } from '@/lib/caseStudies';
+import { services } from '@/lib/services';
 import { siteConfig } from '@/lib/siteConfig';
 import { twitterCard } from '@/lib/seo';
 
@@ -196,6 +197,42 @@ export default function LocationPage({ params }: { params: Params }) {
           </div>
         </section>
       ) : null}
+
+      {/* Services (internal links with local context) */}
+      <section style={{ padding: '40px 32px 20px' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+          <Reveal>
+            <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 11, color: '#F97316', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 24 }}>
+              {'{}'} What we build {l.inLocation}
+            </div>
+          </Reveal>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+            {services.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  textDecoration: 'none',
+                  background: '#0f0f0f',
+                  border: '1px solid #262626',
+                  borderRadius: 4,
+                  padding: '16px 18px',
+                  color: '#ffffff',
+                  fontSize: 15,
+                  fontWeight: 600
+                }}
+              >
+                {s.name}
+                <span style={{ color: '#F97316' }} aria-hidden>→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section style={{ padding: '80px 32px' }}>
