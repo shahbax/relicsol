@@ -125,12 +125,16 @@ const orgSchema = {
     ? {
         address: {
           '@type': 'PostalAddress',
-          streetAddress: siteConfig.address.streetAddress,
+          ...(siteConfig.address.streetAddress
+            ? { streetAddress: siteConfig.address.streetAddress }
+            : {}),
           addressLocality: siteConfig.address.addressLocality,
           ...(siteConfig.address.addressRegion
             ? { addressRegion: siteConfig.address.addressRegion }
             : {}),
-          postalCode: siteConfig.address.postalCode,
+          ...(siteConfig.address.postalCode
+            ? { postalCode: siteConfig.address.postalCode }
+            : {}),
           addressCountry: siteConfig.address.addressCountry
         }
       }

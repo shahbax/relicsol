@@ -95,6 +95,11 @@ export function Footer() {
                   {siteConfig.contact.phone}
                 </a>
               ) : null}
+              {siteConfig.address.addressLocality ? (
+                <span style={{ color: '#71717a', fontFamily: 'var(--font-mono), monospace', fontSize: 13 }}>
+                  {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion}, UK
+                </span>
+              ) : null}
             </div>
           </div>
 

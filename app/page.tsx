@@ -37,6 +37,7 @@ const proService = {
   image: `${siteConfig.siteUrl}/opengraph-image`,
   logo: `${siteConfig.siteUrl}/images/logo.png`,
   email: siteConfig.contact.primaryEmail,
+  ...(siteConfig.contact.phone ? { telephone: siteConfig.contact.phone } : {}),
   priceRange: '$$–$$$',
   areaServed: servedAreas,
   sameAs: [siteConfig.social.linkedin, siteConfig.social.facebook],

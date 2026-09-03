@@ -30,23 +30,22 @@ export const siteConfig = {
   contact: {
     primaryEmail: 'info@relicsol.com',
     founderEmail: 'shahbaz@relicsol.com',
-    // No public phone number yet. Set a UK or US number here (e.g. '+44 20 1234 5678')
-    // once the company is registered — it re-enables in the footer, on the contact
-    // page and in schema automatically. Typed as string so conditionals type-check.
-    phone: '' as string,
+    // UK Google Business Profile number. Shows in the footer, on the contact page,
+    // and in LocalBusiness schema — must match GBP exactly (NAP consistency).
+    phone: '+44 7405 963217' as string,
     responsePromise: 'We respond within 1 hour.'
   },
 
-  // Registered business address. Fill these in the week the UK company is
-  // registered; the LocalBusiness schema and contact page pick them up
-  // automatically. Leave blank until then — no fake address ships.
+  // Service-area business: street + postcode kept PRIVATE (not shown publicly),
+  // matching the hidden address on the Google Business Profile. Only town/region
+  // surface, for NAP consistency without exposing a home address.
   address: {
     markets: ['USA', 'UK', 'Europe'],
-    streetAddress: '' as string,
-    addressLocality: '' as string, // town / city
-    addressRegion: '' as string, // county / state
-    postalCode: '' as string,
-    addressCountry: '' as string // ISO code, e.g. 'GB' once registered in the UK
+    streetAddress: '' as string, // intentionally private
+    addressLocality: 'Burnley' as string,
+    addressRegion: 'Lancashire' as string,
+    postalCode: '' as string, // intentionally private
+    addressCountry: 'GB' as string
   },
 
   social: {
@@ -60,7 +59,8 @@ export function yearsInBusiness(now: Date = new Date()): number {
 }
 
 /** True once a registered postal address has been filled into siteConfig.address. */
+/** True once at least a town + country are set (street/postcode may stay private). */
 export function hasPostalAddress(): boolean {
   const a = siteConfig.address;
-  return Boolean(a.streetAddress && a.addressLocality && a.postalCode && a.addressCountry);
+  return Boolean(a.addressLocality && a.addressCountry);
 }
